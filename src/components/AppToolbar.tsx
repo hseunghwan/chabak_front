@@ -1,9 +1,11 @@
 import * as React from "react";
-import { AppBar, Box, Toolbar, IconButton, Typography, MenuItem, Menu } from "@mui/material";
+import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import List from "@mui/icons-material/List";
+import carIcon from "src/resource/img/carIcon.svg";
+import chabakchabak from "src/resource/img/chabakchabak.svg";
 
 export default function AppToolbar() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -96,13 +98,17 @@ export default function AppToolbar() {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ position: "sticky", top: 0, flexGrow: 1 }}>
             <AppBar position="static">
-                <Toolbar sx={{ backgroundColor: "#164F36" }}>
-                    <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                        차박차박
-                    </Typography>
-                    <Box sx={{ display: { xs: "none", md: "flex" } }}>
+                <Toolbar sx={{ backgroundColor: "white", borderBottom: "solid #164F36" }}>
+                    <IconButton sx={{ padding: 0 }}>
+                        <img src={carIcon} alt="" width="70px" />
+                    </IconButton>
+                    <IconButton sx={{ padding: 0 }}>
+                        <img src={chabakchabak} alt="" width="158px" />
+                    </IconButton>
+                    <Box sx={{ flexGrow: 1 }}></Box>
+                    <Box color="#164F36" sx={{ display: { xs: "none", md: "flex" } }}>
                         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                             <SearchIcon />
                         </IconButton>
