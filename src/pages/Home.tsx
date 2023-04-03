@@ -1,17 +1,16 @@
 import React from "react";
-import { Fab } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import { Box, SxProps, Theme } from "@mui/material";
 import AppToolbar from "src/components/AppToolbar";
-import car from "src/resource/img/car.svg";
 
-export default function Home() {
+type HomeProps = {
+    sx?: SxProps<Theme>;
+};
+const Home = ({ sx }: HomeProps): JSX.Element => {
     return (
-        <div>
-            <img src={car} alt="logo" />
+        <Box sx={{ ...sx, position: "relative", width: "45%", height: "100%" }}>
             <AppToolbar />
-            <Fab color="secondary" aria-label="edit">
-                <EditIcon />
-            </Fab>
-        </div>
+            <div style={{ width: "100%", height: "200%", backgroundColor: "gray" }} />
+        </Box>
     );
-}
+};
+export default Home;
