@@ -9,7 +9,7 @@ class OpenAIGpt:
     load_dotenv()    
 
   def run(self, args):
-    question = input("Question : ")
+    question = input(" Question : ")
     openai.api_key = os.getenv("OPENAI_API_KEY")
     response = openai.Completion.create(
       #model="text-davinci-003",
