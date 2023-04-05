@@ -1,23 +1,37 @@
 import os
 import openai
-
+import argparse
 from dotenv import load_dotenv
 
-load_dotenv()
 
-openai.api_key = os.getenv('OPENAI_API_KEY')
+class OpenAIGpt:
+  def __init__(self):
+    load_dotenv()    
 
-response = openai.Completion.create(
-    model = "text-davinci-003",
-    prompt = "안녕, 내 이름은 임승진이야. \n\nQ: 이름이 뭘까?\nA:",
-    temperature = 0,
-    max_tokens = 100,
-    top_p = 1,
-    frequency_penalty = 0.0,
-    presence_penalty = 0.0,
-    stop = ["\n"]
-)
+  def run(self, args):
+    question = input("Question : ")
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    response = openai.Completion.create(
+      #model="text-davinci-003",
+      model= "text-davinci-003",
+      prompt=f"{question}",
+      temperature=args.temperature,
+      max_tokens=100,
+      top_p=1,
+      frequency_penalty=0.0,
+      presence_penalty=0.0,
+      stop=["\n"]
+      #stop=None
+    )
+    #print(response)
+    print(response.choices[0].text.strip())
 
-print(response)
 
-print(response.choices[0].text.strip())
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  # python gpt3.py --temperature 0.3
+  parser.add_argument('--temperature', default=0.3)
+
+  args = parser.parse_args()
+  openai_gpt = OpenAIGpt()
+  openai_gpt.run(args)
