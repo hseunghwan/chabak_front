@@ -13,7 +13,18 @@ const SpeechBubble: React.FC<{ google: any }> = ({ google }) => {
     };
 
     return (
-        <Box sx={{ position: "fixed", width: "40%", height: "93vh", top: "20px", left: "0px", paddingLeft: "10px" }}>
+        <Box
+            sx={{
+                position: "fixed",
+                width: "calc(52.5% - 110px)",
+                height: "93vh",
+                top: "20px",
+                left: "0px",
+                paddingLeft: "10px",
+                animation: "expand .5s ease-out forwards",
+                transformOrigin: "100% 100%",
+            }}
+        >
             <Map google={google} zoom={14} initialCenter={{ lat: 37.5665, lng: 126.978 }} style={mapStyles} />
         </Box>
     );
