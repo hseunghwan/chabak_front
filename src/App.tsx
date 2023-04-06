@@ -46,7 +46,7 @@ export default function App() {
                 justifyContent: "center", // Add justifyContent
             }}
         >
-            {showSpeechBubble && <SpeechBubble />}
+            <SpeechBubble isOpen={showSpeechBubble} />
             <Box
                 sx={{
                     ...homeStyles,
