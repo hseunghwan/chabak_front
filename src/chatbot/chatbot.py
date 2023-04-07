@@ -13,7 +13,7 @@ class OpenAIGpt:
     openai.api_key = os.getenv("OPENAI_API_KEY")
     response = openai.Completion.create(
       #model="text-davinci-003",
-      model= "text-davinci-003",
+      model= "curie",
       prompt=f"{question}",
       temperature=args.temperature,
       max_tokens=100,
