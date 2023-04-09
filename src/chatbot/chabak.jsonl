@@ -1,0 +1,48 @@
+{
+    "label": "초보",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "차량",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "장비",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "음식",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "시설",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "지역",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "환경",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
+{
+    "label": "주변",
+    "category": "차박",
+    "prompt": "prompt 문장",
+    "completion": "completion 문장"
+}
