@@ -11,7 +11,7 @@ You will also see any lint errors in the console.
 
 ---
 
-# 컴포넌트 계층 구조
+#### 컴포넌트 계층 구조
 
 -   App
     -   BackgroundContainer
@@ -53,7 +53,7 @@ You will also see any lint errors in the console.
             -   LogInInForm
                 -   LogInInput
 
-# 라우팅 구조
+##### 라우팅 구조
 
 -   Home ("/")
 -   PlaceDetail ("/place/:id")
