@@ -130,11 +130,11 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
                         </IconButton>
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", md: "flex" } }}>
-                            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                <SearchIcon />
+                            <IconButton size="large" color="inherit">
+                                <SearchIcon fontSize="large" />
                             </IconButton>
-                            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-                                <List />
+                            <IconButton size="large" color="inherit">
+                                <List fontSize="large" />
                             </IconButton>
                             <IconButton
                                 size="large"
@@ -145,7 +145,7 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <AccountCircle fontSize="large" />
                             </IconButton>
                         </Box>
                         <Box sx={{ color: "inherit", display: { xs: "flex", md: "none" } }}>
