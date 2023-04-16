@@ -8,8 +8,8 @@ type FloatingButtonProps = {
 
 const FloatingButton = ({ onClick }: FloatingButtonProps): JSX.Element => {
     return (
-        <Fab color="primary" aria-label="add" onClick={onClick}>
-            <MapIcon />
+        <Fab aria-label="add" onClick={onClick}>
+            <MapIcon fontSize="large" sx={{ color: "#164F36" }} />
         </Fab>
     );
 };
