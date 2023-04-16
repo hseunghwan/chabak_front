@@ -53,7 +53,7 @@ You will also see any lint errors in the console.
             -   LogInInForm
                 -   LogInInput
 
-##### 라우팅 구조
+#### 라우팅 구조
 
 -   Home ("/")
 -   PlaceDetail ("/place/:id")
@@ -66,4 +66,4 @@ You will also see any lint errors in the console.
 -   SignUp ("/signup")
 -   LogIn ("/login")
 
-# 상태 관리 구조
+#### 상태 관리 구조
