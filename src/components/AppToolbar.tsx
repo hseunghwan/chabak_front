@@ -119,22 +119,22 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
 
     return (
         <>
-            <Box ref={appToolbarRef} sx={{ position: "fixed", top: 0, width: `${parentWidth}px` }}>
+            <Box ref={appToolbarRef} sx={{ position: "fixed", top: 0, width: "inherit" }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: "#164F36", backgroundColor: "white", borderBottom: "solid #164F36" }}>
                         <IconButton sx={{ padding: 0 }}>
-                            <img src={carIcon} alt="" width="70px" />
+                            <img src={carIcon} alt="" width="45px" />
                         </IconButton>
                         <IconButton sx={{ padding: 0 }}>
-                            <img src={chabakchabak} alt="" width="158px" />
+                            <img src={chabakchabak} alt="" width="118px" />
                         </IconButton>
                         <Box sx={{ flexGrow: 1 }}></Box>
-                        <Box color="inherit" sx={{ display: { xs: "none", md: "flex" } }}>
+                        <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
                             <IconButton size="large" color="inherit">
-                                <SearchIcon fontSize="large" />
+                                <SearchIcon sx={{ fontSize: "30px" }} />
                             </IconButton>
                             <IconButton size="large" color="inherit">
-                                <List fontSize="large" />
+                                <List sx={{ fontSize: "30px" }} />
                             </IconButton>
                             <IconButton
                                 size="large"
@@ -145,10 +145,10 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle fontSize="large" />
+                                <AccountCircle sx={{ fontSize: "30px" }} />
                             </IconButton>
                         </Box>
-                        <Box sx={{ color: "inherit", display: { xs: "flex", md: "none" } }}>
+                        <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
                             <IconButton
                                 size="large"
                                 aria-label="show more"

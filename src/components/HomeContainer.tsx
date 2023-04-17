@@ -27,7 +27,7 @@ const HomeContainer = ({ sx }: HomeContainerProps): JSX.Element => {
     }, []);
 
     return (
-        <Box ref={parentRef} sx={{ ...sx, position: "relative", width: "45%", height: "100%" }}>
+        <Box ref={parentRef} sx={{ ...sx }}>
             <AppToolbar parentWidth={parentWidth} />
             <Box>
                 <HomeContentBox title="이런 곳은 어때요?" />
