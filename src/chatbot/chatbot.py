@@ -16,9 +16,15 @@ class OpenAIGpt:
     def custom_ner(doc):
         for ent in doc.ents:
             if ent.label_ == "LC" and (ent.text.endswith("시") or ent.text.endswith("도")):
+                print(ent.label_)
+                print(ent.text)
                 ent.label_ = "CITY"
+                print(ent.label_)
+                print(ent.text)
             elif ent.text in ["봄", "여름", "가을", "겨울"]:
                 ent.label_ = "SEASON"
+        print("!!")
+        print(doc)
         return doc
 
     def run(self, args):
@@ -34,7 +40,7 @@ class OpenAIGpt:
                 engine="davinci:ft-personal-2023-04-17-22-21-08",
                 prompt=prompt,
                 temperature=args.temperature,
-                max_tokens=100,
+                max_tokens=512,
                 top_p=1,
                 frequency_penalty=0.0,
                 presence_penalty=0.0,
