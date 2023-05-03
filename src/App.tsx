@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import "src/App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Box, SxProps, Theme } from "@mui/material";
+//import React, { useState } from "react";
+//import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//import { Box, SxProps, Theme } from "@mui/material";
 import Home from "src/pages/Home";
-import Error from "src/pages/Error";
-import About from "src/pages/About";
+import "src/App.css";
+//import Error from "src/pages/Error";
+//import About from "src/pages/About";
 import BackgroundContainer from "src/components/BackgroundContainer";
 
 // const router = createBrowserRouter([

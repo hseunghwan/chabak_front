@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "src/App.css";
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
 import HomeContainer from "src/components/HomeContainer";
 import FloatingButton from "src/components/FloatingButton";
