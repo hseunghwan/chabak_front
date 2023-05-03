@@ -55,7 +55,6 @@ export default function Home() {
                         width: "45%",
                     },
                     height: "100%",
-                    padding: 0,
                 }}
             />
         </>
