@@ -1,9 +1,24 @@
-import React from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import React, { useEffect, useRef } from "react";
 import { Box } from "@mui/material";
 import { SxProps, Theme } from "@mui/system";
 
-const SpeechBubble: React.FC<{ google: any; isOpen: boolean }> = ({ google, isOpen }) => {
+const SpeechBubble: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+    const mapRef = useRef(null);
+
+    useEffect(() => {
+        const { naver } = window;
+
+        if (mapRef.current) {
+            const location = new naver.maps.LatLng(37.5656, 126.9769);
+            const mapOptions: naver.maps.MapOptions = {
+                center: location,
+                zoom: 17,
+                scaleControl: false,
+            };
+            new window.naver.maps.Map(mapRef.current, mapOptions);
+        }
+    }, []);
+
     const mapStyles: SxProps<Theme> = {
         width: "100%",
         height: "100%",
@@ -26,11 +41,9 @@ const SpeechBubble: React.FC<{ google: any; isOpen: boolean }> = ({ google, isOp
                 transformOrigin: "47% 95%",
             }}
         >
-            <Map google={google} zoom={14} initialCenter={{ lat: 37.5665, lng: 126.978 }} style={mapStyles} />
+            <Box ref={mapRef} sx={mapStyles} />
         </Box>
     );
 };
 
-export default GoogleApiWrapper({
-    apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
-})(SpeechBubble);
+export default SpeechBubble;
