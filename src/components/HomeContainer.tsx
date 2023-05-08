@@ -1,38 +1,23 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Box, SxProps, Theme } from "@mui/material";
+import { Box, SxProps, Theme, Typography } from "@mui/material";
 import AppToolbar from "src/components/AppToolbar";
 import HomeContentBox from "src/components/HomeContentBox";
+import campping from "src/resource/img/campping.png";
+import location from "src/resource/img/location.png";
+import mountain from "src/resource/img/mountain.png";
 
 type HomeContainerProps = {
     sx?: SxProps<Theme>;
 };
 const HomeContainer = ({ sx }: HomeContainerProps): JSX.Element => {
-    const parentRef = useRef<HTMLElement>(null);
-    const [parentWidth, setParentWidth] = useState<number>(0);
-
-    useEffect(() => {
-        // AppToolbar의 width를 계산하기 위해 parent의 width를 계산한다.
-        const updateParentWidth = () => {
-            if (parentRef.current) {
-                const width = parentRef.current.clientWidth;
-                setParentWidth(width);
-            }
-        };
-
-        updateParentWidth();
-        window.addEventListener("resize", updateParentWidth);
-        return () => {
-            window.removeEventListener("resize", updateParentWidth);
-        };
-    }, []);
-
     return (
-        <Box ref={parentRef} sx={{ ...sx }}>
-            <AppToolbar parentWidth={parentWidth} />
-            <Box>
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
+        <Box sx={{ ...sx }}>
+            <AppToolbar />
+
+            <Box sx={{ backgroundColor: "#F1F9F1" }}>
+                <Typography sx={{ fontSize: "20px", color: "#103223", padding: "3px" }}>AI로 쉽게 찾는 캠핑/차박지</Typography>
+                <HomeContentBox title="이런 곳은 어때요?" icon={campping} />
+                <HomeContentBox title="이런 곳은 어때요?" icon={mountain} />
+                <HomeContentBox title="이런 곳은 어때요?" icon={location} />
                 <HomeContentBox title="이런 곳은 어때요?" />
                 <HomeContentBox title="이런 곳은 어때요?" />
                 <HomeContentBox title="이런 곳은 어때요?" />

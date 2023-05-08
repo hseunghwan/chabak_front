@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
@@ -6,12 +6,11 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import List from "@mui/icons-material/List";
 import carIcon from "src/resource/img/carIcon.svg";
 import chabakchabak from "src/resource/img/chabakchabak.svg";
-import { useEffect, useState } from "react";
+import circleUser from "src/resource/img/circle-user.png";
+import list from "src/resource/img/list.png";
+import search from "src/resource/img/search.png";
 
-type AppToolbarProps = {
-    parentWidth: number;
-};
-export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Element {
+export default function AppToolbar(): JSX.Element {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const [appToolbarHeight, setAppToolbarHeight] = useState<number>(0);
@@ -61,6 +60,7 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
             }}
             id={menuId}
             keepMounted
+            disableScrollLock
             transformOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -83,6 +83,7 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
             }}
             id={mobileMenuId}
             keepMounted
+            disableScrollLock
             transformOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -122,19 +123,15 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
             <Box ref={appToolbarRef} sx={{ position: "fixed", top: 0, width: "inherit" }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: "#164F36", backgroundColor: "white", borderBottom: "solid #164F36" }}>
-                        <IconButton sx={{ padding: 0 }}>
-                            <img src={carIcon} alt="" width="45px" />
-                        </IconButton>
-                        <IconButton sx={{ padding: 0 }}>
-                            <img src={chabakchabak} alt="" width="118px" />
-                        </IconButton>
+                        <img src={carIcon} alt="" width="45px" />
+                        <img src={chabakchabak} alt="" width="118px" />
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
                             <IconButton size="large" color="inherit">
-                                <SearchIcon sx={{ fontSize: "30px" }} />
+                                <img src={search} alt="" width="30px" />
                             </IconButton>
                             <IconButton size="large" color="inherit">
-                                <List sx={{ fontSize: "30px" }} />
+                                <img src={list} alt="" width="30px" />
                             </IconButton>
                             <IconButton
                                 size="large"
@@ -145,7 +142,7 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle sx={{ fontSize: "30px" }} />
+                                <img src={circleUser} alt="" width="30px" />
                             </IconButton>
                         </Box>
                         <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
