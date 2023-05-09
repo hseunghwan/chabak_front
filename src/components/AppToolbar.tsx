@@ -4,11 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import List from "@mui/icons-material/List";
-import carIcon from "src/resource/img/carIcon.svg";
-import chabakchabak from "src/resource/img/chabakchabak.svg";
-import circleUser from "src/resource/img/circle-user.png";
-import list from "src/resource/img/list.png";
-import search from "src/resource/img/search.png";
+import icons from "src/const/icons";
 
 export default function AppToolbar(): JSX.Element {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -123,15 +119,15 @@ export default function AppToolbar(): JSX.Element {
             <Box ref={appToolbarRef} sx={{ position: "fixed", top: 0, width: "inherit" }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: "#164F36", backgroundColor: "white", borderBottom: "solid #164F36" }}>
-                        <img src={carIcon} alt="" width="45px" />
-                        <img src={chabakchabak} alt="" width="118px" />
+                        <img src={icons.carIcon} alt="" width="45px" />
+                        <img src={icons.chabakchabak} alt="" width="118px" />
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
                             <IconButton size="large" color="inherit">
-                                <img src={search} alt="" width="30px" />
+                                <img src={icons.search} alt="" width="30px" />
                             </IconButton>
                             <IconButton size="large" color="inherit">
-                                <img src={list} alt="" width="30px" />
+                                <img src={icons.list} alt="" width="30px" />
                             </IconButton>
                             <IconButton
                                 size="large"
@@ -142,7 +138,7 @@ export default function AppToolbar(): JSX.Element {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <img src={circleUser} alt="" width="30px" />
+                                <img src={icons.circleuser} alt="" width="30px" />
                             </IconButton>
                         </Box>
                         <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>

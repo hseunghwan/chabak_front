@@ -1,28 +1,27 @@
 //import React, { useState } from "react";
-//import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 //import { Box, SxProps, Theme } from "@mui/material";
 import Home from "src/pages/Home";
-//import Error from "src/pages/Error";
-//import About from "src/pages/About";
+import Error from "src/pages/Error";
+import Mypage from "src/pages/Mypage";
 import BackgroundContainer from "src/components/BackgroundContainer";
 
-// const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <Home />,
-//         errorElement: <Error />,
-//     },
-//     {
-//         path: "/about",
-//         element: <About />,
-//     },
-// ]);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home />,
+        errorElement: <Error />,
+    },
+    {
+        path: "/mypage",
+        element: <Mypage />,
+    },
+]);
 
 export default function App() {
-    //return <RouterProvider router={router} />;
     return (
         <BackgroundContainer>
-            <Home />
+            <RouterProvider router={router} />;
         </BackgroundContainer>
     );
 }
