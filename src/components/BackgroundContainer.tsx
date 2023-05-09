@@ -15,12 +15,13 @@ export default function BackgroundContainer({ children, showLogo = true, sx }: B
                 justifyContent: "center", // Add justifyContent
                 //position: "relative",
                 //height: "100%",
-                backgroundColor: "#164F36",
+                //backgroundColor: "#164F36",
                 //overflow: "auto",
                 // paddingLeft: 0,
                 // paddingRight: 0,
             }}
         >
+            <div style={{ width: "100vW", height: "100vh", position: "fixed", backgroundColor: "#164F36" }}></div>
             <img src={icons.tent} alt="" width="25.4%" style={{ position: "fixed", bottom: "0%", left: "5%" }} />
             <img src={icons.fire} alt="" width="7.2%" style={{ position: "fixed", bottom: "0%", left: "1%" }} />
             <img src={icons.car} alt="" width="20%" style={{ position: "fixed", bottom: "0%", right: "1%" }} />
