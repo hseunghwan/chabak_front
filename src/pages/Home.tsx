@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
-import HomeContainer from "src/components/HomeContainer";
 import FloatingButton from "src/components/FloatingButton";
 import SpeechBubble from "src/components/SpeechBubble";
+import { Outlet } from "react-router-dom";
 
 export default function Home() {
+    const theme = useTheme();
     const [showSpeechBubble, setShowSpeechBubble] = useState(false);
 
     const handleClick = () => {
@@ -31,31 +32,31 @@ export default function Home() {
         transition: "0.5s",
         flexDirection: "column",
     };
-    const theme = useTheme();
+
+    const floatingButtonContainerStyles: SxProps<Theme> = {
+        ...homeStyles,
+        position: "fixed",
+        left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
+        bottom: "30px",
+        zIndex: 100,
+    };
+
+    const homeContainerStyles: SxProps<Theme> = {
+        ...homeStyles,
+        width: "100%",
+        [theme.breakpoints.up("md")]: {
+            width: "45%",
+        },
+        height: "100%",
+    };
+
     return (
         <>
             <SpeechBubble isOpen={showSpeechBubble} />
-            <Box
-                sx={{
-                    ...homeStyles,
-                    position: "fixed",
-                    left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
-                    bottom: "30px",
-                    zIndex: 100,
-                }}
-            >
+            <Box sx={floatingButtonContainerStyles}>
                 <FloatingButton onClick={handleClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
             </Box>
-            <HomeContainer
-                sx={{
-                    ...homeStyles,
-                    width: "100%",
-                    [theme.breakpoints.up("md")]: {
-                        width: "45%",
-                    },
-                    height: "100%",
-                }}
-            />
+            <Outlet context={homeContainerStyles} />
         </>
     );
 }

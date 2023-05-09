@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import List from "@mui/icons-material/List";
 import icons from "src/const/icons";
 
 export default function AppToolbar(): JSX.Element {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const [appToolbarHeight, setAppToolbarHeight] = useState<number>(0);
+    const navigate = useNavigate();
 
-    const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const appToolbarRef = React.useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -29,45 +26,14 @@ export default function AppToolbar(): JSX.Element {
             window.removeEventListener("resize", updateAppToolbarHeight);
         };
     }, []);
-    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
 
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
-    const menuId = "apptoolbar-account-menu";
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-            }}
-            id={menuId}
-            keepMounted
-            disableScrollLock
-            transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
     const renderMobileMenu = (
@@ -88,27 +54,15 @@ export default function AppToolbar(): JSX.Element {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <SearchIcon />
-                </IconButton>
+                <img src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Search</p>
             </MenuItem>
             <MenuItem>
-                <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-                    <List />
-                </IconButton>
+                <img src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>List</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="apptoolbar-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
+            <MenuItem>
+                <img src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Profile</p>
             </MenuItem>
         </Menu>
@@ -123,19 +77,17 @@ export default function AppToolbar(): JSX.Element {
                         <img src={icons.chabakchabak} alt="" width="118px" />
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
-                            <IconButton size="large" color="inherit">
+                            <IconButton onClick={() => navigate("/search")} size="large" color="inherit">
                                 <img src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            <IconButton size="large" color="inherit">
+                            <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
                                 <img src={icons.list} alt="" width="30px" />
                             </IconButton>
                             <IconButton
+                                onClick={() => navigate("/mypage")}
                                 size="large"
                                 edge="end"
                                 aria-label="account of current user"
-                                aria-controls={menuId}
-                                aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
                                 <img src={icons.circleuser} alt="" width="30px" />
@@ -156,7 +108,6 @@ export default function AppToolbar(): JSX.Element {
                     </Toolbar>
                 </AppBar>
                 {renderMobileMenu}
-                {renderMenu}
             </Box>
             <Box sx={{ backgroundColor: "transparent", height: `calc(${appToolbarHeight}px + 1px)` }}></Box>
         </>
