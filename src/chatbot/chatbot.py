@@ -32,20 +32,10 @@ class OpenAIGpt:
         print(f'second doc: {doc}')
         
         for ent in doc.ents:
-            print(ent)
-            print(f'value = {ent} label = {ent.label_}')
-            if ent.label_ == "DT":
+            if ent.label_ == "LC" and (ent.text.endswith("시") or ent.text.endswith("도")):
+                ent.label_ = "CITY"
+            elif ent.text in ["봄", "여름", "가을", "겨울"]:
                 ent.label_ = "SEASON"
-                '''
-            elif ent.text in ["봄", "여름", "가을", "겨울"]: 
-                span = Span(doc, ent.start, ent.end, label='season')
-                doc.ents = list(doc.ents) + [span]
-                '''
-                #doc.ent.label_ = ent.label_
-                
-        for ent in doc.ents:
-            print(ent.text, ent.label_)
-        print(f'doc.ents = {doc.ents}, doc = {doc}')
         return doc
 
     def run(self, args):
