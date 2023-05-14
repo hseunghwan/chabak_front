@@ -26,15 +26,9 @@ export default function Home() {
         };
     }, []);
 
-    const homeStyles: SxProps<Theme> = {
-        position: "relative",
-        left: showSpeechBubble ? "25%" : 0,
+    const floatingButtonContainerStyles: SxProps<Theme> = {
         transition: "0.5s",
         flexDirection: "column",
-    };
-
-    const floatingButtonContainerStyles: SxProps<Theme> = {
-        ...homeStyles,
         position: "fixed",
         left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
         bottom: "30px",
@@ -42,7 +36,10 @@ export default function Home() {
     };
 
     const homeContainerStyles: SxProps<Theme> = {
-        ...homeStyles,
+        position: "relative",
+        left: showSpeechBubble ? "25%" : 0,
+        transition: "0.5s",
+        flexDirection: "column",
         width: "100%",
         [theme.breakpoints.up("md")]: {
             width: "45%",
@@ -56,7 +53,9 @@ export default function Home() {
             <Box sx={floatingButtonContainerStyles}>
                 <FloatingButton onClick={handleClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
             </Box>
-            <Outlet context={homeContainerStyles} />
+            <Box sx={homeContainerStyles}>
+                <Outlet />
+            </Box>
         </>
     );
 }

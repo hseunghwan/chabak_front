@@ -1,24 +1,17 @@
 import React from "react";
-import { Box, SxProps, Theme } from "@mui/material";
+import { Box } from "@mui/material";
 import icons from "src/const/icons";
 
 type BackgroundContainerProps = {
     children: React.ReactNode;
-    showLogo?: boolean;
-    sx?: SxProps<Theme>;
 };
-export default function BackgroundContainer({ children, showLogo = true, sx }: BackgroundContainerProps): JSX.Element {
+
+export default function BackgroundContainer({ children }: BackgroundContainerProps): JSX.Element {
     return (
         <Box
             sx={{
-                display: "flex", // Add display flex
-                justifyContent: "center", // Add justifyContent
-                //position: "relative",
-                //height: "100%",
-                //backgroundColor: "#164F36",
-                //overflow: "auto",
-                // paddingLeft: 0,
-                // paddingRight: 0,
+                display: "flex",
+                justifyContent: "center",
             }}
         >
             <div style={{ width: "100vW", height: "100vh", position: "fixed", backgroundColor: "#164F36" }}></div>
