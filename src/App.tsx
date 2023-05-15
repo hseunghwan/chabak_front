@@ -44,7 +44,7 @@ const router = createBrowserRouter([
 export default function App() {
     return (
         <BackgroundContainer>
-            <RouterProvider router={router} />;
+            <RouterProvider router={router} />
         </BackgroundContainer>
     );
 }

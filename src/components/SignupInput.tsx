@@ -1,6 +1,10 @@
 import { TextField } from "@mui/material";
 import React from "react";
 
-export default function SignupInput() {
-    return <TextField required id="outlined-required" label="아아디" defaultValue="Hello World" />;
+type SignupInputProps = {
+    label: string;
+};
+
+export default function SignupInput({ label }: SignupInputProps): JSX.Element {
+    return <TextField fullWidth variant="outlined" required label={label} />;
 }
