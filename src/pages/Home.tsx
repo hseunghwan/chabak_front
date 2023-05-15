@@ -38,7 +38,7 @@ export default function Home() {
     const homeContainerStyles: SxProps<Theme> = {
         position: "relative",
         left: showSpeechBubble ? "25%" : 0,
-        transition: "0.5s",
+        transition: "left 0.5s",
         flexDirection: "column",
         width: "100%",
         [theme.breakpoints.up("md")]: {

@@ -1,3 +1,4 @@
+import backicon from "src/resource/img/backicon.svg";
 import campping from "src/resource/img/campping.svg";
 import car from "src/resource/img/car.svg";
 import carIcon from "src/resource/img/carIcon.svg";
@@ -13,6 +14,7 @@ import search from "src/resource/img/search.svg";
 import tent from "src/resource/img/tent.svg";
 
 const icon = {
+    backicon: backicon,
     campping: campping,
     car: car,
     carIcon: carIcon,

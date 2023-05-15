@@ -1,6 +1,8 @@
 import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import colors from "src/const/colors";
+
 type HomeContentBoxProps = {
     title: string;
     icon?: string;
@@ -12,7 +14,7 @@ const HomeContentBox = ({ title, icon, contents, sx }: HomeContentBoxProps): JSX
     const navigate = useNavigate();
     return (
         <Box sx={{ width: "100%", marginBottom: "5px", boxShadow: "0px 7px 5px -5px" }}>
-            <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: "solid #164F36" }}>
+            <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                 {icon && <img src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
                 <Typography alignSelf="center">{title}</Typography>
             </Box>
