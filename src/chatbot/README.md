@@ -27,4 +27,4 @@
 
 + ## `NER 학습`
     
-    + ner을 학습시킬 때 저장 장소는 local로 ex) :\\Users\\sunny\\Documents\\ner
+    + ner을 학습시킬 때 저장 장소는 local로 ex) C:\\Users\\sunny\\Documents\\ner
