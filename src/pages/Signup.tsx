@@ -26,7 +26,7 @@ export default function Signup() {
                     <SignupInput label="이메일" />
                     <SignupInput label="비밀번호" />
                     <SignupInput label="비밀번호 확인" />
-                    <SignupInput label="닉네임" />
+                    <SignupInput label="주소" />
                 </Box>
                 <Button variant="contained">회원가입</Button>
             </Box>
