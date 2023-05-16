@@ -9,7 +9,7 @@
     + pip install spacy
 
 
-    # spaCy 한글 모델 'ko_core_news_lg' 설치
+    ### spaCy 한글 모델 'ko_core_news_lg' 설치
 
     + python -m spacy download ko_core_news_lg
 
@@ -17,7 +17,7 @@
 
     + pip install konply
 
-    # konply 사용하려면 jdk 17 이상 버전이 필요함
+    ### konply 사용하려면 jdk 17 이상 버전이 필요함
 
 + ## `dotenv 설치`
 
