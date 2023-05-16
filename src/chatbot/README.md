@@ -5,12 +5,9 @@
 
     + pip install openai
 
-    key는 .env
-
 + ## `spaCy 설치`
 
     + pip install spacy
-
 
     ### spaCy 한글 모델 'ko_core_news_lg' 설치
 
@@ -27,4 +24,3 @@
 + ## `dotenv 설치`
 
     + pip install dotenv
-
