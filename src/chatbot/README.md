@@ -5,6 +5,8 @@
 
     + pip install openai
 
+    # key는 .env
+
 + ## `spaCy 설치`
 
     + pip install spacy
