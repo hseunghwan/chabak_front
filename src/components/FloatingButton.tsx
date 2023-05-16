@@ -1,15 +1,16 @@
 import React from "react";
-import { Fab } from "@mui/material";
-import MapIcon from "@mui/icons-material/Map";
-
+import { Fab, SxProps, Theme } from "@mui/material";
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import colors from "src/const/colors";
 type FloatingButtonProps = {
     onClick: () => void;
+    sx?: SxProps<Theme>;
 };
 
-const FloatingButton = ({ onClick }: FloatingButtonProps): JSX.Element => {
+const FloatingButton = ({ onClick, sx }: FloatingButtonProps): JSX.Element => {
     return (
-        <Fab color="primary" aria-label="add" onClick={onClick}>
-            <MapIcon />
+        <Fab aria-label="add" onClick={onClick} sx={{ ...sx }}>
+            <MapOutlinedIcon fontSize="large" sx={{ color: colors.MAIN }} />
         </Fab>
     );
 };

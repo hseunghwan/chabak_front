@@ -1,64 +1,50 @@
-import React, { useState } from "react";
-import "src/App.css";
+//import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+//import { Box, SxProps, Theme } from "@mui/material";
 import Home from "src/pages/Home";
 import Error from "src/pages/Error";
-import About from "src/pages/About";
-import car from "src/resource/img/car.svg";
-import FloatingButton from "src/components/FloatingButton";
-import SpeechBubble from "src/components/SpeechBubble";
-import { Box, SxProps, Theme } from "@mui/material";
+import Mypage from "src/pages/Mypage";
+import BackgroundContainer from "src/components/BackgroundContainer";
+import HomeContainer from "src/components/HomeContainer";
+import PlaceDetail from "src/components/PlaceDetail";
+import Search from "src/components/Search";
+import Filter from "src/components/Filter";
+import HomeContents from "src/components/HomeContents";
+import Login from "src/pages/Login";
+import Signup from "src/pages/Signup";
+import Settings from "src/pages/Settings";
+import RegisterPlace from "src/pages/RegisterPlace";
+import RegisteredPlace from "src/pages/RegisteredPlace";
 
-// const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <Home />,
-//         errorElement: <Error />,
-//     },
-//     {
-//         path: "/about",
-//         element: <About />,
-//     },
-// ]);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home />,
+        errorElement: <Error />,
+        children: [
+            {
+                element: <HomeContainer />,
+                children: [
+                    { index: true, element: <HomeContents /> },
+                    { path: "/placedetail", element: <PlaceDetail /> },
+                    { path: "/registeredplace", element: <RegisteredPlace /> },
+                    { path: "/registerplace", element: <RegisterPlace /> },
+                ],
+            },
+            { path: "/search", element: <Search /> },
+            { path: "/filter", element: <Filter /> },
+        ],
+    },
+    { path: "/mypage", element: <Mypage /> },
+    { path: "/login", element: <Login /> },
+    { path: "/signup", element: <Signup /> },
+    { path: "/settings", element: <Settings /> },
+]);
 
 export default function App() {
-    const [showSpeechBubble, setShowSpeechBubble] = useState(false);
-
-    const handleClick = () => {
-        setShowSpeechBubble(!showSpeechBubble);
-    };
-    const homeStyles: SxProps<Theme> = {
-        position: "relative",
-        left: showSpeechBubble ? "25%" : 0,
-        transition: "0.5s",
-        flexDirection: "column",
-    };
-    //return <RouterProvider router={router} />;
     return (
-        <Box
-            style={{
-                position: "relative",
-                width: "100%",
-                height: "100vh",
-                backgroundColor: "#164F36",
-                overflow: "auto",
-                display: "flex", // Add display flex
-                justifyContent: "center", // Add justifyContent
-            }}
-        >
-            <SpeechBubble isOpen={showSpeechBubble} />
-            <Box
-                sx={{
-                    ...homeStyles,
-                    position: "fixed",
-                    left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
-                    bottom: "30px",
-                    zIndex: 100,
-                }}
-            >
-                <FloatingButton onClick={handleClick} />
-            </Box>
-            <Home sx={homeStyles} />
-        </Box>
+        <BackgroundContainer>
+            <RouterProvider router={router} />
+        </BackgroundContainer>
     );
 }
