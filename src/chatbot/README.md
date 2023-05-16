@@ -1,20 +1,25 @@
-### 'API 설치'
+# `API 설치`
 
-# 'openai 설치'
++ ## `openai 설치`
 
-'pip install openai'
+    + pip install openai
 
-# 'spaCy 설치'
++ ## `spaCy 설치`
 
-pip install spacy
+    + pip install spacy
 
-# 'konply 설치'
 
-pip install konply
+    # spaCy 한글 모델 'ko_core_news_lg' 설치
 
--> konply 사용하려면 jdk 17 이상 버전이 필요함
+    + python -m spacy download ko_core_news_lg
 
-# 'dotenv 설치'
++ ## `konply 설치`
 
-pip install dotenv
+    + pip install konply
+
+    # konply 사용하려면 jdk 17 이상 버전이 필요함
+
++ ## `dotenv 설치`
+
+    + pip install dotenv
 
