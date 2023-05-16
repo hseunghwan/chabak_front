@@ -15,7 +15,6 @@ export default function FormContainer({ title, children }: FormContainerProps): 
 
     const homeContainerStyles: SxProps<Theme> = {
         position: "relative",
-        transition: "0.5s",
         flexDirection: "column",
         width: "100%",
         [theme.breakpoints.up("md")]: {
@@ -41,6 +40,7 @@ export default function FormContainer({ title, children }: FormContainerProps): 
                     display: "flex",
                     justifyContent: "center",
                     alignContent: "center",
+                    flexWrap: "wrap",
                     backgroundColor: colors.FORMBACKGROUND,
                     marginTop: "65px",
                     height: "calc(100vh - 65px)",
