@@ -12,7 +12,7 @@ pip install spacy
 
 pip install konply
 
--> konply 사용하려면 jdk 17 이상 버전이 필요함
+-> konply 사용하려면 jdk 17 이상 버전이 필요함.
 
 # 'dotenv 설치'
 
