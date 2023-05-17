@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Box, Button, SxProps, TextField, Theme } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import FormContainer from "src/components/FormContainer";
 import icons from "src/const/icons";
+import CenteredBox from "src/components/CenteredBox";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
 import { redirect } from "react-router-dom";
-
-const boxStyle: SxProps<Theme> = {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignContent: "center",
-    gap: "15px",
-};
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -56,20 +48,18 @@ export default function Login() {
     return (
         <FormContainer title="로그인">
             <form onSubmit={handleSubmit}>
-                <Box sx={boxStyle}>
-                    <Box sx={{ ...boxStyle, flexDirection: "row" }}>
+                <CenteredBox>
+                    <CenteredBox sx={{ flexDirection: "row" }}>
                         <img src={icons.carIcon} alt="carIcon" />
                         <img src={icons.chabakchabak} alt="chabakchabak" />
-                    </Box>
-                    <Box sx={boxStyle}>
+                    </CenteredBox>
+                    <CenteredBox>
                         <TextField
-                            variant="outlined"
+                            variant="filled"
+                            color="success"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            label="이메일"
                             autoFocus
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
@@ -77,20 +67,18 @@ export default function Login() {
                             helperText={emailError}
                         />
                         <TextField
-                            variant="outlined"
+                            variant="filled"
+                            color="success"
                             required
                             fullWidth
-                            name="password"
-                            label="Password"
+                            label="비밀번호"
                             type="password"
-                            id="password"
-                            autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             error={passwordError !== ""}
                             helperText={passwordError}
                         />
-                    </Box>
+                    </CenteredBox>
                     <Box sx={{ display: "flex", flexWrap: "nowrap", justifyContent: "space-evenly" }}>
                         <Button href="/signup">비밀번호 찾기</Button>
                         <Button href="/signup">회원가입</Button>
@@ -98,7 +86,7 @@ export default function Login() {
                     <Button fullWidth type="submit" variant="contained">
                         로그인
                     </Button>
-                </Box>
+                </CenteredBox>
             </form>
         </FormContainer>
     );

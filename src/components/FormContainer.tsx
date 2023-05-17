@@ -7,9 +7,10 @@ import colors from "src/const/colors";
 type FormContainerProps = {
     title?: string;
     children: React.ReactNode;
+    sx?: SxProps<Theme>;
 };
 
-export default function FormContainer({ title, children }: FormContainerProps): JSX.Element {
+export default function FormContainer({ title, children, sx }: FormContainerProps): JSX.Element {
     const theme = useTheme();
     const navigate = useNavigate();
 
@@ -44,6 +45,7 @@ export default function FormContainer({ title, children }: FormContainerProps): 
                     backgroundColor: colors.FORMBACKGROUND,
                     marginTop: "65px",
                     height: "calc(100vh - 65px)",
+                    ...sx,
                 }}
             >
                 {children}

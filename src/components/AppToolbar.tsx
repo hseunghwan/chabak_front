@@ -8,6 +8,8 @@ import colors from "src/const/colors";
 export default function AppToolbar(): JSX.Element {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const [profileAnchorEl, setProfileAnchorEl] = React.useState<null | HTMLElement>(null);
+    const isProfileMenuOpen = Boolean(profileAnchorEl);
     const navigate = useNavigate();
 
     const handleMobileMenuClose = () => {
@@ -16,8 +18,15 @@ export default function AppToolbar(): JSX.Element {
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+    const handleProfileMenuClose = () => {
+        setProfileAnchorEl(null);
+    };
+    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setProfileAnchorEl(event.currentTarget);
+    };
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
+    const profileId = "apptoolbar-profile-menu-mobile";
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -43,9 +52,35 @@ export default function AppToolbar(): JSX.Element {
                 <img src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>List</p>
             </MenuItem>
-            <MenuItem>
+            <MenuItem aria-controls={profileId} onClick={handleProfileMenuOpen}>
                 <img src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Profile</p>
+            </MenuItem>
+        </Menu>
+    );
+
+    const renderProfile = (
+        <Menu
+            anchorEl={profileAnchorEl}
+            anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+            }}
+            id={profileId}
+            keepMounted
+            disableScrollLock
+            transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+            }}
+            open={isProfileMenuOpen}
+            onClose={handleProfileMenuClose}
+        >
+            <MenuItem onClick={() => navigate("/mypage")}>
+                <p>마이페이지</p>
+            </MenuItem>
+            <MenuItem>
+                <p>로그아웃</p>
             </MenuItem>
         </Menu>
     );
@@ -66,11 +101,12 @@ export default function AppToolbar(): JSX.Element {
                                 <img src={icons.list} alt="" width="30px" />
                             </IconButton>
                             <IconButton
-                                onClick={() => navigate("/mypage")}
                                 size="large"
                                 edge="end"
                                 aria-label="account of current user"
                                 color="inherit"
+                                aria-controls={profileId}
+                                onClick={handleProfileMenuOpen}
                             >
                                 <img src={icons.circleuser} alt="" width="30px" />
                             </IconButton>
@@ -90,6 +126,7 @@ export default function AppToolbar(): JSX.Element {
                     </Toolbar>
                 </AppBar>
                 {renderMobileMenu}
+                {renderProfile}
             </Box>
             <Box sx={{ height: `65px` }}></Box>
         </>
