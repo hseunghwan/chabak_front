@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RecoilRoot } from "recoil";
 import "src/index.css";
 import App from "src/App";
 import reportWebVitals from "src/reportWebVitals";
-const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string;
+const NAVER_MAPS_CLIENT_ID = process.env.REACT_APP_NAVER_MAPS_CLIENT_ID as string;
 
-function loadGoogleMapsApi(apiKey: string): Promise<void> {
+function loadNaverMapsApi(clientId: string): Promise<void> {
     return new Promise((resolve, reject) => {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+        script.src = `https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${clientId}`;
         script.async = true;
         script.defer = true;
         script.onload = () => resolve();
@@ -19,16 +20,18 @@ function loadGoogleMapsApi(apiKey: string): Promise<void> {
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-loadGoogleMapsApi(GOOGLE_MAPS_API_KEY)
+loadNaverMapsApi(NAVER_MAPS_CLIENT_ID)
     .then(() => {
         root.render(
             <React.StrictMode>
-                <App />
+                <RecoilRoot>
+                    <App />
+                </RecoilRoot>
             </React.StrictMode>
         );
     })
     .catch((error) => {
-        console.error("Error loading Google Maps API:", error);
+        console.error("Error loading Naver Maps API:", error);
     });
 
 // If you want to start measuring performance in your app, pass a function

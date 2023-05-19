@@ -1,55 +1,61 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Box, SxProps, Theme } from "@mui/material";
-import AppToolbar from "src/components/AppToolbar";
-import HomeContentBox from "src/components/HomeContentBox";
+import React, { useEffect, useState } from "react";
+import { Box, SxProps, Theme, useTheme } from "@mui/material";
+import FloatingButton from "src/components/FloatingButton";
+import SpeechBubble from "src/components/SpeechBubble";
+import { Outlet } from "react-router-dom";
 
-type HomeProps = {
-    sx?: SxProps<Theme>;
-};
-const Home = ({ sx }: HomeProps): JSX.Element => {
-    const parentRef = useRef<HTMLElement>(null);
-    const [parentWidth, setParentWidth] = useState<number>(0);
+export default function Home() {
+    const theme = useTheme();
+    const [showSpeechBubble, setShowSpeechBubble] = useState(false);
+
+    const handleClick = () => {
+        setShowSpeechBubble(!showSpeechBubble);
+    };
 
     useEffect(() => {
-        // AppToolbar의 width를 계산하기 위해 parent의 width를 계산한다.
-        const updateParentWidth = () => {
-            if (parentRef.current) {
-                const width = parentRef.current.clientWidth;
-                setParentWidth(width);
+        const handleResize = () => {
+            if (window.innerWidth < 900) {
+                setShowSpeechBubble(false);
             }
         };
-
-        updateParentWidth();
-        window.addEventListener("resize", updateParentWidth);
+        handleResize(); // 컴포넌트가 마운트되면 한 번 호출합니다.
+        window.addEventListener("resize", handleResize); // 이벤트 리스너를 추가합니다.
+        // 컴포넌트가 언마운트되면 이벤트 리스너를 제거합니다.
         return () => {
-            window.removeEventListener("resize", updateParentWidth);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
+    const floatingButtonContainerStyles: SxProps<Theme> = {
+        transition: "0.5s",
+        flexDirection: "column",
+        position: "fixed",
+        left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
+        bottom: "30px",
+        zIndex: 100,
+    };
+
+    const homeContainerStyles: SxProps<Theme> = {
+        position: "relative",
+        left: showSpeechBubble ? "25%" : 0,
+        transition: "left 0.5s",
+        flexDirection: "column",
+        width: "100%",
+        [theme.breakpoints.up("md")]: {
+            width: "45%",
+        },
+        height: "100%",
+    };
+
     return (
-        <Box ref={parentRef} sx={{ ...sx, position: "relative", width: "45%", height: "100%" }}>
-            <AppToolbar parentWidth={parentWidth} />
-            <Box>
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
-                <HomeContentBox title="이런 곳은 어때요?" />
+        <>
+            <SpeechBubble isOpen={showSpeechBubble} />
+            <Box sx={floatingButtonContainerStyles}>
+                <FloatingButton onClick={handleClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
             </Box>
-        </Box>
+            <Box sx={homeContainerStyles}>
+                <Outlet />
+            </Box>
+        </>
     );
-};
-export default Home;
+}

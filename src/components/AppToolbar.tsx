@@ -1,77 +1,21 @@
-import * as React from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import List from "@mui/icons-material/List";
-import carIcon from "src/resource/img/carIcon.svg";
-import chabakchabak from "src/resource/img/chabakchabak.svg";
-import { useEffect, useState } from "react";
+import icons from "src/const/icons";
+import colors from "src/const/colors";
 
-type AppToolbarProps = {
-    parentWidth: number;
-};
-export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Element {
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+export default function AppToolbar(): JSX.Element {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [appToolbarHeight, setAppToolbarHeight] = useState<number>(0);
-
-    const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const appToolbarRef = React.useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        // AppToolbar의 Height를 계산
-        const updateAppToolbarHeight = () => {
-            if (appToolbarRef.current) {
-                const height = appToolbarRef.current.clientHeight;
-                setAppToolbarHeight(height);
-            }
-        };
-
-        updateAppToolbarHeight();
-        window.addEventListener("resize", updateAppToolbarHeight);
-        return () => {
-            window.removeEventListener("resize", updateAppToolbarHeight);
-        };
-    }, []);
-    const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const navigate = useNavigate();
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-        handleMobileMenuClose();
-    };
-
     const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
-    const menuId = "apptoolbar-account-menu";
-    const renderMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        </Menu>
-    );
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
     const renderMobileMenu = (
@@ -83,6 +27,7 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
             }}
             id={mobileMenuId}
             keepMounted
+            disableScrollLock
             transformOrigin={{
                 vertical: "top",
                 horizontal: "right",
@@ -91,27 +36,15 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <SearchIcon />
-                </IconButton>
+                <img src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Search</p>
             </MenuItem>
             <MenuItem>
-                <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-                    <List />
-                </IconButton>
+                <img src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>List</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="apptoolbar-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
+            <MenuItem>
+                <img src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Profile</p>
             </MenuItem>
         </Menu>
@@ -119,36 +52,30 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
 
     return (
         <>
-            <Box ref={appToolbarRef} sx={{ position: "fixed", top: 0, width: `${parentWidth}px` }}>
+            <Box sx={{ position: "fixed", top: 0, width: "inherit" }}>
                 <AppBar position="static">
-                    <Toolbar sx={{ color: "#164F36", backgroundColor: "white", borderBottom: "solid #164F36" }}>
-                        <IconButton sx={{ padding: 0 }}>
-                            <img src={carIcon} alt="" width="70px" />
-                        </IconButton>
-                        <IconButton sx={{ padding: 0 }}>
-                            <img src={chabakchabak} alt="" width="158px" />
-                        </IconButton>
+                    <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
+                        <img src={icons.carIcon} alt="" width="45px" />
+                        <img src={icons.chabakchabak} alt="" width="118px" />
                         <Box sx={{ flexGrow: 1 }}></Box>
-                        <Box color="inherit" sx={{ display: { xs: "none", md: "flex" } }}>
-                            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                <SearchIcon />
+                        <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
+                            <IconButton onClick={() => navigate("/search")} size="large" color="inherit">
+                                <img src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-                                <List />
+                            <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
+                                <img src={icons.list} alt="" width="30px" />
                             </IconButton>
                             <IconButton
+                                onClick={() => navigate("/mypage")}
                                 size="large"
                                 edge="end"
                                 aria-label="account of current user"
-                                aria-controls={menuId}
-                                aria-haspopup="true"
-                                onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <img src={icons.circleuser} alt="" width="30px" />
                             </IconButton>
                         </Box>
-                        <Box sx={{ color: "inherit", display: { xs: "flex", md: "none" } }}>
+                        <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
                             <IconButton
                                 size="large"
                                 aria-label="show more"
@@ -163,9 +90,8 @@ export default function AppToolbar({ parentWidth }: AppToolbarProps): JSX.Elemen
                     </Toolbar>
                 </AppBar>
                 {renderMobileMenu}
-                {renderMenu}
             </Box>
-            <Box sx={{ backgroundColor: "transparent", height: `calc(${appToolbarHeight}px + 1px)` }}></Box>
+            <Box sx={{ height: `65px` }}></Box>
         </>
     );
 }

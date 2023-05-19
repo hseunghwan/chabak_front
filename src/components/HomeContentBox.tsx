@@ -1,5 +1,7 @@
-import { Box, Divider, SxProps, Theme, Typography } from "@mui/material";
+import { Box, SxProps, Theme, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import colors from "src/const/colors";
 
 type HomeContentBoxProps = {
     title: string;
@@ -9,15 +11,15 @@ type HomeContentBoxProps = {
 };
 
 const HomeContentBox = ({ title, icon, contents, sx }: HomeContentBoxProps): JSX.Element => {
+    const navigate = useNavigate();
     return (
-        <Box sx={{ width: "100%", marginBottom: "5px" }}>
-            <Box sx={{ backgroundColor: "white", borderBottom: "solid #164F36" }}>
-                <Typography variant="h6">{title}</Typography>
+        <Box sx={{ width: "100%", marginBottom: "5px", boxShadow: "0px 7px 5px -5px" }}>
+            <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
+                {icon && <img src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
+                <Typography alignSelf="center">{title}</Typography>
             </Box>
-            <Divider />
             <Box sx={{ backgroundColor: "gray" }}>
-                <div style={{ width: "30px", height: "30px", backgroundColor: "yellow" }}></div>
-                <div style={{ width: "30px", height: "30px", backgroundColor: "yellow" }}></div>
+                <div onClick={() => navigate("/placedetail")} style={{ width: "30px", height: "30px", backgroundColor: "yellow" }}></div>
                 <div style={{ width: "30px", height: "30px", backgroundColor: "yellow" }}></div>
             </Box>
         </Box>
