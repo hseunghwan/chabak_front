@@ -4,7 +4,6 @@ import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
-import { BACKEND_URL } from "src/const/consts";
 import axios from "axios";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
@@ -34,7 +33,7 @@ export default function AppToolbar(): JSX.Element {
         setProfileAnchorEl(null);
         try {
             const response = await axios.post(
-                `${BACKEND_URL}/api/user/logout`,
+                `/api/user/logout`,
                 {},
                 {
                     headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },

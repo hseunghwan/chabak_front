@@ -7,7 +7,6 @@ import CenteredBox from "src/components/CenteredBox";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "src/const/consts";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -20,7 +19,7 @@ export default function Login() {
         event.preventDefault();
         setPasswordError("");
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/user/login`, {
+            const response = await axios.post(`/api/user/login`, {
                 email,
                 password,
             });
