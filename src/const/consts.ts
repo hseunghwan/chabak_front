@@ -1,4 +1,4 @@
-export const BACKEND_URL = "https://3.34.98.222:8080";
+export const BACKEND_URL = "http://3.34.98.222:8080";
 
 export type UserModel = {
     user_id: number;
