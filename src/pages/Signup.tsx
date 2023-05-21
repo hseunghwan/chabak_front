@@ -1,35 +1,93 @@
-import React from "react";
-import { Box, Button, SxProps, Theme } from "@mui/material";
+import React, { useState } from "react";
+import { Button, TextField } from "@mui/material";
 import FormContainer from "src/components/FormContainer";
-import SignupInput from "src/components/SignupInput";
+import CenteredBox from "src/components/CenteredBox";
 import icons from "src/const/icons";
 
-const boxStyle: SxProps<Theme> = {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignContent: "center",
-    gap: "15px",
-};
-
 export default function Signup() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [varifyPassword, setVarifyPassword] = useState("");
+    const [varifyPasswordError, setVarifyPasswordError] = useState("");
+    const [nickname, setNickname] = useState("");
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setEmailError("");
+        setPasswordError("");
+        setVarifyPasswordError("");
+    };
     return (
         <FormContainer title="회원가입">
-            <Box sx={boxStyle}>
-                <Box sx={{ ...boxStyle, flexDirection: "row" }}>
+            <CenteredBox component="form" onSubmit={handleSubmit}>
+                <CenteredBox sx={{ flexDirection: "row", zIndex: 1, marginTop: "15%" }}>
                     <img src={icons.carIcon} alt="carIcon" />
                     <img src={icons.chabakchabak} alt="chabakchabak" />
-                </Box>
-                <Box sx={boxStyle}>
-                    <SignupInput label="이름" />
-                    <SignupInput label="이메일" />
-                    <SignupInput label="비밀번호" />
-                    <SignupInput label="비밀번호 확인" />
-                    <SignupInput label="주소" />
-                </Box>
-                <Button variant="contained">회원가입</Button>
-            </Box>
+                </CenteredBox>
+                <CenteredBox>
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="이름"
+                        autoFocus
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        id="email"
+                        label="이메일"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        error={emailError !== ""}
+                        helperText={emailError}
+                    />
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="비밀번호"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        error={passwordError !== ""}
+                        helperText={passwordError}
+                    />
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="비밀번호 확인"
+                        type="password"
+                        value={varifyPassword}
+                        onChange={(e) => setVarifyPassword(e.target.value)}
+                        error={varifyPasswordError !== ""}
+                        helperText={varifyPasswordError}
+                    />
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="닉네임"
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
+                    />
+                </CenteredBox>
+                <Button type="submit" variant="contained">
+                    회원가입
+                </Button>
+            </CenteredBox>
         </FormContainer>
     );
 }

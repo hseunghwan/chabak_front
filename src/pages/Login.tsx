@@ -1,105 +1,91 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Box, Button, SxProps, TextField, Theme } from "@mui/material";
+import axios, { AxiosResponse } from "axios";
+import { Box, Button, TextField } from "@mui/material";
 import FormContainer from "src/components/FormContainer";
 import icons from "src/const/icons";
+import CenteredBox from "src/components/CenteredBox";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
-import { redirect } from "react-router-dom";
-
-const boxStyle: SxProps<Theme> = {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignContent: "center",
-    gap: "15px",
-};
+import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "src/const/consts";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
-    const setUser = useSetRecoilState(userState);
+    const setUserState = useSetRecoilState(userState);
+    const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setEmailError("");
         setPasswordError("");
         try {
-            const response = await axios.post("/api/user/login", {
+            const response = await axios.post(`${BACKEND_URL}/api/user/login`, {
                 email,
                 password,
             });
 
             if (response.status === 200) {
-                setUser({ token: response.data.token }); // 인증 토큰 저장
-                redirect("/");
+                console.log("Login success");
+                handleLoginSuccess(response);
+                return navigate("/");
             } else {
-                setEmailError(response.data.email);
-                setPasswordError(response.data.password);
-                throw new Error("No token received"); // 토큰이 없는 경우 에러를 던짐
+                setPasswordError("이메일 또는 비밀번호를 확인해 주세요");
             }
         } catch (error: any) {
-            if (error.response && error.response.status === 400) {
-                setEmailError(error.response.data.email);
-                setPasswordError(error.response.data.password);
-                alert("Login failed: " + error.message); // 로그인 실패 알림
-            } else {
-                // error가 Error 인스턴스가 아닌 경우의 처리
-                console.error(error);
-                alert("An unexpected error occurred.");
-            }
+            console.error("Login failed: " + error.message + "\nError Status: " + error.response.status);
+            setPasswordError("이메일 또는 비밀번호를 확인해 주세요");
         }
     };
+
+    const handleLoginSuccess = (response: AxiosResponse<any, any>) => {
+        const { jwtToken, password, ...otherData } = response.data;
+        // jwtToken을 로컬스토리지에 저장
+        localStorage.setItem("jwtToken", jwtToken);
+        // Recoil 상태 업데이트
+        setUserState(otherData);
+    };
+
     return (
         <FormContainer title="로그인">
-            <form onSubmit={handleSubmit}>
-                <Box sx={boxStyle}>
-                    <Box sx={{ ...boxStyle, flexDirection: "row" }}>
-                        <img src={icons.carIcon} alt="carIcon" />
-                        <img src={icons.chabakchabak} alt="chabakchabak" />
-                    </Box>
-                    <Box sx={boxStyle}>
-                        <TextField
-                            variant="outlined"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
-                            autoFocus
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            error={emailError !== ""}
-                            helperText={emailError}
-                        />
-                        <TextField
-                            variant="outlined"
-                            required
-                            fullWidth
-                            name="password"
-                            label="Password"
-                            type="password"
-                            id="password"
-                            autoComplete="current-password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            error={passwordError !== ""}
-                            helperText={passwordError}
-                        />
-                    </Box>
-                    <Box sx={{ display: "flex", flexWrap: "nowrap", justifyContent: "space-evenly" }}>
-                        <Button href="/signup">비밀번호 찾기</Button>
-                        <Button href="/signup">회원가입</Button>
-                    </Box>
-                    <Button fullWidth type="submit" variant="contained">
-                        로그인
-                    </Button>
+            <CenteredBox component="form" onSubmit={handleSubmit}>
+                <CenteredBox sx={{ flexDirection: "row", zIndex: 1, marginTop: "25%" }}>
+                    <img src={icons.carIcon} alt="carIcon" />
+                    <img src={icons.chabakchabak} alt="chabakchabak" />
+                </CenteredBox>
+                <CenteredBox>
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="이메일"
+                        autoFocus
+                        value={email}
+                        error={passwordError !== ""}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        variant="filled"
+                        color="success"
+                        required
+                        fullWidth
+                        label="비밀번호"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        error={passwordError !== ""}
+                        helperText={passwordError}
+                    />
+                </CenteredBox>
+                <Box sx={{ display: "flex", flexWrap: "nowrap", justifyContent: "space-evenly" }}>
+                    <Button>비밀번호 찾기</Button>
+                    <Button href="/signup">회원가입</Button>
                 </Box>
-            </form>
+                <Button type="submit" variant="contained">
+                    로그인
+                </Button>
+            </CenteredBox>
         </FormContainer>
     );
 }
