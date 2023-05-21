@@ -9,7 +9,7 @@ import HomeContainer from "src/components/HomeContainer";
 import PlaceDetail from "src/components/PlaceDetail";
 import Search from "src/components/Search";
 import Filter from "src/components/Filter";
-import PrivateRoute from "src/components/PrivateRoute";
+import PrivateRoute from "src/pages/PrivateRoute";
 import HomeContents from "src/components/HomeContents";
 import Login from "src/pages/Login";
 import Signup from "src/pages/Signup";
@@ -36,7 +36,11 @@ const router = createBrowserRouter([
             },
         ],
     },
-    { path: "/mypage", element: <PrivateRoute />, children: [{ index: true, element: <Mypage /> }] },
+    {
+        path: "/mypage",
+        element: <PrivateRoute />,
+        children: [{ index: true, element: <Mypage /> }],
+    },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <Signup /> },
     { path: "/settings", element: <PrivateRoute />, children: [{ index: true, element: <Settings /> }] },

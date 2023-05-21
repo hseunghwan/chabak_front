@@ -4,6 +4,10 @@ import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
+import { BACKEND_URL } from "src/const/consts";
+import axios from "axios";
+import userState from "src/states/userState";
+import { useSetRecoilState } from "recoil";
 
 export default function AppToolbar(): JSX.Element {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -11,6 +15,7 @@ export default function AppToolbar(): JSX.Element {
     const [profileAnchorEl, setProfileAnchorEl] = React.useState<null | HTMLElement>(null);
     const isProfileMenuOpen = Boolean(profileAnchorEl);
     const navigate = useNavigate();
+    const setUserState = useSetRecoilState(userState);
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
@@ -23,6 +28,25 @@ export default function AppToolbar(): JSX.Element {
     };
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setProfileAnchorEl(event.currentTarget);
+    };
+    const handleLogout = async (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        setProfileAnchorEl(null);
+        try {
+            const response = await axios.post(`${BACKEND_URL}/api/user/logout`, {
+                headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
+            });
+            if (response.status === 200) {
+                console.log("Logout success");
+                localStorage.removeItem("jwtToken");
+                setUserState(undefined);
+                return navigate("/");
+            } else {
+                console.log("Logout Failed");
+            }
+        } catch (error: any) {
+            console.error(error);
+        }
     };
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
@@ -76,12 +100,20 @@ export default function AppToolbar(): JSX.Element {
             open={isProfileMenuOpen}
             onClose={handleProfileMenuClose}
         >
-            <MenuItem onClick={() => navigate("/mypage")}>
-                <p>마이페이지</p>
-            </MenuItem>
-            <MenuItem>
-                <p>로그아웃</p>
-            </MenuItem>
+            {!!localStorage.getItem("jwtToken") && (
+                <MenuItem onClick={() => navigate("/mypage")}>
+                    <p>마이페이지</p>
+                </MenuItem>
+            )}
+            {!!localStorage.getItem("jwtToken") ? (
+                <MenuItem onClick={handleLogout}>
+                    <p>로그아웃</p>
+                </MenuItem>
+            ) : (
+                <MenuItem onClick={() => navigate("/login")}>
+                    <p>로그인</p>
+                </MenuItem>
+            )}
         </Menu>
     );
 

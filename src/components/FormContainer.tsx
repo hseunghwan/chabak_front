@@ -44,12 +44,14 @@ export default function FormContainer({ title, children, sx }: FormContainerProp
                     flexWrap: "wrap",
                     backgroundColor: colors.FORMBACKGROUND,
                     marginTop: "65px",
-                    height: "calc(100vh - 65px)",
+                    position: "fixed",
+                    width: "inherit",
+                    height: "100%",
                     ...sx,
                 }}
-            >
-                {children}
-            </Box>
+            ></Box>
+            <Box sx={{ marginTop: "65px" }}></Box>
+            {children}
         </Box>
     );
 }

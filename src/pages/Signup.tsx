@@ -11,11 +11,19 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [varifyPassword, setVarifyPassword] = useState("");
+    const [varifyPasswordError, setVarifyPasswordError] = useState("");
+    const [nickname, setNickname] = useState("");
 
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setEmailError("");
+        setPasswordError("");
+        setVarifyPasswordError("");
+    };
     return (
         <FormContainer title="회원가입">
-            <CenteredBox>
-                <CenteredBox sx={{ flexDirection: "row" }}>
+            <CenteredBox component="form" onSubmit={handleSubmit}>
+                <CenteredBox sx={{ flexDirection: "row", zIndex: 1, marginTop: "15%" }}>
                     <img src={icons.carIcon} alt="carIcon" />
                     <img src={icons.chabakchabak} alt="chabakchabak" />
                 </CenteredBox>
@@ -28,9 +36,7 @@ export default function Signup() {
                         label="이름"
                         autoFocus
                         value={name}
-                        onChange={(e) => setEmail(e.target.value)}
-                        error={emailError !== ""}
-                        helperText={emailError}
+                        onChange={(e) => setName(e.target.value)}
                     />
                     <TextField
                         variant="filled"
@@ -63,10 +69,10 @@ export default function Signup() {
                         fullWidth
                         label="비밀번호 확인"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        error={passwordError !== ""}
-                        helperText={passwordError}
+                        value={varifyPassword}
+                        onChange={(e) => setVarifyPassword(e.target.value)}
+                        error={varifyPasswordError !== ""}
+                        helperText={varifyPasswordError}
                     />
                     <TextField
                         variant="filled"
@@ -74,14 +80,13 @@ export default function Signup() {
                         required
                         fullWidth
                         label="닉네임"
-                        autoFocus
-                        value={name}
-                        onChange={(e) => setEmail(e.target.value)}
-                        error={emailError !== ""}
-                        helperText={emailError}
+                        value={nickname}
+                        onChange={(e) => setNickname(e.target.value)}
                     />
                 </CenteredBox>
-                <Button variant="contained">회원가입</Button>
+                <Button type="submit" variant="contained">
+                    회원가입
+                </Button>
             </CenteredBox>
         </FormContainer>
     );
