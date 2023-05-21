@@ -33,9 +33,13 @@ export default function AppToolbar(): JSX.Element {
         event.preventDefault();
         setProfileAnchorEl(null);
         try {
-            const response = await axios.post(`${BACKEND_URL}/api/user/logout`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
-            });
+            const response = await axios.post(
+                `${BACKEND_URL}/api/user/logout`,
+                {},
+                {
+                    headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
+                }
+            );
             if (response.status === 200) {
                 console.log("Logout success");
                 localStorage.removeItem("jwtToken");
@@ -46,6 +50,7 @@ export default function AppToolbar(): JSX.Element {
             }
         } catch (error: any) {
             console.error(error);
+            console.log(localStorage.getItem("jwtToken"));
         }
     };
 
