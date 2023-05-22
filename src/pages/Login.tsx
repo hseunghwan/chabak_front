@@ -6,7 +6,8 @@ import CenteredBox from "src/components/CenteredBox";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { userLogin } from "src/const/api/user";
+//import { userLogin } from "src/const/api/user";
+import axios from "axios";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -18,7 +19,9 @@ export default function Login() {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setPasswordError("");
-        userLogin({ email, password })
+        //userLogin({ email, password })
+        await axios
+            .post("cdn/api/user/login", { email, password })
             .then((response) => {
                 console.log("Login success");
                 const { jwtToken, password, ...otherData } = response.data;
