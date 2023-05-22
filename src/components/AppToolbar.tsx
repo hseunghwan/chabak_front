@@ -4,7 +4,7 @@ import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
-import axios from "axios";
+import { userLogout } from "src/const/api/user";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
 
@@ -31,26 +31,17 @@ export default function AppToolbar(): JSX.Element {
     const handleLogout = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         setProfileAnchorEl(null);
-        try {
-            const response = await axios.post(
-                `/api/user/logout`,
-                {},
-                {
-                    headers: { Authorization: `Bearer ${localStorage.getItem("jwtToken")}` },
-                }
-            );
-            if (response.status === 200) {
+        userLogout(localStorage.getItem("jwtToken"))
+            .then((response) => {
                 console.log("Logout success");
                 localStorage.removeItem("jwtToken");
                 setUserState(undefined);
                 return navigate("/");
-            } else {
+            })
+            .catch((error) => {
                 console.log("Logout Failed");
-            }
-        } catch (error: any) {
-            console.error(error);
-            console.log(localStorage.getItem("jwtToken"));
-        }
+                console.error(error);
+            });
     };
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
