@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RecoilRoot } from "recoil";
 import "src/index.css";
 import App from "src/App";
 import reportWebVitals from "src/reportWebVitals";
@@ -23,7 +24,9 @@ loadNaverMapsApi(NAVER_MAPS_CLIENT_ID)
     .then(() => {
         root.render(
             <React.StrictMode>
-                <App />
+                <RecoilRoot>
+                    <App />
+                </RecoilRoot>
             </React.StrictMode>
         );
     })
