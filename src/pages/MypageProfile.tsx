@@ -1,40 +1,83 @@
 import { Box, Button, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import SimpleInput, { CustomInput } from "src/components/SimpleInput";
 import { styled } from "@mui/system";
+import { useRecoilState } from "recoil";
+import userState from "src/states/userState";
+import { changeUserState } from "src/const/api/user";
+import { checkPasswordFormat } from "src/const/consts";
+import { ChangeUserStateModel } from "src/const/api/user";
 
 export default function MypageProfile() {
+    const [userData, setData] = useRecoilState(userState);
+    const defaultPasswordError = "영어, 숫자, 특수문자를 포함한 8자리 이상";
+
+    const [name, setName] = useState(userData?.name || "");
+    const [phone_number, setphoneNumber] = useState(userData?.phone_number || "");
+    const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState(defaultPasswordError);
+    const [varifyPassword, setVarifyPassword] = useState("");
+    const [varifyPasswordError, setVarifyPasswordError] = useState("");
+    const [mycar, setMycar] = useState(userData?.mycar || "");
+    const [nickname, setNickname] = useState(userData?.nickname || "");
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setPasswordError("");
+        setVarifyPasswordError("");
+        if (!checkPasswordFormat(password)) {
+            return setPasswordError("비밀번호 형식이 올바르지 않습니다.");
+        }
+        if (password !== varifyPassword) {
+            return setVarifyPasswordError("비밀번호가 일치하지 않습니다.");
+        }
+        const changedData: ChangeUserStateModel = { name, phone_number, mycar, password, nickname };
+        userData &&
+            changeUserState(userData.email, localStorage.getItem("jwtToken"), changedData)
+                .then((response) => {
+                    const { password, ...otherData } = changedData;
+                    console.log("Change success");
+
+                    setData(() => {
+                        return { ...userData, ...otherData };
+                    });
+                })
+                .catch((error) => {
+                    console.error("Login failed: " + error.message + "\nError Status: " + error.response.status);
+                    setPasswordError("이메일 또는 비밀번호를 확인해 주세요");
+                });
+    };
     return (
-        <Box sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
+        <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
             <Typography sx={{ fontSize: "1.5rem" }}>프로필</Typography>
             <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
                 <Box sx={{ width: "75%", marginTop: "1rem" }}>
                     <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem" }}>이메일</Typography>
                     <StyledInputRoot sx={{ width: "100%" }}>
-                        <StyledInputElement>hsh9298080@naver.com</StyledInputElement>
+                        <StyledInputElement>{userData?.email}</StyledInputElement>
                     </StyledInputRoot>
                 </Box>
                 <Box sx={{ width: "15%", marginTop: "1rem" }}>
                     <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", whiteSpace: "nowrap" }}>에코 LV</Typography>
                     <StyledInputRoot sx={{ width: "100%" }}>
-                        <StyledInputElement>5</StyledInputElement>
+                        <StyledInputElement>{userData?.eco_lv}</StyledInputElement>
                     </StyledInputRoot>
                 </Box>
             </Box>
             <Typography sx={{ fontSize: "1.5rem", marginTop: "1rem" }}>회원정보 수정</Typography>
             <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>이름</Typography>
-            <CustomInput />
+            <CustomInput value={name} onChange={(e) => setName(e.target.value)} />
             <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>전화번호</Typography>
-            <CustomInput />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호</Typography>
-            <SimpleInput />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 확인</Typography>
-            <SimpleInput />
+            <CustomInput value={phone_number} onChange={(e) => setphoneNumber(e.target.value)} />
+            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 {passwordError}</Typography>
+            <SimpleInput onChange={(e) => setPassword(e.target.value)} error={passwordError !== ""} />
+            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 확인 {varifyPasswordError}</Typography>
+            <SimpleInput onChange={(e) => setVarifyPassword(e.target.value)} error={varifyPasswordError !== ""} />
             <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차량</Typography>
-            <CustomInput />
+            <CustomInput value={mycar} onChange={(e) => setMycar(e.target.value)} />
             <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>닉네임</Typography>
-            <CustomInput />
-            <Button>저장</Button>
+            <CustomInput value={nickname} onChange={(e) => setNickname(e.target.value)} />
+            <Button type="submit">저장</Button>
         </Box>
     );
 }

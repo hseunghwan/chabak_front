@@ -6,7 +6,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { styled } from "@mui/system";
 import colors from "src/const/colors";
 
-export const CustomInput = React.forwardRef(function CustomInput(props: InputProps, ref: React.ForwardedRef<HTMLDivElement>) {
+export const CustomInput = function CustomInput(props: InputProps) {
     const { slots, ...other } = props;
     return (
         <Input
@@ -16,38 +16,12 @@ export const CustomInput = React.forwardRef(function CustomInput(props: InputPro
                 ...slots,
             }}
             {...other}
-            ref={ref}
         />
     );
-});
+};
 
-interface State {
-    amount: string;
-    password: string;
-    weight: string;
-    weightRange: string;
-    showPassword: boolean;
-}
-
-export default function SimpleInput() {
-    const [values, setValues] = React.useState<State>({
-        amount: "",
-        password: "",
-        weight: "",
-        weightRange: "",
-        showPassword: false,
-    });
-
-    const handleChange = (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({ ...values, [prop]: event.target.value });
-    };
-
-    const handleClickShowPassword = () => {
-        setValues({
-            ...values,
-            showPassword: !values.showPassword,
-        });
-    };
+export default function SimpleInput(props: InputProps) {
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -56,16 +30,19 @@ export default function SimpleInput() {
     return (
         <CustomInput
             id="outlined-adornment-password"
-            type={values.showPassword ? "text" : "password"}
-            value={values.password}
-            onChange={handleChange("password")}
+            type={showPassword ? "text" : "password"}
             endAdornment={
                 <InputAdornment>
-                    <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
-                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
+                    <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        onMouseDown={handleMouseDownPassword}
+                    >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                 </InputAdornment>
             }
+            {...props}
         />
     );
 }
