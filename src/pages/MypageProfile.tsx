@@ -43,8 +43,7 @@ export default function MypageProfile() {
                     });
                 })
                 .catch((error) => {
-                    console.error("Login failed: " + error.message + "\nError Status: " + error.response.status);
-                    setPasswordError("이메일 또는 비밀번호를 확인해 주세요");
+                    console.error("change failed: " + error.message + "\nError Status: " + error.response.status);
                 });
     };
     return (
