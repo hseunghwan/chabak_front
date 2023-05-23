@@ -47,8 +47,11 @@ export const userSigup = async (data: UserSignupModel) => {
 };
 
 export const changeUserState = async (email: string, token: string | null, data: ChangeUserStateModel) => {
+    console.log(token);
+
     return await apiClient({
-        method: "petch",
+        method: "patch",
+        withCredentials: true,
         url: `/api/user/profile/${email}`,
         headers: {
             Authorization: `Bearer ${token}`,
