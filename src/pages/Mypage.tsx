@@ -5,6 +5,7 @@ import colors from "src/const/colors";
 import SwipeableViews from "react-swipeable-views";
 import MypageProfile from "src/pages/MypageProfile";
 import MypageManageRegisteredPlace from "src/pages/MypageManageRegisteredPlace";
+
 interface TabPanelProps {
     children?: React.ReactNode;
     dir?: string;
