@@ -51,7 +51,6 @@ export const changeUserState = async (email: string, token: string | null, data:
 
     return await apiClient({
         method: "patch",
-        withCredentials: true,
         url: `/api/user/profile/${email}`,
         headers: {
             Authorization: `Bearer ${token}`,
