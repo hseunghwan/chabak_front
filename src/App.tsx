@@ -1,6 +1,4 @@
-//import React, { useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-//import { Box, SxProps, Theme } from "@mui/material";
 import Home from "src/pages/Home";
 import Error from "src/pages/Error";
 import Mypage from "src/pages/Mypage";
@@ -27,8 +25,8 @@ const router = createBrowserRouter([
                 element: <HomeContainer />,
                 children: [
                     { index: true, element: <HomeContents /> },
-                    { path: "/placedetail", element: <PlaceDetail /> },
-                    { path: "/registeredplace", element: <RegisteredPlace /> },
+                    { path: "/placedetail/:id", element: <PlaceDetail /> },
+                    { path: "/registeredplace/:id", element: <RegisteredPlace /> },
                     { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
                     { path: "/search", element: <Search /> },
                     { path: "/filter", element: <Filter /> },
