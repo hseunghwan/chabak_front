@@ -107,5 +107,5 @@ for ent in doc.ents:
     print(ent.text, ent.label_)
     
 # 학습된 모델 저장
-output_dir = "C:\\Users\\sjyim\\Documents\\ner"  # 모델 저장 디렉토리 설정
+output_dir = "C:\\Users\\sunny\\Documents\\ner"  # 모델 저장 디렉토리 설정
 nlp.to_disk(output_dir)
