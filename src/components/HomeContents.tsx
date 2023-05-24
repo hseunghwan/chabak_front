@@ -9,23 +9,8 @@ export default function HomeContents() {
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND }}>
             <Typography sx={{ fontSize: "20px", color: colors.MAIN, padding: "3px" }}>AI로 쉽게 찾는 캠핑/차박지</Typography>
             <HomeContentBox title="이런 곳은 어때요?" icon={icons.campping} />
-            <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
-            <HomeContentBox title="이런 곳은 어때요?" icon={icons.location} />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
-            <HomeContentBox title="이런 곳은 어때요?" />
+            <HomeContentBox title="추천 테마" icon={icons.mountain} />
+            <HomeContentBox title="지역 선택" icon={icons.location} />
         </Box>
     );
 }
