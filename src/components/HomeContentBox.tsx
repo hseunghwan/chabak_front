@@ -56,6 +56,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
             >
                 {placeList.map((place, index) => (
                     <RecommendCard
+                        key={index}
                         placeId={place.place_id}
                         theme={place.theme || ""}
                         name={place.place_name || ""}
