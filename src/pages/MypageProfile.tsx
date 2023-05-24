@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import SimpleInput, { CustomInput } from "src/components/SimpleInput";
 import { styled } from "@mui/system";
@@ -48,33 +48,37 @@ export default function MypageProfile() {
     };
     return (
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
-            <Typography sx={{ fontSize: "1.5rem" }}>프로필</Typography>
+            <span style={{ fontSize: "1.5rem" }}>프로필</span>
             <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
                 <Box sx={{ width: "75%", marginTop: "1rem" }}>
-                    <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem" }}>이메일</Typography>
+                    <span style={{ fontSize: "0.8rem", marginLeft: "1rem" }}>이메일</span>
                     <StyledInputRoot sx={{ width: "100%" }}>
                         <StyledInputElement>{userData?.email}</StyledInputElement>
                     </StyledInputRoot>
                 </Box>
                 <Box sx={{ width: "15%", marginTop: "1rem" }}>
-                    <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", whiteSpace: "nowrap" }}>에코 LV</Typography>
+                    <span style={{ fontSize: "0.8rem", marginLeft: "1rem", whiteSpace: "nowrap" }}>에코 LV</span>
                     <StyledInputRoot sx={{ width: "100%" }}>
                         <StyledInputElement>{userData?.eco_lv}</StyledInputElement>
                     </StyledInputRoot>
                 </Box>
             </Box>
-            <Typography sx={{ fontSize: "1.5rem", marginTop: "1rem" }}>회원정보 수정</Typography>
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>이름</Typography>
+            <span style={{ fontSize: "1.5rem", marginTop: "1rem" }}>회원정보 수정</span>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>이름</span>
             <CustomInput value={name} onChange={(e) => setName(e.target.value)} />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>전화번호</Typography>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>전화번호</span>
             <CustomInput value={phone_number} onChange={(e) => setphoneNumber(e.target.value)} />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 {passwordError}</Typography>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 </span>
             <SimpleInput onChange={(e) => setPassword(e.target.value)} error={passwordError !== ""} />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 확인 {varifyPasswordError}</Typography>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "0.5rem", color: "red" }}>{passwordError}</span>
+
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>비밀번호 확인 </span>
             <SimpleInput onChange={(e) => setVarifyPassword(e.target.value)} error={varifyPasswordError !== ""} />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차량</Typography>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "0.5rem", color: "red" }}>{varifyPasswordError}</span>
+
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차량</span>
             <CustomInput value={mycar} onChange={(e) => setMycar(e.target.value)} />
-            <Typography sx={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>닉네임</Typography>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>닉네임</span>
             <CustomInput value={nickname} onChange={(e) => setNickname(e.target.value)} />
             <Button type="submit">저장</Button>
         </Box>
@@ -108,7 +112,7 @@ const StyledInputRoot = styled("div")(`
   justify-content: center;
 `);
 
-const StyledInputElement = styled("p")(`
+const StyledInputElement = styled("span")(`
   margin: 0 0;
   font-size: 0.875rem;
   font-family: inherit;

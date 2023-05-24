@@ -39,7 +39,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
     }, []);
 
     return (
-        <Box sx={{ width: "100%", marginBottom: "5px", boxShadow: "0px 7px 5px -5px" }}>
+        <Box sx={{ width: "100%", marginBottom: "5px" }}>
             <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                 {icon && <img src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
                 <Typography alignSelf="center">{title}</Typography>
@@ -49,6 +49,9 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
                 sx={{
                     display: "flex",
                     overflow: "auto",
+                    margin: "10px",
+                    background: "white",
+                    boxShadow: " 0px 4px 4px rgba(0, 0, 0, 0.25)",
                     "&::-webkit-scrollbar": {
                         display: "none",
                     },

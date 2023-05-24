@@ -3,14 +3,12 @@ import sample_1 from "src/resource/img/sample_1.jpg";
 import sample_2 from "src/resource/img/sample_2.jpg";
 import sample_3 from "src/resource/img/sample_3.jpg";
 import sample_4 from "src/resource/img/sample_4.jpg";
-import theme_0 from "src/resource/img/homeTheme/theme_0.jpg";
-import theme_1 from "src/resource/img/homeTheme/theme_1.jpg";
-import theme_2 from "src/resource/img/homeTheme/theme_2.jpg";
-import theme_3 from "src/resource/img/homeTheme/theme_3.jpg";
-import theme_4 from "src/resource/img/homeTheme/theme_4.jpg";
-import theme_5 from "src/resource/img/homeTheme/theme_5.jpg";
-import theme_6 from "src/resource/img/homeTheme/theme_6.jpg";
-import theme_7 from "src/resource/img/homeTheme/theme_7.jpg";
+import star from "src/resource/img/homeTheme/star.jpg";
+import beach from "src/resource/img/homeTheme/beach.jpg";
+import family from "src/resource/img/homeTheme/family.jpg";
+import pets from "src/resource/img/homeTheme/pets.jpg";
+import couple from "src/resource/img/homeTheme/couple.jpg";
+import healing from "src/resource/img/homeTheme/healing.jpg";
 
 export const BACKEND_URL = "http://3.34.98.222:8080";
 
@@ -40,7 +38,14 @@ export type PlaceModel = {
 };
 
 export const sampleImages = [sample_0, sample_1, sample_2, sample_3, sample_4];
-export const themeImages = [theme_0, theme_1, theme_2, theme_3, theme_4, theme_5, theme_6, theme_7];
+export const themeImages = [
+    { theme: "star", title: "별", img: star },
+    { theme: "beach", title: "바다", img: beach },
+    { theme: "family", title: "가족", img: family },
+    { theme: "pets", title: "반려동물", img: pets },
+    { theme: "couple", title: "커플", img: couple },
+    { theme: "healing", title: "힐링", img: healing },
+];
 
 //이메일 비밀번호 양식 정규식
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
