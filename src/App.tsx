@@ -5,8 +5,8 @@ import Mypage from "src/pages/Mypage";
 import BackgroundContainer from "src/components/BackgroundContainer";
 import HomeContainer from "src/components/HomeContainer";
 import PlaceDetail from "src/components/PlaceDetail";
-import Search from "src/components/Search";
-import Filter from "src/components/Filter";
+import Search from "src/pages/Search";
+import Filter from "src/pages/Filter";
 import PrivateRoute from "src/pages/PrivateRoute";
 import HomeContents from "src/components/HomeContents";
 import Login from "src/pages/Login";
@@ -14,6 +14,7 @@ import Signup from "src/pages/Signup";
 import Settings from "src/pages/Settings";
 import RegisterPlace from "src/pages/RegisterPlace";
 import RegisteredPlace from "src/pages/RegisteredPlace";
+import PlaceSearchResult from "src/pages/PlaceSearchResult";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
                     { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
                     { path: "/search", element: <Search /> },
                     { path: "/filter", element: <Filter /> },
+                    { path: "/placesearchresult", element: <PlaceSearchResult /> },
                 ],
             },
         ],
