@@ -12,7 +12,7 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
             style={{
                 width: "20%",
                 minWidth: "110px",
-                maxWidth: "140px",
+                maxWidth: "160px",
                 margin: "10px",
                 cursor: "pointer",
                 borderRadius: "16px",
@@ -22,7 +22,7 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
                 backgroundSize: "cover",
             }}
         >
-            <p style={{ fontWeight: "bolder", fontSize: "17px", color: "white", padding: "0px 5px 10px 5px " }}>{title}</p>
+            <p style={{ fontWeight: "bolder", fontSize: "17px", color: "white", padding: "0px 5px 40px 5px " }}>{title}</p>
         </div>
     );
 }
