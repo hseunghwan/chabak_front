@@ -6,7 +6,7 @@ var pythonScriptPath = 'C:\\Users\\sunny\\Documents\\GitHub\\chabak_front\\src\\
 var input = '"경기도 수원시 봄에 가기 좋은 차박지 추천해줘"';
 var command = "python ".concat(pythonScriptPath, " ").concat(input);
 console.log(input);
-export const runPy = (0, child_process_1.exec)(command, { maxBuffer: 2048 * 2048 }, function (error, stdout, stderr) {
+(0, child_process_1.exec)(command, { maxBuffer: 2048 * 2048 }, function (error, stdout, stderr) {
     if (error) {
         console.error("Error executing Python script: ".concat(error.message));
         return;
