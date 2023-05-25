@@ -55,3 +55,58 @@
 {"category": "누구", "prompt": "너는 뭘 알려줄 수 있어?", "completion": "저는 차박 및 캠핑 관련 정보와 장소를 추천해줄 수 있어요."}
 {"category": "누구", "prompt": "너는 뭐로 만들어졌어?", "completion": "저는 GPT-3로 만들어졌습니다."}
 {"category": "음식", "prompt": "차박 갈 때 가지고 가면 좋은 간식 추천해줘", "completion": "차박 간식으로는 드라이푸드, 스낵바, 쿠키 등이 좋습니다."}
+{"category": "차량", "prompt": "차박 갈 때 어떤 종류의 차가 좋아?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박 갈 때 어떤 SUV가 좋아?", "completion": "SUV로는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박 갈 때 꼭 SUV여야해?", "completion": "꼭 SUV일 필요는 없지만 SUV가 가장 편하고 좋습니다."}
+{"category": "차량", "prompt": "차박 할 때 어떤 차가 좋아?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박 갈 때 어떤 종류의 차가 좋아?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "왜 SUV가 좋아?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확보할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "좋은 차박용 차는 뭐야?", "completion": "2열 시트가 접히고 평탄화가 쉬운 차가 좋습니다."}
+{"category": "차량", "prompt": "왜 SUV가 차박에 좋아?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확보할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "왜 차박에 SUV가 좋아?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확보할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "SUV를 썼을 때 장점이 뭐야?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확보할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "SUV를 왜 추천하는거야?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확보할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "왜 SUV를 써야해?", "completion": "SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "SUV를 꼭 써야해?", "completion": "꼭 SUV를 사용할 필요는 없습니다. 하지만 SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "SUV가 꼭 필요해?", "completion": "꼭 SUV를 사용할 필요는 없습니다. 하지만 SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "꼭 SUV가 있어야해?", "completion": "꼭 SUV를 사용할 필요는 없습니다. 하지만 SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "꼭 SUV를 써야해?", "completion": "꼭 SUV를 사용할 필요는 없습니다. 하지만 SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "꼭 SUV가 필요해?", "completion": "꼭 SUV를 사용할 필요는 없습니다. 하지만 SUV는 2열 시트를 접어 넉넉한 실내 공간을 확복할 수 있기 때문에 좋습니다."}
+{"category": "차량", "prompt": "SUV 추천해줘", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "SUV 뭐가 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "SUV는 뭐가 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "SUV는 어떤게 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 SUV 추천해줘", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 SUV는 뭐가 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 SUV는 어떤게 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 SUV 뭐가 좋을까?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "SUV 말고 다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "SUV 외에 다른 차종 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "승용차 같은거는 뭐 없어?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차종 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "SUV 말고 다른 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "SUV 말고 다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "승용차 같이 작은 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "SUV 외에 다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차종 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차량 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차종은 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차종 알려줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "다른 차량 알려줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
+{"category": "차량", "prompt": "차박용 차는 뭐가 가장 중요해?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 차는 뭐가 중요해?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박 차 가격은 얼마야?", "completion": "죄송합니다, 가격 관련 정보는 제공하지 않습니다."}
+{"category": "웹", "prompt": "이런 곳은 어때요는 뭐야?", "completion": "'이런 곳은 어때요'는 랜덤한 차박지를 추천해드립니다."}
+{"category": "웹", "prompt": "추천 테마는 뭐가 있어?", "completion": "추천 테마로는 '별', '바다', '가족', '반려동물', '커플', '힐링'이 있습니다."}
+{"category": "웹", "prompt": "테마 추천해줘", "completion": "이번엔 별 보기 좋은 여행은 어떠신가요?"}
+{"category": "웹", "prompt": "테마 뭐가 좋을까?", "completion": "바다가 잘 보이는 곳은 어때요?"}
+{"category": "웹", "prompt": "테마 추천해줘", "completion": "힐링하기 좋은 곳은 어떤가요?"}
+{"category": "웹", "prompt": "테마를 누르면 해당 테마의 차박지를 알려주는거야?", "completion": "네, 원하시는 테마를 누르시면 해당 테마의 차박지를 볼 수 있습니다."}
+{"category": "웹", "prompt": "추천 테마는 뭐야?", "completion": "'추천 테마'는 테마별로 차박지를 찾아볼 수 있는 기능입니다."}
+{"category": "웹", "prompt": "지역 선택은 뭐야?", "completion": "'지역 선택'은 지역별로 차박지를 찾아볼 수 있는 기능입니다."}
+{"category": "웹", "prompt": "지역을 누르면 해당 지역의 차박지를 알려주는거야?", "completion": "네, 원하시는 지역을 누르시면 해당 지역의 차박지를 볼 수 있습니다."}
+{"category": "웹", "prompt": "", "completion": ""}

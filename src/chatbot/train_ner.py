@@ -89,19 +89,19 @@ train_data = [
 nlp = train_ner_model(train_data, n_iter=10)
 
 # 예시 문장에 대해 개체명 인식 수행
-text = "경기도 여름 가기 좋은"
+text = "경기도 여름 별 보 러 가 기 좋 은"
 doc = nlp(text)
 for ent in doc.ents:
     print(ent.text, ent.label_)
-text = "경기도 수원시 봄 가기 좋은"
+text = "경기도 수원시 봄 에 힐링 하기 좋 은"
 doc = nlp(text)
 for ent in doc.ents:
     print(ent.text, ent.label_)
-text = "충청남도 겨울 가기 좋은"
+text = "충청남도 겨울 바다 보 러 가 기 좋 은"
 doc = nlp(text)
 for ent in doc.ents:
     print(ent.text, ent.label_)
-text = "서울특별시 장안구 가을 가기 좋은"
+text = "서울특별시 장안구 가을 에 반려 동물과 같이 가 기 좋 은"
 doc = nlp(text)
 for ent in doc.ents:
     print(ent.text, ent.label_)
