@@ -16,7 +16,7 @@ class OpenAIGpt:
     #초기 설정
     def __init__(self):
         self.nlp = spacy.load("C:\\Users\\sunny\\Documents\\ner")  
-        self.loc = set(["제주", "경기", "충청", "강원", "경상", "전라", "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "시"])
+        self.loc = set(["제주", "경기", "충청", "강원", "경상", "전라", "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "시", "봄", "여름", "가을", "겨울", "별", "바다", "가족", "반려", "커플", "힐링"])
         #사용할 형태소 분석 모델
         self.komoran = Komoran()
     
@@ -44,14 +44,21 @@ class OpenAIGpt:
 
     #인공지능 실행 코드 -> 백엔드에 보내야하는 경우에는 보내고 프론트에 보내기 (결국 프론트로 보내는거는 함수 호출로 해야함)
     def run(self):
-        #입력을 typescript로부터 받아온다. 
-        prompt = f"{sys.argv[1]}"
+        #입력을 typescript로부터 받아온다.
+        question = input("Qeustion : ")
+        prompt = question 
+        #prompt = f"{sys.argv[1]}"
 
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
-        #차박지 관련 정보 물어보는 경우 / self.loc 안 돌아가는거 해결해야함 / for문 안에 인공지능 넣어두면 안 됨 빼는거 생각해야함.
+        #주소 없이 테마, 계절로만 물어보는 경우 해결해야함
+        # 전체를 굴리다가 if theme에 대한 경우일 때 추가 작업 / 인덱스로 순서 찾기 -> 테마를 self.loc
+        # 맨 뒤에 넣어서 loc 인덱스가 클 경우에 처리 / 문자열이 아님.
+        # theme + "품"
+        #차박지 관련 정보 물어보는 경우 / for문 안에 인공지능 넣어두면 안 됨 빼는거 생각해야함.
         for loc in self.loc:
             if loc in prompt:
+                
                 #형태소 분석
                 text = self.preprocess_text(prompt, self.komoran)
     
@@ -67,7 +74,8 @@ class OpenAIGpt:
                 
                 #Node.js의 exec는 print를 stdout에 저장한다. -> 처음 나오는 print가 stdout에 저장됨
                 print(id_lists)
-                #print(len(id_lists))
+                print(len(id_lists))
+                print(url)
                 break
          
         #백엔드에 정보 json으로 보낸 후에 프론트에는 처리 되었음을 알리는 문자를 보내야함
@@ -76,7 +84,7 @@ class OpenAIGpt:
         #그 외에 차박 관련 정보 물어볼 때
         else:
             response = openai.Completion.create(
-                engine="curie:ft-personal-2023-04-10-06-39-38",
+                engine="davinci:ft-personal-2023-05-25-02-37-57",
                 prompt=prompt,
                 temperature=0.3,
                 max_tokens=512,
@@ -87,7 +95,7 @@ class OpenAIGpt:
             )
             for choice in response.choices:
               text = choice.text.strip()
-              return text
+              #return text
               if text:
                   print(text)
 
