@@ -114,7 +114,7 @@ export default function AppToolbar(): JSX.Element {
 
     return (
         <>
-            <Box sx={{ position: "fixed", top: 0, width: "inherit" }}>
+            <Box sx={{ position: "fixed", top: 0, width: "inherit", zIndex: 1 }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                         <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>

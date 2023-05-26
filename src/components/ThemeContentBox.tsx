@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 import colors from "src/const/colors";
 import ThemeCard from "src/components/ThemeCard";
