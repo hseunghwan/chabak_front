@@ -1,6 +1,8 @@
 import spacy
 import random
 from spacy.training import Example
+import os
+from dotenv import load_dotenv
 
 def train_ner_model(train_data, n_iter):
     # Spacy 모델 초기화
@@ -107,5 +109,5 @@ for ent in doc.ents:
     print(ent.text, ent.label_)
     
 # 학습된 모델 저장
-output_dir = "C:\\Users\\sunny\\Documents\\ner"  # 모델 저장 디렉토리 설정
+output_dir = os.getenv("NER_MODEL_PATH")  # 모델 저장 디렉토리 설정
 nlp.to_disk(output_dir)
