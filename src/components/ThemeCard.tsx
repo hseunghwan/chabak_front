@@ -8,11 +8,11 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
     const navigate = useNavigate();
     return (
         <div
-            onClick={() => navigate(`/placesearchresult`)}
+            onClick={() => navigate(`/placesearchresult/true/전국/${title}`)}
             style={{
-                width: "20%",
+                width: "30%",
                 minWidth: "110px",
-                maxWidth: "160px",
+                maxWidth: "200px",
                 margin: "10px",
                 cursor: "pointer",
                 borderRadius: "16px",
@@ -22,7 +22,7 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
                 backgroundSize: "cover",
             }}
         >
-            <p style={{ fontWeight: "bolder", fontSize: "17px", color: "white", padding: "0px 5px 40px 5px " }}>{title}</p>
+            <p style={{ fontWeight: "bolder", fontSize: "17px", color: "white", padding: "0px 5px 40px 15px " }}>{title}</p>
         </div>
     );
 }

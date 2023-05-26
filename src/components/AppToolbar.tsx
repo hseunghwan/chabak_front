@@ -117,8 +117,10 @@ export default function AppToolbar(): JSX.Element {
             <Box sx={{ position: "fixed", top: 0, width: "inherit" }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
-                        <img src={icons.carIcon} alt="" width="45px" />
-                        <img src={icons.chabakchabak} alt="" width="118px" />
+                        <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
+                            <img src={icons.carIcon} alt="" width="45px" />
+                            <img src={icons.chabakchabak} alt="" width="118px" />
+                        </Box>
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
                             <IconButton onClick={() => navigate("/search")} size="large" color="inherit">
