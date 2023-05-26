@@ -4,7 +4,7 @@ import colors from "src/const/colors";
 import RecommendCard from "src/components/RecommendCard";
 import { placeListRecommend } from "src/const/api/place";
 import { PlaceModel } from "src/states/placeState";
-import { sampleImages } from "src/const/consts";
+
 type HomeContentBoxProps = {
     title: string;
     icon?: string;
@@ -65,7 +65,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
                         theme={place.theme || ""}
                         name={place.place_name || ""}
                         address={place.address || ""}
-                        imgUrl={sampleImages[index]} //샘플
+                        imgUrl={place.images[0] || ""}
                     />
                 ))}
             </Box>

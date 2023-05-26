@@ -7,7 +7,6 @@ import colors from "src/const/colors";
 import icon from "src/const/icons";
 import searchState from "src/states/searchState";
 import PlaceListCard from "src/components/PlaceListCard";
-import { sampleImages } from "src/const/consts";
 import { placeListByLocation, placeListByLocationTheme } from "src/const/api/place";
 
 const spanStyle: React.CSSProperties = {
@@ -148,7 +147,7 @@ export default function PlaceSearchResult() {
                         theme={place.theme || ""}
                         name={place.place_name || ""}
                         address={place.address || ""}
-                        imgUrl={sampleImages[0]} //샘플
+                        imgUrl={place.images[0]}
                     />
                 ))}
                 <div ref={loader}>
