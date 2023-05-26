@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                     { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
                     { path: "/search", element: <Search /> },
                     { path: "/filter", element: <Filter /> },
-                    { path: "/placesearchresult/:showfilter/:location/:theme", element: <PlaceSearchResult /> },
+                    { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
                 ],
             },
         ],

@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import colors from "src/const/colors";
 import RecommendCard from "src/components/RecommendCard";
 import { placeListRecommend } from "src/const/api/place";
-import { PlaceModel } from "src/const/consts";
+import { PlaceModel } from "src/states/placeState";
 import { sampleImages } from "src/const/consts";
 type HomeContentBoxProps = {
     title: string;
@@ -20,7 +20,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
                 setPlaceList(respond.data);
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
             });
     }, []);
 
@@ -60,12 +60,12 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
             >
                 {placeList.map((place, index) => (
                     <RecommendCard
-                        key={index}
+                        key={place.place_id}
                         placeId={place.place_id}
                         theme={place.theme || ""}
                         name={place.place_name || ""}
                         address={place.address || ""}
-                        imgUrl={sampleImages[index]}
+                        imgUrl={sampleImages[index]} //샘플
                     />
                 ))}
             </Box>
