@@ -52,10 +52,9 @@ export default function PlaceSearchResult() {
         };
     }, []);
 
-    useEffect(() => {
-        //필터에 의한 변경에 따른 상태변경, 반영
+    const handleApi = async () => {
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocation(userSearchState.location)
+            placeListByLocation(`${userSearchState.location}`)
                 .then((response) => {
                     setPlaceList(response.data);
                 })
@@ -63,7 +62,7 @@ export default function PlaceSearchResult() {
                     console.error(error);
                 });
         } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocationTheme(userSearchState.location, userSearchState.theme)
+            placeListByLocationTheme(`${userSearchState.location}`, `${userSearchState.theme}`)
                 .then((response) => {
                     setPlaceList(response.data);
                 })
@@ -71,7 +70,7 @@ export default function PlaceSearchResult() {
                     console.error(error);
                 });
         }
-    }, [setPlaceList, userSearchState]);
+    };
 
     return (
         <div style={{ backgroundColor: colors.FORMBACKGROUND }}>
@@ -92,23 +91,47 @@ export default function PlaceSearchResult() {
                     </div>
                     <div style={{ display: "flex", alignContent: "center", flexGrow: 1 }}>
                         {userSearchState.location && (
-                            <span onClick={() => setUserSearchState({ ...userSearchState, location: "전국" })} style={spanStyle}>
-                                {userSearchState.location}
+                            <span
+                                onClick={() => {
+                                    setUserSearchState({ ...userSearchState, location: "전국" });
+                                    handleApi();
+                                }}
+                                style={spanStyle}
+                            >
+                                지역:{userSearchState.location}
                             </span>
                         )}
                         {userSearchState.theme && (
-                            <span onClick={() => setUserSearchState({ ...userSearchState, theme: null })} style={spanStyle}>
-                                {userSearchState.theme}
+                            <span
+                                onClick={() => {
+                                    setUserSearchState({ ...userSearchState, theme: null });
+                                    handleApi();
+                                }}
+                                style={spanStyle}
+                            >
+                                테마:{userSearchState.theme}
                             </span>
                         )}
                         {userSearchState.facils && (
-                            <span onClick={() => setUserSearchState({ ...userSearchState, facils: null })} style={spanStyle}>
-                                {userSearchState.facils}
+                            <span
+                                onClick={() => {
+                                    setUserSearchState({ ...userSearchState, facils: null });
+                                    handleApi();
+                                }}
+                                style={spanStyle}
+                            >
+                                시설:{userSearchState.facils}
                             </span>
                         )}
                         {userSearchState.searchKeyword && (
-                            <span onClick={() => setUserSearchState({ ...userSearchState, searchKeyword: null })} style={spanStyle}>
-                                {userSearchState.searchKeyword}
+                            <span
+                                onClick={() => {
+                                    setUserSearchState({ ...userSearchState, searchKeyword: null });
+                                    handleApi();
+                                }}
+                                style={spanStyle}
+                            >
+                                검색:{userSearchState.searchKeyword}
                             </span>
                         )}
                     </div>

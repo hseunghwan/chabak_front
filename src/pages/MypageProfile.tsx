@@ -37,7 +37,6 @@ export default function MypageProfile() {
                 .then((response) => {
                     const { password, ...otherData } = changedData;
                     console.log("Change success");
-
                     setData(() => {
                         return { ...userData, ...otherData };
                     });
