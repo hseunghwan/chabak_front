@@ -54,6 +54,13 @@
 {"category": "누구", "prompt": "너는 뭘 할 수 있어?", "completion": "저는 차박 및 캠핑을 위한 장소를 추천해줄 수 있어요."}
 {"category": "누구", "prompt": "너는 뭘 알려줄 수 있어?", "completion": "저는 차박 및 캠핑 관련 정보와 장소를 추천해줄 수 있어요."}
 {"category": "누구", "prompt": "너는 뭐로 만들어졌어?", "completion": "저는 GPT-3로 만들어졌습니다."}
+{"category": "누구", "prompt": "너한테 뭐든 물어보면 돼?", "completion": "네, 물어봐주세요?"}
+{"category": "누구", "prompt": "너한테 물어보면 돼?", "completion": "네, 원하시는 정보를 물어봐주세요."}
+{"category": "누구", "prompt": "여기에 물어보면 돼?", "completion": "네, 원하시는 정보를 물어봐주세요."}
+{"category": "누구", "prompt": "너한테 물어봐?", "completion": "네, 물어봐주세요?"}
+{"category": "누구", "prompt": "나 좀 도와줘", "completion": "네, 어떤걸 도와드릴까요?"}
+{"category": "누구", "prompt": "나 좀 도와줄 수 있어?", "completion": "네, 어떤걸 도와드릴까요?"}
+{"category": "누구", "prompt": "도와줘", "completion": "네, 어떤걸 도와드릴까요?"}
 {"category": "음식", "prompt": "차박 갈 때 가지고 가면 좋은 간식 추천해줘", "completion": "차박 간식으로는 드라이푸드, 스낵바, 쿠키 등이 좋습니다."}
 {"category": "차량", "prompt": "차박 갈 때 어떤 종류의 차가 좋아?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
 {"category": "차량", "prompt": "차박 갈 때 어떤 SUV가 좋아?", "completion": "SUV로는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
@@ -80,6 +87,7 @@
 {"category": "차량", "prompt": "차박용 SUV는 뭐가 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
 {"category": "차량", "prompt": "차박용 SUV는 어떤게 좋아?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
 {"category": "차량", "prompt": "차박용 SUV 뭐가 좋을까?", "completion": "차박용 SUV는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박할 때 차는 뭐가 좋을까?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
 {"category": "차량", "prompt": "SUV 말고 다른 차 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
 {"category": "차량", "prompt": "SUV 외에 다른 차종 추천해줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
 {"category": "차량", "prompt": "다른 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
@@ -97,8 +105,12 @@
 {"category": "차량", "prompt": "다른 차는 뭐가 좋아?", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
 {"category": "차량", "prompt": "다른 차종 알려줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
 {"category": "차량", "prompt": "다른 차량 알려줘", "completion": "죄송합니다, 현재 SUV 외에는 추천해드리지 않습니다."}
-{"category": "차량", "prompt": "차박용 차는 뭐가 가장 중요해?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
-{"category": "차량", "prompt": "차박용 차는 뭐가 중요해?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
+{"category": "차량", "prompt": "차박용 차는 뭐가 가장 중요해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있어야 합니다."}
+{"category": "차량", "prompt": "차박용 차는 뭐가 중요해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있어야 합니다."}
+{"category": "차량", "prompt": "차박차는 뭐가 중요해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있어야 합니다."}
+{"category": "차량", "prompt": "차박차는 어떤게 중요해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있어야 합니다."}
+{"category": "차량", "prompt": "차박용 차는 뭘 우선으로 봐야해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있는지를 우선으로 봐야합니다."}
+{"category": "차량", "prompt": "차박용 차는 어떤걸 우선으로 봐야해?", "completion": "차박용 차는 2열 시트를 접을 수 있고, 앉거나 누웠을 때 충분한 공간이 있는지를 우선으로 봐야합니다."}
 {"category": "차량", "prompt": "차박 차 가격은 얼마야?", "completion": "죄송합니다, 가격 관련 정보는 제공하지 않습니다."}
 {"category": "웹", "prompt": "이런 곳은 어때요는 뭐야?", "completion": "'이런 곳은 어때요'는 랜덤한 차박지를 추천해드립니다."}
 {"category": "웹", "prompt": "추천 테마는 뭐가 있어?", "completion": "추천 테마로는 '별', '바다', '가족', '반려동물', '커플', '힐링'이 있습니다."}
@@ -109,4 +121,23 @@
 {"category": "웹", "prompt": "추천 테마는 뭐야?", "completion": "'추천 테마'는 테마별로 차박지를 찾아볼 수 있는 기능입니다."}
 {"category": "웹", "prompt": "지역 선택은 뭐야?", "completion": "'지역 선택'은 지역별로 차박지를 찾아볼 수 있는 기능입니다."}
 {"category": "웹", "prompt": "지역을 누르면 해당 지역의 차박지를 알려주는거야?", "completion": "네, 원하시는 지역을 누르시면 해당 지역의 차박지를 볼 수 있습니다."}
-{"category": "웹", "prompt": "", "completion": ""}
+{"category": "웹", "prompt": "필터링은 어떤 걸 할 수 있어?", "completion": "필터링 기능을 통해 원하는 지역과 테마 등을 선택해 해당 지역을 볼 수 있습니다."}
+{"category": "웹", "prompt": "필터링은 무슨 기능이야?", "completion": "필터링은 사용자가 원하는 특성을 선택해 해당 캠핑/차박지를 볼 수 있습니다."}
+{"category": "웹", "prompt": "필터 종류는 뭐가 있어?", "completion": "지역, 테마, 시설이 있습니다."}
+{"category": "웹", "prompt": "필터로는 뭘 할 수 있어?", "completion": "필터를 선택해 해당하는 캠핑/차박지를 찾을 수 있습니다."}
+{"category": "웹", "prompt": "필터는 어떤게 있어?", "completion": "지역, 테마, 시설 등이 있습니다."}
+{"category": "웹", "prompt": "필터로 뭘 할 수 있어?", "completion": "필터를 통해 더 상세한 캠핑/차박지를 찾을 수 있습니다."}
+{"category": "웹", "prompt": "필터는 뭐야?", "completion": "필터는 지역, 테마, 시설 등을 선택해 캠핑/차박지를 찾는데 도움을 주는 기능입니다."}
+{"category": "웹", "prompt": "필터", "completion": "필터는 지역, 테마, 시설을 선택해 상세한 장소를 찾을 수 있게 도와주는 기능입니다."}
+{"category": "웹", "prompt": "필터는 무슨 기능이야?", "completion": "필터를 선택해 해당 장소를 볼 수 있습니다."}
+{"category": "웹", "prompt": "필터에서 시설은 뭐야?", "completion": "시설은 해당 캠핑/차박지에 있는 시설을 의미합니다."}
+{"category": "웹", "prompt": "목록 모양은 뭐야?", "completion": "목록 모양은 필터를 의미합니다."}
+{"category": "웹", "prompt": "시설은 어떤거야?", "completion": "시설에는 와이파이, "} ######### 추가해야함
+{"category": "웹", "prompt": "검색은 뭐야?", "completion": "검색 기능을 사용하여 원하는 차박지를 찾을 수 있습니다."}
+{"category": "웹", "prompt": "검색으로는 뭘 할 수 있어?", "completion": "검색을 통해 원하는 캠핑/차박지를 찾을 수 있습니다."}
+{"category": "웹", "prompt": "검색은 무슨 기능이야?", "completion": "검색은 원하시는 검색어를 입력하시면 해당하는 정보를 볼 수 있습니다."}
+{"category": "웹", "prompt": "검색", "completion": "검색 기능은 검색어에 맞는 캠핑/차박지 정보를 가져옵니다."}
+{"category": "웹", "prompt": "뭘 검색할 수 있어?", "completion": "지역, 테마, 시설, 이름 등 여러 검색어로 검색할 수 있습니다."}
+{"category": "웹", "prompt": "돋보기 모양은 뭐야?", "completion": "돋보기 모양은 검색을 의미합니다! 원하시는 검색어로 캠핑/차박지를 찾아보세요."}
+{"category": "웹", "prompt": "돋보기는 뭐야?", "completion": "돋보기 모양은 검색을 의미합니다! 원하시는 검색어로 캠핑/차박지를 찾아보세요."}
+{"category": "웹", "prompt": "돋보기", "completion": "돋보기 모양은 검색을 의미합니다! 원하시는 검색어로 캠핑/차박지를 찾아보세요."}
