@@ -17,6 +17,8 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
         setUserSearchState({ location: "전국", theme: title, facils: null, searchKeyword: null });
         placeListByTheme(title)
             .then((response) => {
+                console.log("placeListByTheme TCard response", response);
+
                 setPlaceState(response.data);
                 navigate(`/placesearchresult/true`);
             })

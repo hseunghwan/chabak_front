@@ -29,7 +29,6 @@ export default function PlaceSearchResult() {
 
     const itemPerPage = 10;
     const displayedItems = placeList.slice(0, itemPerPage * page);
-    console.log(typeof placeList);
     console.log(typeof displayedItems);
     //무한 스크롤
     useEffect(() => {
