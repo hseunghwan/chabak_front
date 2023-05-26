@@ -61,6 +61,7 @@
 {"category": "누구", "prompt": "나 좀 도와줘", "completion": "네, 어떤걸 도와드릴까요?"}
 {"category": "누구", "prompt": "나 좀 도와줄 수 있어?", "completion": "네, 어떤걸 도와드릴까요?"}
 {"category": "누구", "prompt": "도와줘", "completion": "네, 어떤걸 도와드릴까요?"}
+{"category": "웹", "prompt": "", "completion": ""}
 {"category": "음식", "prompt": "차박 갈 때 가지고 가면 좋은 간식 추천해줘", "completion": "차박 간식으로는 드라이푸드, 스낵바, 쿠키 등이 좋습니다."}
 {"category": "차량", "prompt": "차박 갈 때 어떤 종류의 차가 좋아?", "completion": "차박용 차는 SUV가 좋습니다. 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
 {"category": "차량", "prompt": "차박 갈 때 어떤 SUV가 좋아?", "completion": "SUV로는 레이, 펠리세이드, 카니발, 셀토스, 티볼리 등이 좋습니다."}
