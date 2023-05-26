@@ -54,7 +54,7 @@ export default function PlaceSearchResult() {
 
     const handleApi = async () => {
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocation(userSearchState.location)
+            placeListByLocation(`${userSearchState.location}`)
                 .then((response) => {
                     setPlaceList(response.data);
                 })
@@ -62,7 +62,7 @@ export default function PlaceSearchResult() {
                     console.error(error);
                 });
         } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocationTheme(userSearchState.location, userSearchState.theme)
+            placeListByLocationTheme(`${userSearchState.location}`, `${userSearchState.theme}`)
                 .then((response) => {
                     setPlaceList(response.data);
                 })
