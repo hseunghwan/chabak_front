@@ -93,22 +93,22 @@ export default function PlaceSearchResult() {
                     <div style={{ display: "flex", alignContent: "center", flexGrow: 1 }}>
                         {userSearchState.location && (
                             <span onClick={() => setUserSearchState({ ...userSearchState, location: "전국" })} style={spanStyle}>
-                                {userSearchState.location}
+                                지역:{userSearchState.location}
                             </span>
                         )}
                         {userSearchState.theme && (
                             <span onClick={() => setUserSearchState({ ...userSearchState, theme: null })} style={spanStyle}>
-                                {userSearchState.theme}
+                                테마:{userSearchState.theme}
                             </span>
                         )}
                         {userSearchState.facils && (
                             <span onClick={() => setUserSearchState({ ...userSearchState, facils: null })} style={spanStyle}>
-                                {userSearchState.facils}
+                                시설:{userSearchState.facils}
                             </span>
                         )}
                         {userSearchState.searchKeyword && (
                             <span onClick={() => setUserSearchState({ ...userSearchState, searchKeyword: null })} style={spanStyle}>
-                                {userSearchState.searchKeyword}
+                                검색:{userSearchState.searchKeyword}
                             </span>
                         )}
                     </div>
