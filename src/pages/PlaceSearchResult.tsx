@@ -29,6 +29,8 @@ export default function PlaceSearchResult() {
 
     const itemPerPage = 10;
     const displayedItems = placeList.slice(0, itemPerPage * page);
+    console.log(typeof placeList);
+    console.log(typeof displayedItems);
     //무한 스크롤
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -57,6 +59,8 @@ export default function PlaceSearchResult() {
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocation(userSearchState.location)
                 .then((response) => {
+                    console.log("placeListByLocation response", response);
+
                     setPlaceList(response.data);
                 })
                 .catch((error) => {
@@ -65,6 +69,8 @@ export default function PlaceSearchResult() {
         } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocationTheme(userSearchState.location, userSearchState.theme)
                 .then((response) => {
+                    console.log("placeListByLocationTheme response", response);
+
                     setPlaceList(response.data);
                 })
                 .catch((error) => {
