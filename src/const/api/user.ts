@@ -47,8 +47,6 @@ export const userSigup = async (data: UserSignupModel) => {
 };
 
 export const changeUserState = async (email: string, token: string | null, data: ChangeUserStateModel) => {
-    console.log(token);
-
     return await apiClient({
         method: "patch",
         url: `/api/user/profile/${email}`,

@@ -52,27 +52,6 @@ export default function PlaceSearchResult() {
         };
     }, []);
 
-    // useEffect(() => {
-    //     //필터에 의한 변경에 따른 상태변경, 반영
-    //     if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-    //         placeListByLocation(userSearchState.location)
-    //             .then((response) => {
-    //                 setPlaceList(response.data);
-    //             })
-    //             .catch((error) => {
-    //                 console.error(error);
-    //             });
-    //     } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-    //         placeListByLocationTheme(userSearchState.location, userSearchState.theme)
-    //             .then((response) => {
-    //                 setPlaceList(response.data);
-    //             })
-    //             .catch((error) => {
-    //                 console.error(error);
-    //             });
-    //     }
-    // }, [setPlaceList, userSearchState]);
-
     const handleApi = async () => {
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocation(userSearchState.location)
@@ -92,6 +71,7 @@ export default function PlaceSearchResult() {
                 });
         }
     };
+
     return (
         <div style={{ backgroundColor: colors.FORMBACKGROUND }}>
             {param.showfilter === "true" && (
