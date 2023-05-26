@@ -140,17 +140,16 @@ export default function PlaceSearchResult() {
             )}
             <div>
                 {/* 무한스크롤 구현 */}
-                {Array.isArray(displayedItems) &&
-                    displayedItems.map((place) => (
-                        <PlaceListCard
-                            key={place.place_id}
-                            placeId={place.place_id}
-                            theme={place.theme || ""}
-                            name={place.place_name || ""}
-                            address={place.address || ""}
-                            imgUrl={place.images[0]}
-                        />
-                    ))}
+                {displayedItems.map((place) => (
+                    <PlaceListCard
+                        key={place.place_id}
+                        placeId={place.place_id}
+                        theme={place.theme || ""}
+                        name={place.place_name || ""}
+                        address={place.address || ""}
+                        imgUrl={place.images[0]}
+                    />
+                ))}
                 <div ref={loader}>
                     <h2>Loading...</h2>
                 </div>
