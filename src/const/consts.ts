@@ -12,16 +12,6 @@ import healing from "src/resource/img/homeTheme/healing.jpg";
 
 export const BACKEND_URL = "http://3.34.98.222:8080";
 
-export type UserModel = {
-    user_id: number;
-    name: string;
-    email: string;
-    mycar: null | string;
-    phone_number: null | string;
-    eco_lv: number;
-    nickname: string;
-};
-
 export type PlaceModel = {
     place_id: string;
     place_name: null | string;

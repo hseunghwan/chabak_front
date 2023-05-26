@@ -1,3 +1,4 @@
+import arrowDown from "src/resource/img/arrowDown.svg";
 import backicon from "src/resource/img/backicon.svg";
 import campping from "src/resource/img/campping.svg";
 import car from "src/resource/img/car.svg";
@@ -5,6 +6,7 @@ import carIcon from "src/resource/img/carIcon.svg";
 import chabakchabak from "src/resource/img/chabakchabak.svg";
 import chatting from "src/resource/img/chatting.svg";
 import circleuser from "src/resource/img/circleuser.svg";
+import filter from "src/resource/img/filter.svg";
 import fire from "src/resource/img/fire.svg";
 import list from "src/resource/img/list.svg";
 import location from "src/resource/img/location.svg";
@@ -14,6 +16,7 @@ import search from "src/resource/img/search.svg";
 import tent from "src/resource/img/tent.svg";
 
 const icon = {
+    arrowDown: arrowDown,
     backicon: backicon,
     campping: campping,
     car: car,
@@ -21,6 +24,7 @@ const icon = {
     chabakchabak: chabakchabak,
     chatting: chatting,
     circleuser: circleuser,
+    filter: filter,
     fire: fire,
     list: list,
     location: location,
