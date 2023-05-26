@@ -22,6 +22,8 @@ export default function LocationCard({ gpe }: LocationCardProps) {
             setUserSearchState({ location: gpe.value, theme: null, facils: null, searchKeyword: null });
             placeListByLocation(gpe.value)
                 .then((response) => {
+                    console.log("placeListByLocation Card response", response);
+
                     setPlaceState(response.data);
                     navigate(`/placesearchresult/true`);
                 })
