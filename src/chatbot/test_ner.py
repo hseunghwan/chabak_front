@@ -1,5 +1,9 @@
 import spacy
+import os
+from dotenv import load_dotenv
 from konlpy.tag import *
+
+load_dotenv()
 
 hannanum = Hannanum()
 kkma = Kkma()
@@ -15,7 +19,7 @@ def preprocess_text(text):
     return ' '.join(morphs)
 
 # 저장된 모델 로드
-model_path = "C:\\Users\\sunny\\Documents\\ner"
+model_path = os.getenv('NER_MODEL_PATH')
 #nlp = spacy.load(model_path)
 trained_ner = spacy.load(model_path)
 
