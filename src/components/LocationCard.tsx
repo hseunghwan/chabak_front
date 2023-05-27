@@ -16,8 +16,14 @@ export default function LocationCard({ gpe }: LocationCardProps) {
 
     const handleClick = async () => {
         if (location.pathname === "/placesearchresult/true") {
-            setUserSearchState({ ...userSearchState, location: gpe.value });
-            //URL 위치가 placesearchresult 이기 떄문에 searchState 변화에 따른 리스트 변경은 placesearchresult에서 처리
+            setUserSearchState({ ...userSearchState, location: gpe.value, searchKeyword: null });
+            placeListByLocation(gpe.value)
+                .then((response) => {
+                    setPlaceState(response.data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
         } else {
             setUserSearchState({ location: gpe.value, theme: null, facils: null, searchKeyword: null });
             placeListByLocation(gpe.value)
