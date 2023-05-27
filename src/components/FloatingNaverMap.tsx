@@ -54,6 +54,7 @@ function MarkerCluster() {
             // @ts-ignore
             cluster.setMap(null);
         }
+        if (placeList === null || placeList === undefined) return;
         const markers: naver.maps.Marker[] = [];
         // eslint-disable-next-line array-callback-return
         placeList.map((place) => {
@@ -106,22 +107,6 @@ const mapStyles: React.CSSProperties = {
 };
 
 const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
-    // const mapRef = useRef(null);
-
-    // useEffect(() => {
-    //     const { naver } = window;
-
-    //     if (mapRef.current) {
-    //         const location = new naver.maps.LatLng(37.5656, 126.9769);
-    //         const mapOptions: naver.maps.MapOptions = {
-    //             center: location,
-    //             zoom: 17,
-    //             scaleControl: false,
-    //         };
-    //         new window.naver.maps.Map(mapRef.current, mapOptions);
-    //     }
-    // }, []);
-
     const navermaps = useNavermaps();
 
     return (

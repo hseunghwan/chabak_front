@@ -3,14 +3,26 @@ import { Box, SxProps, Theme, useTheme } from "@mui/material";
 import FloatingButton from "src/components/FloatingButton";
 import FloatingNaverMap from "src/components/FloatingNaverMap";
 import { Outlet } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import placeState from "src/states/placeState";
+import { placeListByLocation } from "src/const/api/place";
 
 export default function Home() {
     const theme = useTheme();
     const [showSpeechBubble, setShowSpeechBubble] = useState(false);
+    const setPlaceList = useSetRecoilState(placeState);
 
     const handleClick = () => {
         setShowSpeechBubble(!showSpeechBubble);
     };
+
+    placeListByLocation("전국")
+        .then((response) => {
+            setPlaceList(response.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
 
     useEffect(() => {
         const handleResize = () => {

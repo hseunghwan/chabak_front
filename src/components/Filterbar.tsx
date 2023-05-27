@@ -6,7 +6,7 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import placeState from "src/states/placeState";
 import searchState from "src/states/searchState";
 import { placeListByLocation, placeListByLocationTheme } from "src/const/api/place";
-import ThemeListBox from "./ThemeListBox";
+import ThemeListBox from "src/components/ThemeListBox";
 
 const spanStyle: React.CSSProperties = {
     margin: "5px",
