@@ -176,9 +176,9 @@ export default function AppToolbar(): JSX.Element {
                             <IconButton onClick={handleSearchMenuOpen} size="large" color="inherit" aria-controls={searchId}>
                                 <img src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
+                            {/* <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
                                 <img src={icons.list} alt="" width="30px" />
-                            </IconButton>
+                            </IconButton> */}
                             <IconButton
                                 size="large"
                                 edge="end"
