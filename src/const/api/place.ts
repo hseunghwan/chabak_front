@@ -35,6 +35,7 @@ export const placeListBySearchKeyword = async (searchKeyword: string) => {
     });
 };
 
+//사용 불가능
 export const placeListBySearchKeywordFilter = async (searchKeyword: string, theme: string, facils: string) => {
     return await apiClient({
         method: "get",

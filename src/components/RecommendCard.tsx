@@ -34,7 +34,7 @@ export default function RecommendCard({ placeId, theme, name, address, imgUrl }:
                 },
             }}
         >
-            <img src={imgUrl} alt="place" width={"100%"} />
+            <img src={imgUrl} alt="place" style={{ width: "100%", maxHeight: "132px" }} />
             <p style={{ ...pStyle, fontSize: "12px" }}>{theme}</p>
             <p style={{ ...pStyle, fontSize: "18px" }}>{name}</p>
             <p style={{ ...pStyle, fontSize: "10px", marginBottom: "10px" }}>{address}</p>
