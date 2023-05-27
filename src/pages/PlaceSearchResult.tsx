@@ -24,7 +24,6 @@ export default function PlaceSearchResult() {
     const [placeList, setPlaceList] = useRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
-    const [showPlaceList, setShowPlaceList] = useState<boolean>(true);
     const [page, setPage] = useState(1);
     const loader = useRef<HTMLDivElement | null>(null);
 
@@ -54,11 +53,14 @@ export default function PlaceSearchResult() {
     const displayedItems = placeList.slice(0, itemPerPage * page);
     useEffect(() => {
         //필터에 의한 변경에 따른 상태변경, 반영
-        setShowPlaceList(false);
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocation(userSearchState.location)
                 .then((response) => {
-                    setPlaceList(response.data);
+                    if (response.status === 200) {
+                        setPlaceList(response.data);
+                    } else if (response.status === 304) {
+                        console.log("304");
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
@@ -66,13 +68,16 @@ export default function PlaceSearchResult() {
         } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocationTheme(userSearchState.location, userSearchState.theme)
                 .then((response) => {
-                    setPlaceList(response.data);
+                    if (response.status === 200) {
+                        setPlaceList(response.data);
+                    } else if (response.status === 304) {
+                        console.log("304");
+                    }
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         }
-        setShowPlaceList(true);
     }, [setPlaceList, userSearchState]);
 
     return (
@@ -142,17 +147,16 @@ export default function PlaceSearchResult() {
             )}
             <div>
                 {/* 무한스크롤 구현 */}
-                {showPlaceList &&
-                    displayedItems.map((place) => (
-                        <PlaceListCard
-                            key={place.place_id}
-                            placeId={place.place_id}
-                            theme={place.theme || ""}
-                            name={place.place_name || ""}
-                            address={place.address || ""}
-                            imgUrl={place.images[0]}
-                        />
-                    ))}
+                {displayedItems.map((place) => (
+                    <PlaceListCard
+                        key={place.place_id}
+                        placeId={place.place_id}
+                        theme={place.theme || ""}
+                        name={place.place_name || ""}
+                        address={place.address || ""}
+                        imgUrl={place.images[0]}
+                    />
+                ))}
                 <div ref={loader}>
                     <h2>Loading...</h2>
                 </div>
