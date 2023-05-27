@@ -24,8 +24,8 @@ export default function PlaceSearchResult() {
     const [placeList, setPlaceList] = useRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
+    const [showPlaceList, setShowPlaceList] = useState<boolean>(true);
     const [page, setPage] = useState(1);
-    const [displayedItems, setDisplayedItems] = useState(placeList.slice(0, 10));
     const loader = useRef<HTMLDivElement | null>(null);
 
     //무한 스크롤
@@ -50,14 +50,15 @@ export default function PlaceSearchResult() {
             }
         };
     }, []);
-
+    const itemPerPage = 10;
+    const displayedItems = placeList.slice(0, itemPerPage * page);
     useEffect(() => {
         //필터에 의한 변경에 따른 상태변경, 반영
+        setShowPlaceList(false);
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
             placeListByLocation(userSearchState.location)
                 .then((response) => {
                     setPlaceList(response.data);
-                    setDisplayedItems(placeList.slice(0, 10 * page));
                 })
                 .catch((error) => {
                     console.error(error);
@@ -66,13 +67,12 @@ export default function PlaceSearchResult() {
             placeListByLocationTheme(userSearchState.location, userSearchState.theme)
                 .then((response) => {
                     setPlaceList(response.data);
-                    setDisplayedItems(placeList.slice(0, 10 * page));
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        setShowPlaceList(true);
     }, [setPlaceList, userSearchState]);
 
     return (
@@ -142,16 +142,17 @@ export default function PlaceSearchResult() {
             )}
             <div>
                 {/* 무한스크롤 구현 */}
-                {displayedItems.map((place) => (
-                    <PlaceListCard
-                        key={place.place_id}
-                        placeId={place.place_id}
-                        theme={place.theme || ""}
-                        name={place.place_name || ""}
-                        address={place.address || ""}
-                        imgUrl={place.images[0]}
-                    />
-                ))}
+                {showPlaceList &&
+                    displayedItems.map((place) => (
+                        <PlaceListCard
+                            key={place.place_id}
+                            placeId={place.place_id}
+                            theme={place.theme || ""}
+                            name={place.place_name || ""}
+                            address={place.address || ""}
+                            imgUrl={place.images[0]}
+                        />
+                    ))}
                 <div ref={loader}>
                     <h2>Loading...</h2>
                 </div>
