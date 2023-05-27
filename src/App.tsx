@@ -5,7 +5,6 @@ import Mypage from "src/pages/Mypage";
 import BackgroundContainer from "src/components/BackgroundContainer";
 import HomeContainer from "src/components/HomeContainer";
 import PlaceDetail from "src/components/PlaceDetail";
-import Search from "src/pages/Search";
 import Filter from "src/pages/Filter";
 import PrivateRoute from "src/pages/PrivateRoute";
 import HomeContents from "src/components/HomeContents";
@@ -29,7 +28,6 @@ const router = createBrowserRouter([
                     { path: "/placedetail/:id", element: <PlaceDetail /> },
                     { path: "/registeredplace/:id", element: <RegisteredPlace /> },
                     { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
-                    { path: "/search", element: <Search /> },
                     { path: "/filter", element: <Filter /> },
                     { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
                 ],

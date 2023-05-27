@@ -25,10 +25,9 @@ export default function PlaceSearchResult() {
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
     const [page, setPage] = useState(1);
+    const [displayedItems, setDisplayedItems] = useState(placeList.slice(0, 10));
     const loader = useRef<HTMLDivElement | null>(null);
 
-    const itemPerPage = 10;
-    const displayedItems = placeList.slice(0, itemPerPage * page);
     //무한 스크롤
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -52,25 +51,29 @@ export default function PlaceSearchResult() {
         };
     }, []);
 
-    const handleApi = async () => {
+    useEffect(() => {
+        //필터에 의한 변경에 따른 상태변경, 반영
         if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocation(`${userSearchState.location}`)
+            placeListByLocation(userSearchState.location)
                 .then((response) => {
                     setPlaceList(response.data);
+                    setDisplayedItems(placeList.slice(0, 10 * page));
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocationTheme(`${userSearchState.location}`, `${userSearchState.theme}`)
+            placeListByLocationTheme(userSearchState.location, userSearchState.theme)
                 .then((response) => {
                     setPlaceList(response.data);
+                    setDisplayedItems(placeList.slice(0, 10 * page));
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         }
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [setPlaceList, userSearchState]);
 
     return (
         <div style={{ backgroundColor: colors.FORMBACKGROUND }}>
@@ -91,46 +94,22 @@ export default function PlaceSearchResult() {
                     </div>
                     <div style={{ display: "flex", alignContent: "center", flexGrow: 1 }}>
                         {userSearchState.location && (
-                            <span
-                                onClick={() => {
-                                    setUserSearchState({ ...userSearchState, location: "전국" });
-                                    handleApi();
-                                }}
-                                style={spanStyle}
-                            >
+                            <span onClick={() => setUserSearchState({ ...userSearchState, location: "전국" })} style={spanStyle}>
                                 지역:{userSearchState.location}
                             </span>
                         )}
                         {userSearchState.theme && (
-                            <span
-                                onClick={() => {
-                                    setUserSearchState({ ...userSearchState, theme: null });
-                                    handleApi();
-                                }}
-                                style={spanStyle}
-                            >
+                            <span onClick={() => setUserSearchState({ ...userSearchState, theme: null })} style={spanStyle}>
                                 테마:{userSearchState.theme}
                             </span>
                         )}
                         {userSearchState.facils && (
-                            <span
-                                onClick={() => {
-                                    setUserSearchState({ ...userSearchState, facils: null });
-                                    handleApi();
-                                }}
-                                style={spanStyle}
-                            >
+                            <span onClick={() => setUserSearchState({ ...userSearchState, facils: null })} style={spanStyle}>
                                 시설:{userSearchState.facils}
                             </span>
                         )}
                         {userSearchState.searchKeyword && (
-                            <span
-                                onClick={() => {
-                                    setUserSearchState({ ...userSearchState, searchKeyword: null });
-                                    handleApi();
-                                }}
-                                style={spanStyle}
-                            >
+                            <span onClick={() => setUserSearchState({ ...userSearchState, searchKeyword: null })} style={spanStyle}>
                                 검색:{userSearchState.searchKeyword}
                             </span>
                         )}
