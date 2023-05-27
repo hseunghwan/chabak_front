@@ -23,32 +23,45 @@ export default function Filterbar() {
     const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
     const [showThemeListBox, setShowThemeListBox] = useState<boolean>(false);
 
-    const handleApi = async () => {
-        if (userSearchState.theme === null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocation(userSearchState.location)
+    const onClickLocationSpan = async () => {
+        setUserSearchState({ ...userSearchState, location: "전국" });
+        if (userSearchState.theme === null) {
+            placeListByLocation("전국")
                 .then((response) => {
-                    if (response.status === 200) {
-                        setPlaceList(response.data);
-                    } else if (response.status === 304) {
-                        console.log("304");
-                    }
+                    setPlaceList(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
                 });
-        } else if (userSearchState.theme !== null && userSearchState.facils === null && userSearchState.searchKeyword === null) {
-            placeListByLocationTheme(userSearchState.location, userSearchState.theme)
+        } else {
+            placeListByLocationTheme("전국", userSearchState.theme)
                 .then((response) => {
-                    if (response.status === 200) {
-                        setPlaceList(response.data);
-                    } else if (response.status === 304) {
-                        console.log("304");
-                    }
+                    setPlaceList(response.data);
                 })
                 .catch((error) => {
                     console.error(error);
                 });
         }
+    };
+    const onClickThemeSpan = async () => {
+        setUserSearchState({ ...userSearchState, theme: null });
+        placeListByLocation(userSearchState.location)
+            .then((response) => {
+                setPlaceList(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+    const onClickSearchSpan = async () => {
+        setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: null });
+        placeListByLocation("전국")
+            .then((response) => {
+                setPlaceList(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (
@@ -68,46 +81,17 @@ export default function Filterbar() {
             </div>
             <div style={{ display: "flex", alignContent: "center", flexGrow: 1 }}>
                 {userSearchState.location && (
-                    <span
-                        onClick={() => {
-                            setUserSearchState({ ...userSearchState, location: "전국" });
-                            handleApi();
-                        }}
-                        style={spanStyle}
-                    >
+                    <span onClick={onClickLocationSpan} style={spanStyle}>
                         지역:{userSearchState.location}
                     </span>
                 )}
                 {userSearchState.theme && (
-                    <span
-                        onClick={() => {
-                            setUserSearchState({ ...userSearchState, theme: null });
-                            handleApi();
-                        }}
-                        style={spanStyle}
-                    >
+                    <span onClick={onClickThemeSpan} style={spanStyle}>
                         테마:{userSearchState.theme}
                     </span>
                 )}
-                {userSearchState.facils && (
-                    <span
-                        onClick={() => {
-                            setUserSearchState({ ...userSearchState, facils: null });
-                            handleApi();
-                        }}
-                        style={spanStyle}
-                    >
-                        시설:{userSearchState.facils}
-                    </span>
-                )}
                 {userSearchState.searchKeyword && (
-                    <span
-                        onClick={() => {
-                            setUserSearchState({ ...userSearchState, searchKeyword: null });
-                            handleApi();
-                        }}
-                        style={spanStyle}
-                    >
+                    <span onClick={onClickSearchSpan} style={spanStyle}>
                         검색:{userSearchState.searchKeyword}
                     </span>
                 )}

@@ -1,5 +1,5 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { placeListByTheme } from "src/const/api/place";
+import { placeListByLocationTheme } from "src/const/api/place";
 import placeState from "src/states/placeState";
 import searchState from "src/states/searchState";
 
@@ -8,14 +8,14 @@ type ThemeListCardProps = {
 };
 
 export default function ThemeListCard({ theme }: ThemeListCardProps) {
-    const setPlaceState = useSetRecoilState(placeState);
+    const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
 
     const handleClick = async () => {
         setUserSearchState({ ...userSearchState, theme: theme, searchKeyword: null });
-        placeListByTheme(theme)
+        placeListByLocationTheme(userSearchState.location, theme)
             .then((response) => {
-                setPlaceState(response.data);
+                setPlaceList(response.data);
             })
             .catch((error) => {
                 console.error(error);

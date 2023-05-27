@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { placeListByLocation } from "src/const/api/place";
+import { placeListByLocation, placeListByLocationTheme } from "src/const/api/place";
 import placeState from "src/states/placeState";
 import searchState from "src/states/searchState";
 
@@ -9,7 +9,7 @@ type LocationCardProps = {
 };
 
 export default function LocationCard({ gpe }: LocationCardProps) {
-    const setPlaceState = useSetRecoilState(placeState);
+    const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const navigate = useNavigate();
     const location = useLocation();
@@ -17,18 +17,28 @@ export default function LocationCard({ gpe }: LocationCardProps) {
     const handleClick = async () => {
         if (location.pathname === "/placesearchresult/true") {
             setUserSearchState({ ...userSearchState, location: gpe.value, searchKeyword: null });
-            placeListByLocation(gpe.value)
-                .then((response) => {
-                    setPlaceState(response.data);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
+            if (userSearchState.theme === null) {
+                placeListByLocation(gpe.value)
+                    .then((response) => {
+                        setPlaceList(response.data);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            } else if (userSearchState.theme !== null) {
+                placeListByLocationTheme(gpe.value, userSearchState.theme)
+                    .then((response) => {
+                        setPlaceList(response.data);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         } else {
             setUserSearchState({ location: gpe.value, theme: null, facils: null, searchKeyword: null });
             placeListByLocation(gpe.value)
                 .then((response) => {
-                    setPlaceState(response.data);
+                    setPlaceList(response.data);
                     navigate(`/placesearchresult/true`);
                 })
                 .catch((error) => {

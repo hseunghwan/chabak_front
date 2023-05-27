@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
 import FloatingButton from "src/components/FloatingButton";
-import SpeechBubble from "src/components/SpeechBubble";
+import FloatingNaverMap from "src/components/FloatingNaverMap";
 import { Outlet } from "react-router-dom";
 
 export default function Home() {
@@ -49,7 +49,7 @@ export default function Home() {
 
     return (
         <>
-            <SpeechBubble isOpen={showSpeechBubble} />
+            <FloatingNaverMap isOpen={showSpeechBubble} />
             <Box sx={floatingButtonContainerStyles}>
                 <FloatingButton onClick={handleClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
             </Box>
