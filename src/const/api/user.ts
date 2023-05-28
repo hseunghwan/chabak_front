@@ -33,7 +33,7 @@ export const userLogout = async (token: string | null) => {
         method: "post",
         url: `/api/user/logout`,
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
         },
     });
 };
@@ -51,7 +51,7 @@ export const changeUserState = async (email: string, token: string | null, data:
         method: "patch",
         url: `/api/user/profile/${email}`,
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
         },
         data: data,
     });

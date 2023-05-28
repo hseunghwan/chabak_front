@@ -4,6 +4,7 @@ import { Container as MapDiv, NaverMap, useNavermaps, Overlay, useMap } from "re
 import placeState from "src/states/placeState";
 import { useRecoilValue } from "recoil";
 import { makeMarkerClustering } from "src/marker-cluster";
+import FloatingAIChatting from "./FloatingAIChatting";
 
 function MarkerCluster() {
     // https://github.com/navermaps/marker-tools.js/blob/master/marker-clustering/src/MarkerClustering.js
@@ -106,7 +107,7 @@ const mapStyles: React.CSSProperties = {
     overflow: "hidden",
 };
 
-const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ isOpen, mapOrChat }) => {
     const navermaps = useNavermaps();
 
     return (
@@ -123,18 +124,14 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
                 transformOrigin: "47% 95%",
             }}
         >
-            <MapDiv style={mapStyles}>
+            <MapDiv style={{ ...mapStyles, display: mapOrChat ? "block" : "none" }}>
                 <NaverMap defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)} defaultZoom={8}>
                     <MarkerCluster />
                 </NaverMap>
             </MapDiv>
+            <FloatingAIChatting sx={{ ...mapStyles, display: mapOrChat ? "none" : "block" }} />
         </Box>
     );
 };
 
-// import React from "react";
-
-// const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
-//     return <div></div>;
-// };
 export default FloatingNaverMap;
