@@ -5,7 +5,7 @@ import { CustomInput } from "src/components/SimpleInput";
 import { userPlaceRegister, UserPlaceRegisterModel } from "src/const/api/userPlace";
 
 export default function RegisterPlaceByMap() {
-    const [address, setAddress] = useState("");
+    const [fullAddress, setFullAddress] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [userPlaceName, setUserPlaceName] = useState("");
@@ -14,7 +14,7 @@ export default function RegisterPlaceByMap() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const setData: UserPlaceRegisterModel = { address, userPlaceName, descript, tags, latitude, longitude };
+        const setData: UserPlaceRegisterModel = { fullAddress, userPlaceName, descript, tags, latitude, longitude };
         userPlaceRegister(setData)
             .then((response) => {
                 console.log("Register success");
@@ -27,7 +27,6 @@ export default function RegisterPlaceByMap() {
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
             <span style={{ fontSize: "1.5rem" }}>지도로 위치 선택</span>
             {/* 지도, 주소 api */}
-
             <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차박지 이름</span>
             <CustomInput value={userPlaceName} onChange={(e) => setUserPlaceName(e.target.value)} />
             <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차박지 설명</span>

@@ -1,6 +1,6 @@
 import { apiClient } from "src/const/api/apiClient";
 export type UserPlaceRegisterModel = {
-    address: string;
+    fullAddress: string;
     userPlaceName: string;
     descript: string;
     tags: string;
@@ -13,6 +13,9 @@ export const userPlaceRegister = async (data: UserPlaceRegisterModel) => {
     return await apiClient({
         method: "post",
         url: `/api/register/address`,
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
         data: data,
     });
 };

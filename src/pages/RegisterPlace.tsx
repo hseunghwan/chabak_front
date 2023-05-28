@@ -55,17 +55,17 @@ export default function RegisterPlace() {
                     variant="fullWidth"
                     TabIndicatorProps={{ style: { background: `${colors.MAIN}` } }}
                 >
-                    <Tab label="지도로 위치 선택" {...a11yProps(0)} />
-                    <Tab label="주소로 위치 선택" {...a11yProps(1)} />
+                    <Tab label="주소로 위치 선택" {...a11yProps(0)} />
+                    <Tab label="지도로 위치 선택" {...a11yProps(1)} />
                 </Tabs>
             </Box>
 
             <SwipeableViews axis={theme.direction === "rtl" ? "x-reverse" : "x"} index={value} onChangeIndex={handleChangeIndex}>
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <RegisterPlaceByMap />
+                    <RegisterPlaceByAddress />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <RegisterPlaceByAddress />
+                    <RegisterPlaceByMap />
                 </TabPanel>
             </SwipeableViews>
         </FormContainer>
