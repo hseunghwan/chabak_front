@@ -70,7 +70,7 @@ function MarkerCluster() {
 
         const newCluster = new MarkerClustering({
             minClusterSize: 2,
-            maxZoom: 8,
+            maxZoom: 15,
             map: map,
             markers: markers,
             disableClickZoom: false,
@@ -132,4 +132,9 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
     );
 };
 
+// import React from "react";
+
+// const FloatingNaverMap: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+//     return <div></div>;
+// };
 export default FloatingNaverMap;
