@@ -14,7 +14,7 @@ export const userPlaceRegister = async (data: UserPlaceRegisterModel) => {
         method: "post",
         url: `/api/register/address`,
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: `${localStorage.getItem("jwtToken")}`,
         },
         data: data,
     });
