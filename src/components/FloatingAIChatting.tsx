@@ -41,7 +41,8 @@ const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
                 console.log("postChatMessage err");
                 console.error(error);
             });
-    }, [messages, setPlaceList]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [messages]);
     return (
         <Box sx={{ ...sx, backgroundColor: colors.FORMBACKGROUND }}>
             <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", backgroundColor: "#74D689" }}>
