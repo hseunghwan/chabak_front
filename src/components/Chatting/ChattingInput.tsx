@@ -2,7 +2,6 @@ import { IconButton, InputBase } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import colors from "src/const/colors";
-
 type ChattingInputProps = {
     style?: React.CSSProperties;
     onSendMessage: (message: string) => void;

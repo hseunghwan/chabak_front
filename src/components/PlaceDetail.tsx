@@ -22,7 +22,36 @@ type MapProps = {
     lat: number;
     lng: number;
 };
-
+interface Facilities {
+    [key: string]: string;
+}
+const facilities: Facilities = {
+    ground: "운동장",
+    hotwater: "온수",
+    mart: "마트.편의점",
+    playzone: "놀이터",
+    pool: "물놀이장",
+    sports: "운동시설",
+    tramp: "트렘폴린",
+    volt: "전기",
+    walk: "산책로",
+    wifi: "와이파이",
+    wood: "장작판매",
+};
+function getKeyValue(key: string): string {
+    const facilitieslist = key.split(",");
+    console.log(facilitieslist);
+    let result = "";
+    // eslint-disable-next-line array-callback-return
+    facilitieslist.map((facility) => {
+        console.log(facility);
+        if (facility in facilities) {
+            result += facilities[facility] + " ";
+            console.log(result);
+        }
+    });
+    return result;
+}
 const Map = ({ lat, lng }: MapProps) => {
     const navermaps = useNavermaps();
     const [mapTypeId, setMapTypeId] = useState(navermaps.MapTypeId.SATELLITE);
@@ -116,6 +145,7 @@ export default function PlaceDetail() {
             </div>
             <div style={{ padding: "10px" }}>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold" }}>{placeData.facils}</p>
+                <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", fontSize: "16px" }}>{getKeyValue(placeData.amenities ?? " ")}</p>
                 <p style={{ ...pStyle, fontWeight: "bold" }}>{placeData.place_name}</p>
                 <p style={{ ...pStyle, color: "#64748B" }}>
                     <HomeTwoToneIcon sx={{ marginRight: "5px" }} />
