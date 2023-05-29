@@ -4,6 +4,9 @@ import ChattingInput from "src/components/Chatting/ChattingInput";
 import AITalkBox from "src/components/Chatting/AITalkBox";
 import UserTalkBox from "src/components/Chatting/UserTalkBox";
 import colors from "src/const/colors";
+import { postChatMessage } from "src/const/api/chatbotAi";
+import { useSetRecoilState } from "recoil";
+import placeState from "src/states/placeState";
 
 type ChatMessage = {
     sender: "AI" | "User";
@@ -11,6 +14,7 @@ type ChatMessage = {
 };
 const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const setPlaceList = useSetRecoilState(placeState);
     const [messages, setMessages] = useState<ChatMessage[]>([
         {
             sender: "AI",
@@ -26,8 +30,18 @@ const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-
-    useEffect(scrollToBottom, [messages]);
+    useEffect(() => {
+        scrollToBottom();
+        postChatMessage(messages[messages.length - 1].content)
+            .then((response) => {
+                setMessages((prevMessages) => [...prevMessages, { sender: "AI", content: response.data.response }]); // 챗봇 응답 추가
+                if (response.data.place_list) setPlaceList(response.data.place_list);
+            })
+            .catch((error) => {
+                console.log("postChatMessage err");
+                console.error(error);
+            });
+    }, [messages, setPlaceList]);
     return (
         <Box sx={{ ...sx, backgroundColor: colors.FORMBACKGROUND }}>
             <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%", backgroundColor: "#74D689" }}>

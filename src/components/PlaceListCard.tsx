@@ -32,7 +32,7 @@ export default function PlaceListCard({ placeId, theme, name, address, imgUrl }:
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
         >
-            <img src={imgUrl} alt=" " style={{ maxWidth: "20%", minWidth: "100px", maxHeight: "100px" }} />
+            <img src={imgUrl} alt=" " style={{ width: "20%", minWidth: "100px", maxHeight: "100px" }} />
             <Box>
                 <p style={{ ...pStyle, fontSize: "12px" }}>{theme}</p>
                 <p style={{ ...pStyle, fontSize: "18px" }}>{name}</p>
