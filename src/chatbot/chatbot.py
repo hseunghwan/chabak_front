@@ -4,10 +4,11 @@ import spacy
 import requests
 from dotenv import load_dotenv
 from konlpy.tag import Komoran
-import sys
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
-#typescript에 리턴할 때 문자를 'utf-8'로 인코딩해서 전달
-sys.stdout.reconfigure(encoding='utf-8')
+app = Flask(__name__)
+CORS(app)
 
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
@@ -33,14 +34,25 @@ class OpenAIGpt:
         response = requests.get(path)
 
         #백엔드에서 받은 json 파일을 리스트로 변환해서 리턴
-        return response.json()    
+        return response.json()
+
+    @app.route('/api/chatbot', methods=['POST'])
+    def chatbot():
+        data = request.get_json()
+        question = data['prompt']
+        response = openai_gpt.run(question)
+        if type(response) == list:
+            return jsonify({'response': '네, 해당 차박 리스트를 보여드릴게요', 'place_list': response})
+        return jsonify({'response': response})
+
+
 
     #인공지능 실행 코드 -> 백엔드에 보내야하는 경우에는 보내고 프론트에 보내기 (결국 프론트로 보내는거는 함수 호출로 해야함)
-    def run(self):
+    def run(self, question):
         #입력을 typescript로부터 받아온다.
         #question = input("Qeustion : ")
         #prompt = question 
-        prompt = f"{sys.argv[1]}"
+        prompt = question
 
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -64,25 +76,23 @@ class OpenAIGpt:
                     url += ent.label_ + "=" + ent.text + "&"
                 url = url[:-1]
                 id_lists = self.to_back(url)
-                
+                print(url)
                 #Node.js의 exec는 print를 stdout에 저장한다. -> 처음 나오는 print가 stdout에 저장됨
-                print(id_lists)
-                sys.exit()
+                return id_lists
          
         #백엔드에 정보 json으로 보낸 후에 프론트에는 처리 되었음을 알리는 문자를 보내야함
-        #예) 네, 해당 차박 리스트를 보여드릴게요 같이
+        #예) 네, 해당 차박 리스트를 보여드릴게요 같이 
             
         #그 외에 차박 관련 정보 물어볼 때
-
         response = openai.Completion.create(
-            engine="davinci:ft-personal-2023-05-25-02-37-57",
+            engine="davinci:ft-personal-2023-04-17-22-21-08",
             prompt=prompt,
             temperature=0.3,
             max_tokens=256,
             top_p=1,
             frequency_penalty=0.0,
             presence_penalty=0.0, 
-            stop=["\n"]
+            stop=["."]
         )
         for choice in response.choices:
             text = choice.text.strip()
@@ -91,4 +101,5 @@ class OpenAIGpt:
 #최초 실행
 if __name__ == '__main__':
     openai_gpt = OpenAIGpt()
-    openai_gpt.run()
+    app.run(host='0.0.0.0', port=5000)
+    
