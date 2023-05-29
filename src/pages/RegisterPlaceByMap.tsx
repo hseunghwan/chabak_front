@@ -2,27 +2,30 @@
 import { Box, Button } from "@mui/material";
 import React, { useState } from "react";
 import { CustomInput } from "src/components/SimpleInput";
-
 import { userPlaceRegister, UserPlaceRegisterModel } from "src/const/api/userPlace";
+import userState from "src/states/userState";
+import { useRecoilValue } from "recoil";
 
 export default function RegisterPlaceByMap() {
-    const [fullAddress, setFullAddress] = useState("");
+    const [address, setAddress] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [userPlaceName, setUserPlaceName] = useState("");
     const [descript, setDescript] = useState("");
     const [tags, setTags] = useState("");
+    const user = useRecoilValue(userState);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const setData: UserPlaceRegisterModel = { fullAddress, userPlaceName, descript, tags, latitude, longitude };
-        userPlaceRegister(setData)
-            .then((response) => {
-                console.log("Register success");
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        const setData: UserPlaceRegisterModel = { address, userPlaceName, descript, tags, latitude, longitude };
+        user &&
+            userPlaceRegister(setData, user.user_id)
+                .then((response) => {
+                    console.log("Register success");
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
     };
     return (
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>

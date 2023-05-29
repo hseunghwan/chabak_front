@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function HomeContents() {
     const navigate = useNavigate();
     return (
-        <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
+        <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px", height: "100vh" }}>
             <div style={{ display: "flex" }}>
                 <Typography sx={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</Typography>
                 <span

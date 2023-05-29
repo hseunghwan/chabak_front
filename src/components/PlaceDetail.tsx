@@ -40,14 +40,11 @@ const facilities: Facilities = {
 };
 function getKeyValue(key: string): string {
     const facilitieslist = key.split(",");
-    console.log(facilitieslist);
     let result = "";
     // eslint-disable-next-line array-callback-return
     facilitieslist.map((facility) => {
-        console.log(facility);
         if (facility in facilities) {
             result += facilities[facility] + " ";
-            console.log(result);
         }
     });
     return result;

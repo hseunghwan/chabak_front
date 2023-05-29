@@ -4,15 +4,11 @@ import FloatingButton from "src/components/FloatingButton";
 import FloatingChatButton from "src/components/FloatingChatButton";
 import FloatingNaverMap from "src/components/FloatingNaverMap";
 import { Outlet } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import placeState from "src/states/placeState";
-import { placeListByLocation } from "src/const/api/place";
 
 export default function Home() {
     const theme = useTheme();
     const [showSpeechBubble, setShowSpeechBubble] = useState(false); //true면 speechBubble 열림
     const [mapOrChat, setMapOrChat] = useState(false); //true면 map, false면 chat
-    const setPlaceList = useSetRecoilState(placeState);
 
     //map 누름
     const handleClick = () => {
@@ -38,13 +34,7 @@ export default function Home() {
             setMapOrChat(false);
         }
     };
-    placeListByLocation("전국")
-        .then((response) => {
-            setPlaceList(response.data);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    console.log("Home.tsx");
 
     useEffect(() => {
         const handleResize = () => {

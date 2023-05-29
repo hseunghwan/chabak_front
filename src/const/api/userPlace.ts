@@ -1,6 +1,6 @@
 import { apiClient } from "src/const/api/apiClient";
 export type UserPlaceRegisterModel = {
-    fullAddress: string;
+    address: string;
     userPlaceName: string;
     descript: string;
     tags: string;
@@ -9,13 +9,13 @@ export type UserPlaceRegisterModel = {
 };
 
 //사용자 장소 등록
-export const userPlaceRegister = async (data: UserPlaceRegisterModel) => {
+export const userPlaceRegister = async (data: UserPlaceRegisterModel, userId: number) => {
     return await apiClient({
         method: "post",
-        url: `/api/register/address`,
-        headers: {
-            Authorization: `${localStorage.getItem("jwtToken")}`,
-        },
+        url: `/api/register/address/${userId}`,
+        // headers: {
+        //     Authorization: `${localStorage.getItem("jwtToken")}`,
+        // },
         data: data,
     });
 };
