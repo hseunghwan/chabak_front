@@ -76,6 +76,7 @@ class OpenAIGpt:
                     url += ent.label_ + "=" + ent.text + "&"
                 url = url[:-1]
                 id_lists = self.to_back(url)
+                print(url)
                 #Node.js의 exec는 print를 stdout에 저장한다. -> 처음 나오는 print가 stdout에 저장됨
                 return id_lists
          
