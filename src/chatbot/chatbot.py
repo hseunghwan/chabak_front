@@ -86,9 +86,7 @@ class OpenAIGpt:
         )
         for choice in response.choices:
             text = choice.text.strip()
-            #return text
-            if text:
-                print(text)
+            return text
 
 #최초 실행
 if __name__ == '__main__':
