@@ -31,23 +31,16 @@ class OpenAIGpt:
     def to_back(self, path):
         #json을 백엔드에 전송
         response = requests.get(path)
-        
-        '''
-        if response.status_code == 200:
-            print("파일 전송 성공")
-        else:
-            print("파일 전송 실패")
-            print(response.status_code)
-        '''
+
         #백엔드에서 받은 json 파일을 리스트로 변환해서 리턴
         return response.json()    
 
     #인공지능 실행 코드 -> 백엔드에 보내야하는 경우에는 보내고 프론트에 보내기 (결국 프론트로 보내는거는 함수 호출로 해야함)
     def run(self):
         #입력을 typescript로부터 받아온다.
-        question = input("Qeustion : ")
-        prompt = question 
-        #prompt = f"{sys.argv[1]}"
+        #question = input("Qeustion : ")
+        #prompt = question 
+        prompt = f"{sys.argv[1]}"
 
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
@@ -74,30 +67,28 @@ class OpenAIGpt:
                 
                 #Node.js의 exec는 print를 stdout에 저장한다. -> 처음 나오는 print가 stdout에 저장됨
                 print(id_lists)
-                print(len(id_lists))
-                print(url)
-                break
+                sys.exit()
          
         #백엔드에 정보 json으로 보낸 후에 프론트에는 처리 되었음을 알리는 문자를 보내야함
         #예) 네, 해당 차박 리스트를 보여드릴게요 같이
             
         #그 외에 차박 관련 정보 물어볼 때
-        else:
-            response = openai.Completion.create(
-                engine="davinci:ft-personal-2023-05-25-02-37-57",
-                prompt=prompt,
-                temperature=0.3,
-                max_tokens=512,
-                top_p=1,
-                frequency_penalty=0.0,
-                presence_penalty=0.0,
-                stop=["\n"]
-            )
-            for choice in response.choices:
-              text = choice.text.strip()
-              #return text
-              if text:
-                  print(text)
+
+        response = openai.Completion.create(
+            engine="davinci:ft-personal-2023-05-25-02-37-57",
+            prompt=prompt,
+            temperature=0.3,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0.0,
+            presence_penalty=0.0, 
+            stop=["\n"]
+        )
+        for choice in response.choices:
+            text = choice.text.strip()
+            #return text
+            if text:
+                print(text)
 
 #최초 실행
 if __name__ == '__main__':
