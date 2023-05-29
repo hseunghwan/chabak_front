@@ -2,6 +2,7 @@ import { Box, Typography } from "@mui/material";
 import colors from "src/const/colors";
 import ThemeCard from "src/components/ThemeCard";
 import { themeImages } from "src/const/consts";
+import { CustomImg } from "src/components/CustomImg";
 
 type ThemeContentBoxProps = {
     title: string;
@@ -12,7 +13,7 @@ export default function ThemeContentBox({ title, icon }: ThemeContentBoxProps) {
     return (
         <Box sx={{ width: "100%", marginBottom: "5px" }}>
             <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
-                {icon && <img src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
+                {icon && <CustomImg src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
                 <Typography alignSelf="center">{title}</Typography>
             </Box>
             <Box

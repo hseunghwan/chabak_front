@@ -12,6 +12,7 @@ import Login from "src/pages/Login";
 import Signup from "src/pages/Signup";
 import Settings from "src/pages/Settings";
 import RegisterPlace from "src/pages/RegisterPlace";
+import SearchFilter from "src/pages/SearchFilter";
 import RegisteredPlace from "src/pages/RegisteredPlace";
 import PlaceSearchResult from "src/pages/PlaceSearchResult";
 import { useSetRecoilState } from "recoil";
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
                     { index: true, element: <HomeContents /> },
                     { path: "/placedetail/:id", element: <PlaceDetail /> },
                     { path: "/registeredplace/:id", element: <RegisteredPlace /> },
-                    //{ path: "/filter", element: <Filter /> },
+                    { path: "/SearchFilter", element: <SearchFilter /> },
                     { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
                 ],
             },

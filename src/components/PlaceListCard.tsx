@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { CustomImg } from "src/components/CustomImg";
 
 type PlaceListCardProps = {
     placeId: string;
@@ -20,7 +21,9 @@ export default function PlaceListCard({ placeId, theme, name, address, imgUrl }:
     const navigate = useNavigate();
     return (
         <Box
-            onClick={() => navigate(`/placedetail/${placeId}`)}
+            onClick={() => {
+                if (!placeId) navigate(`/placedetail/${placeId}`);
+            }}
             sx={{
                 display: "flex",
                 width: "96%",
@@ -32,7 +35,7 @@ export default function PlaceListCard({ placeId, theme, name, address, imgUrl }:
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
             }}
         >
-            <img src={imgUrl} alt=" " style={{ width: "20%", minWidth: "100px", maxHeight: "100px" }} />
+            <CustomImg src={imgUrl} alt=" " style={{ width: "20%", minWidth: "100px", maxHeight: "100px" }} />
             <Box>
                 <p style={{ ...pStyle, fontSize: "12px" }}>{theme}</p>
                 <p style={{ ...pStyle, fontSize: "18px" }}>{name}</p>

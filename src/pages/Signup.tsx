@@ -6,6 +6,8 @@ import icons from "src/const/icons";
 import { checkEmailFormat, checkPasswordFormat } from "src/const/consts";
 import { userSigup } from "src/const/api/user";
 import { useNavigate } from "react-router-dom";
+import { CustomImg } from "src/components/CustomImg";
+
 export default function Signup() {
     const defaultPasswordError = "영어, 숫자, 특수문자를 포함한 8자리 이상";
     const [name, setName] = useState("");
@@ -51,8 +53,8 @@ export default function Signup() {
         <FormContainer title="회원가입">
             <CenteredBox component="form" onSubmit={handleSubmit}>
                 <CenteredBox sx={{ flexDirection: "row", zIndex: 1, marginTop: "5%" }}>
-                    <img src={icons.carIcon} alt="carIcon" />
-                    <img src={icons.chabakchabak} alt="chabakchabak" />
+                    <CustomImg src={icons.carIcon} alt="carIcon" />
+                    <CustomImg src={icons.chabakchabak} alt="chabakchabak" />
                 </CenteredBox>
                 <CenteredBox>
                     <TextField

@@ -3,6 +3,7 @@ import { AppBar, Box, IconButton, SxProps, Theme, Toolbar, Typography, useTheme 
 import { useNavigate } from "react-router-dom";
 import icon from "src/const/icons";
 import colors from "src/const/colors";
+import { CustomImg } from "src/components/CustomImg";
 
 type FormContainerProps = {
     title?: string;
@@ -30,7 +31,7 @@ export default function FormContainer({ title, children, sx }: FormContainerProp
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                         <IconButton onClick={() => navigate(-1)} color="inherit">
-                            <img src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
+                            <CustomImg src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
                         </IconButton>
                         <Typography sx={{ fontSize: "24px" }}>{title}</Typography>
                     </Toolbar>

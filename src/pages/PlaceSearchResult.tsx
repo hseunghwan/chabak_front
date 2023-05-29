@@ -38,7 +38,7 @@ export default function PlaceSearchResult() {
     const displayedItems = placeList.slice(0, itemPerPage * page);
 
     return (
-        <div style={{ backgroundColor: colors.FORMBACKGROUND }}>
+        <div style={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: 10 }}>
             {param.showfilter === "true" && <Filterbar />}
             <div>
                 {/* 무한스크롤 구현 */}
@@ -54,9 +54,7 @@ export default function PlaceSearchResult() {
                             imgUrl={place.images[0]}
                         />
                     ))}
-                <div ref={loader}>
-                    <h2>Loading...</h2>
-                </div>
+                <div ref={loader}></div>
             </div>
         </div>
     );

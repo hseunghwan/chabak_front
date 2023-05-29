@@ -4,11 +4,12 @@ import FloatingButton from "src/components/FloatingButton";
 import FloatingChatButton from "src/components/FloatingChatButton";
 import FloatingNaverMap from "src/components/FloatingNaverMap";
 import { Outlet } from "react-router-dom";
+import colors from "src/const/colors";
 
 export default function Home() {
     const theme = useTheme();
     const [showSpeechBubble, setShowSpeechBubble] = useState(false); //true면 speechBubble 열림
-    const [mapOrChat, setMapOrChat] = useState(false); //true면 map, false면 chat
+    const [mapOrChat, setMapOrChat] = useState(true); //true면 map, false면 chat
 
     //map 누름
     const handleClick = () => {
@@ -82,6 +83,15 @@ export default function Home() {
             </Box>
             <Box sx={homeContainerStyles}>
                 <Outlet />
+                <Box
+                    sx={{
+                        backgroundColor: colors.FORMBACKGROUND,
+                        position: "fixed",
+                        width: "inherit",
+                        height: "100%",
+                        zIndex: 0,
+                    }}
+                ></Box>
             </Box>
         </>
     );
