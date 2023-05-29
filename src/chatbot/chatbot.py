@@ -6,10 +6,10 @@ from dotenv import load_dotenv
 from konlpy.tag import Komoran
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import sys 
 
 app = Flask(__name__)
 CORS(app)
+
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
@@ -83,16 +83,15 @@ class OpenAIGpt:
         #예) 네, 해당 차박 리스트를 보여드릴게요 같이 
             
         #그 외에 차박 관련 정보 물어볼 때
-
         response = openai.Completion.create(
-            engine="davinci:ft-personal-2023-05-25-02-37-57",
+            engine="davinci:ft-personal-2023-04-17-22-21-08",
             prompt=prompt,
             temperature=0.3,
             max_tokens=256,
             top_p=1,
             frequency_penalty=0.0,
             presence_penalty=0.0, 
-            stop=["\n"]
+            stop=["."]
         )
         for choice in response.choices:
             text = choice.text.strip()

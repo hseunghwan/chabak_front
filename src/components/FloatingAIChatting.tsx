@@ -7,6 +7,7 @@ import colors from "src/const/colors";
 import { postChatMessage } from "src/const/api/chatbotAi";
 import { useSetRecoilState } from "recoil";
 import placeState from "src/states/placeState";
+import { useNavigate } from "react-router-dom";
 
 type ChatMessage = {
     sender: "AI" | "User";
@@ -15,6 +16,7 @@ type ChatMessage = {
 const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const setPlaceList = useSetRecoilState(placeState);
+    const navigate = useNavigate();
     const [messages, setMessages] = useState<ChatMessage[]>([
         {
             sender: "AI",
@@ -25,22 +27,27 @@ const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
         // ... 추가적인 초기 메시지들
     ]);
     const addNewMessage = (messageContent: string) => {
-        setMessages((prevMessages) => [...prevMessages, { sender: "User", content: messageContent }]);
-    };
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-    useEffect(() => {
-        scrollToBottom();
-        postChatMessage(messages[messages.length - 1].content)
+        const newUserMessage: ChatMessage = { sender: "User", content: messageContent };
+        setMessages((prevMessages) => [...prevMessages, newUserMessage]);
+
+        postChatMessage(newUserMessage.content)
             .then((response) => {
                 setMessages((prevMessages) => [...prevMessages, { sender: "AI", content: response.data.response }]); // 챗봇 응답 추가
                 if (response.data.place_list) setPlaceList(response.data.place_list);
+                navigate("/placesearchresult/true");
             })
             .catch((error) => {
                 console.log("postChatMessage err");
                 console.error(error);
             });
+    };
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+    useEffect(() => {
+        scrollToBottom();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages]);
     return (
