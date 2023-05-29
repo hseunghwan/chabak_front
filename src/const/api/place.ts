@@ -17,7 +17,33 @@ export const placeListByTheme = async (theme: string) => {
 export const placeListByLocation = async (loc: string) => {
     return await apiClient({
         method: "get",
-        url: `/api/place/theme/${loc}`,
+        url: `/api/place/location/${loc}`,
+    });
+};
+
+export const placeListByLocationTheme = async (loc: string, theme: string) => {
+    return await apiClient({
+        method: "get",
+        url: `/api/place/${loc}/${theme}`,
+    });
+};
+
+export const placeListBySearchKeyword = async (searchKeyword: string) => {
+    return await apiClient({
+        method: "get",
+        url: `/api/place/search/${searchKeyword}`,
+    });
+};
+
+//사용 불가능
+export const placeListBySearchKeywordFilter = async (searchKeyword: string, theme: string, facils: string) => {
+    return await apiClient({
+        method: "get",
+        url: `/api/place/search/filter/${searchKeyword}`,
+        params: {
+            theme: theme,
+            facils: facils,
+        },
     });
 };
 

@@ -1,18 +1,15 @@
 import { Box, SxProps, Theme } from "@mui/material";
-import LocationCard from "src/components/LocationCard";
-import { gpe } from "src/const/consts";
+import { themeImages } from "src/const/consts";
+import ThemeListCard from "src/components/ThemeListCard";
 
-type LocationListBoxProps = {
+type ThemeListBoxProps = {
     sx?: SxProps<Theme>;
 };
 
-export default function LocationListBox({ sx }: LocationListBoxProps) {
+export default function ThemeListBox({ sx }: ThemeListBoxProps) {
     return (
         <Box
             sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "space-evenly",
                 margin: "10px",
                 background: "white",
                 borderRadius: "10px",
@@ -24,8 +21,8 @@ export default function LocationListBox({ sx }: LocationListBoxProps) {
                 ...sx,
             }}
         >
-            {gpe.map((loc) => (
-                <LocationCard key={loc.key} gpe={loc} />
+            {themeImages.map((theme) => (
+                <ThemeListCard key={theme.theme} theme={theme.title} />
             ))}
         </Box>
     );

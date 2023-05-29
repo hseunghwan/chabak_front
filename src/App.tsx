@@ -5,8 +5,7 @@ import Mypage from "src/pages/Mypage";
 import BackgroundContainer from "src/components/BackgroundContainer";
 import HomeContainer from "src/components/HomeContainer";
 import PlaceDetail from "src/components/PlaceDetail";
-import Search from "src/pages/Search";
-import Filter from "src/pages/Filter";
+//import Filter from "src/pages/Filter";
 import PrivateRoute from "src/pages/PrivateRoute";
 import HomeContents from "src/components/HomeContents";
 import Login from "src/pages/Login";
@@ -28,19 +27,14 @@ const router = createBrowserRouter([
                     { index: true, element: <HomeContents /> },
                     { path: "/placedetail/:id", element: <PlaceDetail /> },
                     { path: "/registeredplace/:id", element: <RegisteredPlace /> },
-                    { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
-                    { path: "/search", element: <Search /> },
-                    { path: "/filter", element: <Filter /> },
-                    { path: "/placesearchresult/:showfilter/:location/:theme", element: <PlaceSearchResult /> },
+                    //{ path: "/filter", element: <Filter /> },
+                    { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
                 ],
             },
         ],
     },
-    {
-        path: "/mypage",
-        element: <PrivateRoute />,
-        children: [{ index: true, element: <Mypage /> }],
-    },
+    { path: "/registerplace", element: <PrivateRoute />, children: [{ index: true, element: <RegisterPlace /> }] },
+    { path: "/mypage", element: <PrivateRoute />, children: [{ index: true, element: <Mypage /> }] },
     { path: "/login", element: <Login /> },
     { path: "/signup", element: <Signup /> },
     { path: "/settings", element: <PrivateRoute />, children: [{ index: true, element: <Settings /> }] },

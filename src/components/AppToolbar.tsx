@@ -1,18 +1,28 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu, Popover, TextField } from "@mui/material";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
 import { userLogout } from "src/const/api/user";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
+import placeState from "src/states/placeState";
+import searchState from "src/states/searchState";
+import { placeListBySearchKeyword } from "src/const/api/place";
 
 export default function AppToolbar(): JSX.Element {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const [profileAnchorEl, setProfileAnchorEl] = React.useState<null | HTMLElement>(null);
     const isProfileMenuOpen = Boolean(profileAnchorEl);
+    const [searchAnchorEl, setSearchAnchorEl] = React.useState<null | HTMLElement>(null);
+    const isSearchMenuOpen = Boolean(searchAnchorEl);
+    const [searchText, setSearchText] = React.useState<string>("");
+
+    const setPlaceState = useSetRecoilState(placeState);
+    const setUserSearchState = useSetRecoilState(searchState);
+    const location = useLocation();
     const navigate = useNavigate();
     const setUserState = useSetRecoilState(userState);
 
@@ -27,6 +37,12 @@ export default function AppToolbar(): JSX.Element {
     };
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setProfileAnchorEl(event.currentTarget);
+    };
+    const handleSearchMenuClose = () => {
+        setSearchAnchorEl(null);
+    };
+    const handleSearchMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+        setSearchAnchorEl(event.currentTarget);
     };
     const handleLogout = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
@@ -46,6 +62,8 @@ export default function AppToolbar(): JSX.Element {
 
     const mobileMenuId = "apptoolbar-account-menu-mobile";
     const profileId = "apptoolbar-profile-menu-mobile";
+    const searchId = "apptoolbar-search-menu-mobile";
+
     const renderMobileMenu = (
         <Menu
             anchorEl={mobileMoreAnchorEl}
@@ -63,7 +81,7 @@ export default function AppToolbar(): JSX.Element {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem>
+            <MenuItem aria-controls={searchId} onClick={handleSearchMenuOpen}>
                 <img src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Search</p>
             </MenuItem>
@@ -112,9 +130,41 @@ export default function AppToolbar(): JSX.Element {
         </Menu>
     );
 
+    const submit = (e: React.KeyboardEvent) => {
+        if (e.key === "Enter") {
+            setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: searchText });
+            placeListBySearchKeyword(searchText)
+                .then((response) => {
+                    setPlaceState(response.data);
+                    if (location.pathname !== "/placesearchresult/true") {
+                        navigate(`/placesearchresult/true`);
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+            handleSearchMenuClose();
+        }
+    };
+
+    const renderSearch = (
+        <Popover
+            id={searchId}
+            open={isSearchMenuOpen}
+            anchorEl={searchAnchorEl}
+            onClose={handleSearchMenuClose}
+            anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+            }}
+        >
+            <TextField onKeyDown={submit} value={searchText} onChange={(e) => setSearchText(e.target.value)}></TextField>
+        </Popover>
+    );
+
     return (
         <>
-            <Box sx={{ position: "fixed", top: 0, width: "inherit" }}>
+            <Box sx={{ position: "fixed", top: 0, width: "inherit", zIndex: 1 }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                         <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
@@ -123,12 +173,12 @@ export default function AppToolbar(): JSX.Element {
                         </Box>
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
-                            <IconButton onClick={() => navigate("/search")} size="large" color="inherit">
+                            <IconButton onClick={handleSearchMenuOpen} size="large" color="inherit" aria-controls={searchId}>
                                 <img src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
+                            {/* <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
                                 <img src={icons.list} alt="" width="30px" />
-                            </IconButton>
+                            </IconButton> */}
                             <IconButton
                                 size="large"
                                 edge="end"
@@ -156,6 +206,7 @@ export default function AppToolbar(): JSX.Element {
                 </AppBar>
                 {renderMobileMenu}
                 {renderProfile}
+                {renderSearch}
             </Box>
             <Box sx={{ height: `65px` }}></Box>
         </>
