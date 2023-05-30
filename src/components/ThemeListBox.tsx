@@ -4,9 +4,10 @@ import ThemeListCard from "src/components/ThemeListCard";
 
 type ThemeListBoxProps = {
     sx?: SxProps<Theme>;
+    setShowThemeListBox?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function ThemeListBox({ sx }: ThemeListBoxProps) {
+export default function ThemeListBox({ sx, setShowThemeListBox }: ThemeListBoxProps) {
     return (
         <Box
             sx={{
@@ -22,7 +23,7 @@ export default function ThemeListBox({ sx }: ThemeListBoxProps) {
             }}
         >
             {themeImages.map((theme) => (
-                <ThemeListCard key={theme.theme} theme={theme.title} />
+                <ThemeListCard key={theme.theme} theme={theme.title} setShowThemeListBox={setShowThemeListBox} />
             ))}
         </Box>
     );
