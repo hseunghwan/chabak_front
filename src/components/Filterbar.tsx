@@ -120,6 +120,7 @@ export default function Filterbar() {
                     maxHeight: showLocationListBox ? "240px" : "0",
                     margin: "1%",
                 }}
+                setShowLocationListBox={setShowLocationListBox}
             />
             <ThemeListBox
                 sx={{
@@ -130,6 +131,7 @@ export default function Filterbar() {
                     maxHeight: showThemeListBox ? "240px" : "0",
                     margin: "1%",
                 }}
+                setShowThemeListBox={setShowThemeListBox}
             />
         </div>
     );

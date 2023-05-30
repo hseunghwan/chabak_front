@@ -4,9 +4,10 @@ import { gpe } from "src/const/consts";
 
 type LocationListBoxProps = {
     sx?: SxProps<Theme>;
+    setShowLocationListBox?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function LocationListBox({ sx }: LocationListBoxProps) {
+export default function LocationListBox({ sx, setShowLocationListBox }: LocationListBoxProps) {
     return (
         <Box
             sx={{
@@ -25,7 +26,7 @@ export default function LocationListBox({ sx }: LocationListBoxProps) {
             }}
         >
             {gpe.map((loc) => (
-                <LocationCard key={loc.key} gpe={loc} />
+                <LocationCard key={loc.key} gpe={loc} setShowLocationListBox={setShowLocationListBox} />
             ))}
         </Box>
     );

@@ -5,13 +5,15 @@ import searchState from "src/states/searchState";
 
 type ThemeListCardProps = {
     theme: string;
+    setShowThemeListBox?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function ThemeListCard({ theme }: ThemeListCardProps) {
+export default function ThemeListCard({ theme, setShowThemeListBox }: ThemeListCardProps) {
     const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
 
     const handleClick = async () => {
+        setShowThemeListBox && setShowThemeListBox(false);
         setUserSearchState({ ...userSearchState, theme: theme, searchKeyword: null });
         placeListByLocationTheme(userSearchState.location, theme)
             .then((response) => {

@@ -6,15 +6,17 @@ import searchState from "src/states/searchState";
 
 type LocationCardProps = {
     gpe: { key: string; value: string };
+    setShowLocationListBox?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function LocationCard({ gpe }: LocationCardProps) {
+export default function LocationCard({ gpe, setShowLocationListBox }: LocationCardProps) {
     const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const navigate = useNavigate();
     const location = useLocation();
 
     const handleClick = async () => {
+        setShowLocationListBox && setShowLocationListBox(false);
         if (location.pathname === "/placesearchresult") {
             setUserSearchState({ ...userSearchState, location: gpe.value, searchKeyword: null });
             if (userSearchState.theme === null) {
