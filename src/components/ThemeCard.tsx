@@ -18,7 +18,7 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
         placeListByTheme(title)
             .then((response) => {
                 setPlaceState(response.data);
-                navigate(`/placesearchresult/true`);
+                navigate(`/placesearchresult`);
             })
             .catch((error) => {
                 console.error(error);

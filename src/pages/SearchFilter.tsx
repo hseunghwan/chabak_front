@@ -70,7 +70,7 @@ const SearchFilter = () => {
             .then((response) => {
                 setPlaceList(response.data);
                 setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: null });
-                navigate("/placesearchresult/true");
+                navigate("/placesearchresult");
             })
             .catch((error) => {
                 console.error(error);

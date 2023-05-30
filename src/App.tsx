@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                     { path: "/placedetail/:id", element: <PlaceDetail /> },
                     { path: "/registeredplace/:id", element: <RegisteredPlace /> },
                     { path: "/SearchFilter", element: <SearchFilter /> },
-                    { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
+                    { path: "/placesearchresult", element: <PlaceSearchResult /> },
                 ],
             },
         ],

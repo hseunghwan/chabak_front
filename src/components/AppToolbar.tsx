@@ -87,7 +87,7 @@ export default function AppToolbar(): JSX.Element {
                 <CustomImg src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Search</p>
             </MenuItem>
-            <MenuItem onClick={() => navigate("/PlaceSearchResult/true")}>
+            <MenuItem onClick={() => navigate("/PlaceSearchResult")}>
                 <CustomImg src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>List</p>
             </MenuItem>
