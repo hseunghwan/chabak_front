@@ -4,6 +4,7 @@ import colors from "src/const/colors";
 import RecommendCard from "src/components/RecommendCard";
 import { placeListRecommend } from "src/const/api/place";
 import { PlaceModel } from "src/states/placeState";
+import { CustomImg } from "src/components/CustomImg";
 
 type HomeContentBoxProps = {
     title: string;
@@ -41,7 +42,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
     return (
         <Box sx={{ width: "100%", marginBottom: "5px" }}>
             <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
-                {icon && <img src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
+                {icon && <CustomImg src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
                 <Typography alignSelf="center">{title}</Typography>
             </Box>
             <Box

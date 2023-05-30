@@ -12,8 +12,12 @@ import Login from "src/pages/Login";
 import Signup from "src/pages/Signup";
 import Settings from "src/pages/Settings";
 import RegisterPlace from "src/pages/RegisterPlace";
+import SearchFilter from "src/pages/SearchFilter";
 import RegisteredPlace from "src/pages/RegisteredPlace";
 import PlaceSearchResult from "src/pages/PlaceSearchResult";
+import { useSetRecoilState } from "recoil";
+import placeState from "src/states/placeState";
+import { placeListByLocation } from "src/const/api/place";
 
 const router = createBrowserRouter([
     {
@@ -27,8 +31,8 @@ const router = createBrowserRouter([
                     { index: true, element: <HomeContents /> },
                     { path: "/placedetail/:id", element: <PlaceDetail /> },
                     { path: "/registeredplace/:id", element: <RegisteredPlace /> },
-                    //{ path: "/filter", element: <Filter /> },
-                    { path: "/placesearchresult/:showfilter", element: <PlaceSearchResult /> },
+                    { path: "/SearchFilter", element: <SearchFilter /> },
+                    { path: "/placesearchresult", element: <PlaceSearchResult /> },
                 ],
             },
         ],
@@ -41,6 +45,16 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+    const setPlaceList = useSetRecoilState(placeState);
+    console.log("App.tsx");
+    placeListByLocation("전국")
+        .then((response) => {
+            setPlaceList(response.data);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+
     return (
         <BackgroundContainer>
             <RouterProvider router={router} />

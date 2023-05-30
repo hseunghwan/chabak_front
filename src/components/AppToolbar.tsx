@@ -1,28 +1,30 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu, Popover, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom"; //useLocation,
+import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"; //, Popover, TextField
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
 import { userLogout } from "src/const/api/user";
 import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
-import placeState from "src/states/placeState";
-import searchState from "src/states/searchState";
-import { placeListBySearchKeyword } from "src/const/api/place";
+import { CustomImg } from "src/components/CustomImg";
+
+// import placeState from "src/states/placeState";
+// import searchState from "src/states/searchState";
+// import { placeListBySearchKeyword } from "src/const/api/place";
 
 export default function AppToolbar(): JSX.Element {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const [profileAnchorEl, setProfileAnchorEl] = React.useState<null | HTMLElement>(null);
     const isProfileMenuOpen = Boolean(profileAnchorEl);
-    const [searchAnchorEl, setSearchAnchorEl] = React.useState<null | HTMLElement>(null);
-    const isSearchMenuOpen = Boolean(searchAnchorEl);
-    const [searchText, setSearchText] = React.useState<string>("");
+    // const [searchAnchorEl, setSearchAnchorEl] = React.useState<null | HTMLElement>(null);
+    // const isSearchMenuOpen = Boolean(searchAnchorEl);
+    // const [searchText, setSearchText] = React.useState<string>("");
 
-    const setPlaceState = useSetRecoilState(placeState);
-    const setUserSearchState = useSetRecoilState(searchState);
-    const location = useLocation();
+    // const setPlaceState = useSetRecoilState(placeState);
+    // const setUserSearchState = useSetRecoilState(searchState);
+    // const location = useLocation();
     const navigate = useNavigate();
     const setUserState = useSetRecoilState(userState);
 
@@ -38,12 +40,12 @@ export default function AppToolbar(): JSX.Element {
     const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
         setProfileAnchorEl(event.currentTarget);
     };
-    const handleSearchMenuClose = () => {
-        setSearchAnchorEl(null);
-    };
-    const handleSearchMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setSearchAnchorEl(event.currentTarget);
-    };
+    // const handleSearchMenuClose = () => {
+    //     setSearchAnchorEl(null);
+    // };
+    // const handleSearchMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    //     setSearchAnchorEl(event.currentTarget);
+    // };
     const handleLogout = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         setProfileAnchorEl(null);
@@ -81,16 +83,16 @@ export default function AppToolbar(): JSX.Element {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            <MenuItem aria-controls={searchId} onClick={handleSearchMenuOpen}>
-                <img src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
+            <MenuItem aria-controls={searchId} onClick={() => navigate("/SearchFilter")}>
+                <CustomImg src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Search</p>
             </MenuItem>
-            <MenuItem>
-                <img src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
+            <MenuItem onClick={() => navigate("/PlaceSearchResult")}>
+                <CustomImg src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>List</p>
             </MenuItem>
             <MenuItem aria-controls={profileId} onClick={handleProfileMenuOpen}>
-                <img src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
+                <CustomImg src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
                 <p>Profile</p>
             </MenuItem>
         </Menu>
@@ -130,37 +132,37 @@ export default function AppToolbar(): JSX.Element {
         </Menu>
     );
 
-    const submit = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter") {
-            setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: searchText });
-            placeListBySearchKeyword(searchText)
-                .then((response) => {
-                    setPlaceState(response.data);
-                    if (location.pathname !== "/placesearchresult/true") {
-                        navigate(`/placesearchresult/true`);
-                    }
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
-            handleSearchMenuClose();
-        }
-    };
+    // const submit = (e: React.KeyboardEvent) => {
+    //     if (e.key === "Enter") {
+    //         setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: searchText });
+    //         placeListBySearchKeyword(searchText)
+    //             .then((response) => {
+    //                 setPlaceState(response.data);
+    //                 if (location.pathname !== "/placesearchresult/true") {
+    //                     navigate(`/placesearchresult/true`);
+    //                 }
+    //             })
+    //             .catch((error) => {
+    //                 console.error(error);
+    //             });
+    //         handleSearchMenuClose();
+    //     }
+    // };
 
-    const renderSearch = (
-        <Popover
-            id={searchId}
-            open={isSearchMenuOpen}
-            anchorEl={searchAnchorEl}
-            onClose={handleSearchMenuClose}
-            anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-            }}
-        >
-            <TextField onKeyDown={submit} value={searchText} onChange={(e) => setSearchText(e.target.value)}></TextField>
-        </Popover>
-    );
+    // const renderSearch = (
+    //     <Popover
+    //         id={searchId}
+    //         open={isSearchMenuOpen}
+    //         anchorEl={searchAnchorEl}
+    //         onClose={handleSearchMenuClose}
+    //         anchorOrigin={{
+    //             vertical: "bottom",
+    //             horizontal: "left",
+    //         }}
+    //     >
+    //         <TextField onKeyDown={submit} value={searchText} onChange={(e) => setSearchText(e.target.value)}></TextField>
+    //     </Popover>
+    // );
 
     return (
         <>
@@ -168,17 +170,17 @@ export default function AppToolbar(): JSX.Element {
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                         <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
-                            <img src={icons.carIcon} alt="" width="45px" />
-                            <img src={icons.chabakchabak} alt="" width="118px" />
+                            <CustomImg src={icons.carIcon} alt="" width="45px" />
+                            <CustomImg src={icons.chabakchabak} alt="" width="118px" />
                         </Box>
                         <Box sx={{ flexGrow: 1 }}></Box>
                         <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
-                            <IconButton onClick={handleSearchMenuOpen} size="large" color="inherit" aria-controls={searchId}>
-                                <img src={icons.search} alt="" width="30px" />
+                            <IconButton onClick={() => navigate("/SearchFilter")} size="large" color="inherit" aria-controls={searchId}>
+                                <CustomImg src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            {/* <IconButton onClick={() => navigate("/filter")} size="large" color="inherit">
-                                <img src={icons.list} alt="" width="30px" />
-                            </IconButton> */}
+                            <IconButton onClick={() => navigate("/PlaceSearchResult/true")} size="large" color="inherit">
+                                <CustomImg src={icons.list} alt="" width="30px" />
+                            </IconButton>
                             <IconButton
                                 size="large"
                                 edge="end"
@@ -187,7 +189,7 @@ export default function AppToolbar(): JSX.Element {
                                 aria-controls={profileId}
                                 onClick={handleProfileMenuOpen}
                             >
-                                <img src={icons.circleuser} alt="" width="30px" />
+                                <CustomImg src={icons.circleuser} alt="" width="30px" />
                             </IconButton>
                         </Box>
                         <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
@@ -206,7 +208,7 @@ export default function AppToolbar(): JSX.Element {
                 </AppBar>
                 {renderMobileMenu}
                 {renderProfile}
-                {renderSearch}
+                {/* {renderSearch} */}
             </Box>
             <Box sx={{ height: `65px` }}></Box>
         </>

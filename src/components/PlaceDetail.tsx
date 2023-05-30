@@ -11,6 +11,7 @@ import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
 import PlaceTwoToneIcon from "@mui/icons-material/PlaceTwoTone";
 import PhoneTwoToneIcon from "@mui/icons-material/PhoneTwoTone";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
+import { CustomImg } from "src/components/CustomImg";
 
 const pStyle: React.CSSProperties = {
     margin: "0 0 5px 5px",
@@ -40,14 +41,11 @@ const facilities: Facilities = {
 };
 function getKeyValue(key: string): string {
     const facilitieslist = key.split(",");
-    console.log(facilitieslist);
     let result = "";
     // eslint-disable-next-line array-callback-return
     facilitieslist.map((facility) => {
-        console.log(facility);
         if (facility in facilities) {
             result += facilities[facility] + " ";
-            console.log(result);
         }
     });
     return result;
@@ -136,12 +134,12 @@ export default function PlaceDetail() {
         <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
             <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                 <IconButton onClick={() => navigate(-1)} color="inherit">
-                    <img src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
+                    <CustomImg src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
                 </IconButton>
                 <span style={{ fontSize: "24px" }}>{placeData.place_name}</span>
             </Toolbar>
             <div style={{ maxHeight: "50vh", overflow: "hidden" }}>
-                <img src={placeData.images?.[0] || ""} alt=" " style={{ width: "100%" }} />
+                <CustomImg src={placeData.images?.[0] || ""} alt=" " style={{ width: "100%" }} />
             </div>
             <div style={{ padding: "10px" }}>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold" }}>{placeData.facils}</p>

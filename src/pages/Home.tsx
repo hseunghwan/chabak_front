@@ -4,15 +4,12 @@ import FloatingButton from "src/components/FloatingButton";
 import FloatingChatButton from "src/components/FloatingChatButton";
 import FloatingNaverMap from "src/components/FloatingNaverMap";
 import { Outlet } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import placeState from "src/states/placeState";
-import { placeListByLocation } from "src/const/api/place";
+import colors from "src/const/colors";
 
 export default function Home() {
     const theme = useTheme();
     const [showSpeechBubble, setShowSpeechBubble] = useState(false); //true면 speechBubble 열림
-    const [mapOrChat, setMapOrChat] = useState(false); //true면 map, false면 chat
-    const setPlaceList = useSetRecoilState(placeState);
+    const [mapOrChat, setMapOrChat] = useState(true); //true면 map, false면 chat
 
     //map 누름
     const handleClick = () => {
@@ -38,13 +35,7 @@ export default function Home() {
             setMapOrChat(false);
         }
     };
-    placeListByLocation("전국")
-        .then((response) => {
-            setPlaceList(response.data);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    console.log("Home.tsx");
 
     useEffect(() => {
         const handleResize = () => {
@@ -92,6 +83,15 @@ export default function Home() {
             </Box>
             <Box sx={homeContainerStyles}>
                 <Outlet />
+                <Box
+                    sx={{
+                        backgroundColor: colors.FORMBACKGROUND,
+                        position: "fixed",
+                        width: "inherit",
+                        height: "100%",
+                        zIndex: 0,
+                    }}
+                ></Box>
             </Box>
         </>
     );

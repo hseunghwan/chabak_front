@@ -7,6 +7,7 @@ import placeState from "src/states/placeState";
 import searchState from "src/states/searchState";
 import { placeListByLocation, placeListByLocationTheme } from "src/const/api/place";
 import ThemeListBox from "src/components/ThemeListBox";
+import { CustomImg } from "src/components/CustomImg";
 
 const spanStyle: React.CSSProperties = {
     margin: "5px",
@@ -108,7 +109,7 @@ export default function Filterbar() {
                     boxShadow: "1px 4px 4px rgba(0, 0, 0, 0.25)",
                 }}
             >
-                <img src={icon.filter} alt="filter" style={{ width: "13px" }} />
+                <CustomImg src={icon.filter} alt="filter" style={{ width: "13px" }} />
                 <span style={{ paddingLeft: "5px" }}>필터</span>
             </div>
             <LocationListBox

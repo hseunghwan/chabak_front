@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import placeState from "src/states/placeState";
 import colors from "src/const/colors";
@@ -7,7 +7,7 @@ import PlaceListCard from "src/components/PlaceListCard";
 import Filterbar from "src/components/Filterbar";
 
 export default function PlaceSearchResult() {
-    const param = useParams<{ showfilter: string }>();
+    //const param = useParams<{ showfilter: string }>();
     const placeList = useRecoilValue(placeState);
     const [page, setPage] = useState(1);
     const loader = useRef<HTMLDivElement | null>(null);
@@ -38,8 +38,8 @@ export default function PlaceSearchResult() {
     const displayedItems = placeList.slice(0, itemPerPage * page);
 
     return (
-        <div style={{ backgroundColor: colors.FORMBACKGROUND }}>
-            {param.showfilter === "true" && <Filterbar />}
+        <div style={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: 10 }}>
+            <Filterbar />
             <div>
                 {/* 무한스크롤 구현 */}
                 {displayedItems !== undefined &&
@@ -54,9 +54,7 @@ export default function PlaceSearchResult() {
                             imgUrl={place.images[0]}
                         />
                     ))}
-                <div ref={loader}>
-                    <h2>Loading...</h2>
-                </div>
+                <div ref={loader}></div>
             </div>
         </div>
     );

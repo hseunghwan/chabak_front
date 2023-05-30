@@ -7,6 +7,7 @@ import userState from "src/states/userState";
 import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import { userLogin } from "src/const/api/user";
+import { CustomImg } from "src/components/CustomImg";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -38,8 +39,8 @@ export default function Login() {
         <FormContainer title="로그인">
             <CenteredBox component="form" onSubmit={handleSubmit}>
                 <CenteredBox sx={{ flexDirection: "row", zIndex: 1, marginTop: "25%" }}>
-                    <img src={icons.carIcon} alt="carIcon" />
-                    <img src={icons.chabakchabak} alt="chabakchabak" />
+                    <CustomImg src={icons.carIcon} alt="carIcon" />
+                    <CustomImg src={icons.chabakchabak} alt="chabakchabak" />
                 </CenteredBox>
                 <CenteredBox>
                     <TextField

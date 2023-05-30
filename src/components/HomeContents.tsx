@@ -6,14 +6,21 @@ import colors from "src/const/colors";
 import ThemeContentBox from "src/components/ThemeContentBox";
 import LocationContentBox from "src/components/LocationContentBox";
 import { useNavigate } from "react-router-dom";
+import userState from "src/states/userState";
+import { useRecoilValue } from "recoil";
+
 export default function HomeContents() {
     const navigate = useNavigate();
+    const user = useRecoilValue(userState);
     return (
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
             <div style={{ display: "flex" }}>
                 <Typography sx={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</Typography>
                 <span
-                    onClick={() => navigate("/registerplace")}
+                    onClick={() => {
+                        if (user) navigate("/registerplace");
+                        else navigate("/login");
+                    }}
                     style={{
                         fontSize: "16px",
                         color: colors.MAIN,

@@ -41,7 +41,7 @@ export const placeListBySearchKeywordFilter = async (searchKeyword: string, them
         method: "get",
         url: `/api/place/search/filter/${searchKeyword}`,
         params: {
-            theme: theme,
+            themes: theme,
             facils: facils,
         },
     });

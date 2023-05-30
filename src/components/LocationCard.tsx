@@ -15,7 +15,7 @@ export default function LocationCard({ gpe }: LocationCardProps) {
     const location = useLocation();
 
     const handleClick = async () => {
-        if (location.pathname === "/placesearchresult/true") {
+        if (location.pathname === "/placesearchresult") {
             setUserSearchState({ ...userSearchState, location: gpe.value, searchKeyword: null });
             if (userSearchState.theme === null) {
                 placeListByLocation(gpe.value)
@@ -39,7 +39,7 @@ export default function LocationCard({ gpe }: LocationCardProps) {
             placeListByLocation(gpe.value)
                 .then((response) => {
                     setPlaceList(response.data);
-                    navigate(`/placesearchresult/true`);
+                    navigate(`/placesearchresult`);
                 })
                 .catch((error) => {
                     console.error(error);

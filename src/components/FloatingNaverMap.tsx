@@ -57,18 +57,19 @@ function MarkerCluster() {
         }
         if (placeList === null || placeList === undefined) return;
         const markers: naver.maps.Marker[] = [];
-        // eslint-disable-next-line array-callback-return
-        placeList.map((place) => {
-            let lat = place.latitude === null ? false : Number(place.latitude);
-            let lng = place.longitude === null ? false : Number(place.longitude);
-            if (lat !== false && lng !== false) {
-                let marker = new naver.maps.Marker({
-                    position: new naver.maps.LatLng(lng, lat),
-                });
-                markers.push(marker);
-            }
-        });
-
+        if (Array.isArray(placeList)) {
+            // eslint-disable-next-line array-callback-return
+            placeList.map((place) => {
+                let lat = place.latitude === null ? false : Number(place.latitude);
+                let lng = place.longitude === null ? false : Number(place.longitude);
+                if (lat !== false && lng !== false) {
+                    let marker = new naver.maps.Marker({
+                        position: new naver.maps.LatLng(lng, lat),
+                    });
+                    markers.push(marker);
+                }
+            });
+        }
         const newCluster = new MarkerClustering({
             minClusterSize: 2,
             maxZoom: 15,
@@ -95,8 +96,7 @@ function MarkerCluster() {
         setCluster(newCluster);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [placeList]);
-    // @ts-ignore
-    return cluster ? <Overlay element={cluster} /> : null;
+    return cluster ? <Overlay element={cluster} /> : <></>;
 }
 
 const mapStyles: React.CSSProperties = {
