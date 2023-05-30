@@ -12,7 +12,6 @@ type PlaceListCardProps = {
 };
 const pStyle: React.CSSProperties = {
     margin: "2px 7px",
-    fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "400",
 };
@@ -22,7 +21,7 @@ export default function PlaceListCard({ placeId, theme, name, address, imgUrl }:
     return (
         <Box
             onClick={() => {
-                if (!placeId) navigate(`/placedetail/${placeId}`);
+                if (placeId) navigate(`/placedetail/${placeId}`);
             }}
             sx={{
                 display: "flex",

@@ -8,7 +8,6 @@ type AITalkBoxProps = {
 const pStyle: React.CSSProperties = {
     margin: 0,
     wordWrap: "break-word",
-    fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: 23,

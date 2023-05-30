@@ -1,4 +1,4 @@
-import { Box, SxProps, Theme, Typography } from "@mui/material";
+import { Box, SxProps, Theme } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
 import colors from "src/const/colors";
 import RecommendCard from "src/components/RecommendCard";
@@ -43,7 +43,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
         <Box sx={{ width: "100%", marginBottom: "5px" }}>
             <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                 {icon && <CustomImg src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
-                <Typography alignSelf="center">{title}</Typography>
+                <span style={{ alignSelf: "center" }}>{title}</span>
             </Box>
             <Box
                 ref={boxRef}
