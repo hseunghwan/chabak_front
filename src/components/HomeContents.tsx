@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import React from "react";
 import HomeContentBox from "src/components/HomeContentBox";
 import icons from "src/const/icons";
@@ -15,7 +15,7 @@ export default function HomeContents() {
     return (
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
             <div style={{ display: "flex" }}>
-                <Typography sx={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</Typography>
+                <span style={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</span>
                 <span
                     onClick={() => {
                         if (user) navigate("/registerplace");

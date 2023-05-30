@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Box, IconButton, SxProps, Theme, Toolbar, Typography, useTheme } from "@mui/material";
+import { AppBar, Box, IconButton, SxProps, Theme, Toolbar, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import icon from "src/const/icons";
 import colors from "src/const/colors";
@@ -33,7 +33,7 @@ export default function FormContainer({ title, children, sx }: FormContainerProp
                         <IconButton onClick={() => navigate(-1)} color="inherit">
                             <CustomImg src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
                         </IconButton>
-                        <Typography sx={{ fontSize: "24px" }}>{title}</Typography>
+                        <span style={{ fontSize: "24px" }}>{title}</span>
                     </Toolbar>
                 </AppBar>
             </Box>

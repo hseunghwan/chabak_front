@@ -18,6 +18,7 @@ import PlaceSearchResult from "src/pages/PlaceSearchResult";
 import { useSetRecoilState } from "recoil";
 import placeState from "src/states/placeState";
 import { placeListByLocation } from "src/const/api/place";
+import { GlobalStyle } from "./GlobalStyle"; // GlobalStyle을 import합니다. 경로는 실제 파일 위치에 따라 변경해야 합니다.
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,7 @@ export default function App() {
 
     return (
         <BackgroundContainer>
+            <GlobalStyle />
             <RouterProvider router={router} />
         </BackgroundContainer>
     );

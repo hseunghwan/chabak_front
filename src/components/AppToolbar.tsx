@@ -178,7 +178,7 @@ export default function AppToolbar(): JSX.Element {
                             <IconButton onClick={() => navigate("/SearchFilter")} size="large" color="inherit" aria-controls={searchId}>
                                 <CustomImg src={icons.search} alt="" width="30px" />
                             </IconButton>
-                            <IconButton onClick={() => navigate("/PlaceSearchResult/true")} size="large" color="inherit">
+                            <IconButton onClick={() => navigate("/PlaceSearchResult")} size="large" color="inherit">
                                 <CustomImg src={icons.list} alt="" width="30px" />
                             </IconButton>
                             <IconButton

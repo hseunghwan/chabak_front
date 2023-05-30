@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import colors from "src/const/colors";
 import ThemeCard from "src/components/ThemeCard";
 import { themeImages } from "src/const/consts";
@@ -14,7 +14,7 @@ export default function ThemeContentBox({ title, icon }: ThemeContentBoxProps) {
         <Box sx={{ width: "100%", marginBottom: "5px" }}>
             <Box sx={{ display: "flex", backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                 {icon && <CustomImg src={icon} alt="icon" style={{ padding: "3px", width: "20px" }} />}
-                <Typography alignSelf="center">{title}</Typography>
+                <span style={{ alignSelf: "center" }}>{title}</span>
             </Box>
             <Box
                 sx={{

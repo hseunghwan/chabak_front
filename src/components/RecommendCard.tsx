@@ -12,7 +12,6 @@ type RecommendCardProps = {
 };
 const pStyle: React.CSSProperties = {
     margin: "2px 7px",
-    fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "400",
 };

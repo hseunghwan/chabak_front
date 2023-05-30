@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField } from "@mui/material";
 import FormContainer from "src/components/FormContainer";
 import CenteredBox from "src/components/CenteredBox";
 import icons from "src/const/icons";
@@ -118,9 +118,7 @@ export default function Signup() {
                 </Button>
                 {successSignup && (
                     <Box display={"flex"}>
-                        <Typography zIndex={1} alignSelf={"center"} marginRight={"15px"}>
-                            회원가입 완료!
-                        </Typography>
+                        <span style={{ zIndex: 1, alignSelf: "center", marginRight: "15px" }}>회원가입 완료!</span>
                         <Button onClick={() => navigate("/")}>메인으로 돌아가기</Button>
                     </Box>
                 )}
