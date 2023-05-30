@@ -6,6 +6,8 @@ import { userPlaceRegister, UserPlaceRegisterModel } from "src/const/api/userPla
 import { getCoordinates } from "src/const/api/geocord";
 import userState from "src/states/userState";
 import { useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom"; //useLocation,
+
 type Address = {
     postcode: string;
     address: string;
@@ -26,9 +28,12 @@ export default function RegisterPlaceByAddress() {
     const [descript, setDescript] = useState("");
     const [tags, setTags] = useState("");
     const user = useRecoilValue(userState);
-
+    const navigate = useNavigate();
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        if (!(address && userPlaceName && descript && tags)) {
+            return alert("모든 항목을 입력해주세요.");
+        }
         user &&
             getCoordinates(address)
                 .then((response) => {
@@ -41,6 +46,7 @@ export default function RegisterPlaceByAddress() {
                         userPlaceRegister(setData, user.user_id)
                             .then((response) => {
                                 console.log("Register success");
+                                navigate("/mypage");
                             })
                             .catch((error) => {
                                 console.error(error);

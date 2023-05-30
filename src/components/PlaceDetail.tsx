@@ -124,11 +124,15 @@ export default function PlaceDetail() {
     const navigate = useNavigate();
     const setPlaceList = useSetRecoilState(placeState);
     useEffect(() => {
-        id &&
-            placeDetailById(id).then((response) => {
+        const fetchData = async () => {
+            if (id) {
+                const response = await placeDetailById(id);
                 setPlaceList([response.data]);
                 setPlaceData(response.data);
-            });
+            }
+        };
+
+        fetchData();
     }, [id, setPlaceList]);
     return (
         <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
