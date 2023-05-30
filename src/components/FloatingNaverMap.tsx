@@ -95,8 +95,7 @@ function MarkerCluster() {
         setCluster(newCluster);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [placeList]);
-    // @ts-ignore
-    return cluster ? <Overlay element={cluster} /> : null;
+    return cluster ? <Overlay element={cluster} /> : <></>;
 }
 
 const mapStyles: React.CSSProperties = {
