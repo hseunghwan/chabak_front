@@ -42,7 +42,7 @@ class OpenAIGpt:
         question = data['prompt']
         response = openai_gpt.run(question)
         if type(response) == list:
-            return jsonify({'response': '네, 해당 차박 리스트를 보여드릴게요', 'place_list': response})
+            return jsonify({'response': '네, 해당 차박 리스트를 보여드릴게요.', 'place_list': response})
         return jsonify({'response': response})
 
 

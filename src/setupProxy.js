@@ -12,7 +12,7 @@ module.exports = function (app) {
     app.use(
         "/api/chatbot",
         createProxyMiddleware({
-            target: "http://192.168.0.44:5000",
+            target: "http://192.168.51.142:5000",
             changeOrigin: true,
         })
     );
