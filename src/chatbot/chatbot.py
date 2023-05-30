@@ -85,7 +85,7 @@ class OpenAIGpt:
             
         #그 외에 차박 관련 정보 물어볼 때
         response = openai.Completion.create(
-            engine="curie:ft-personal-2023-05-30-02-49-07",
+            engine="davinci:ft-personal-2023-05-30-03-18-40",
             prompt=prompt,
             temperature=0.3,
             max_tokens=256,
