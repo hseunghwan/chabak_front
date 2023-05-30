@@ -46,7 +46,7 @@ export default function RegisterPlaceByAddress() {
                         userPlaceRegister(setData, user.user_id)
                             .then((response) => {
                                 console.log("Register success");
-                                navigate("/");
+                                navigate("/mypage");
                             })
                             .catch((error) => {
                                 console.error(error);
