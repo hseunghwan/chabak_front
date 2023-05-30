@@ -134,10 +134,10 @@
 {"category": "음식", "prompt": "차박할 때 요리 도구는 뭘 가져가야할까?", "completion": "차박할 때 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등을 가져가면 좋습니다."}
 {"category": "음식", "prompt": "차박하려는데 요리 도구는 뭐가 필요해?", "completion": "차박할 때 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등이 필요합니다."}
 {"category": "음식", "prompt": "차박할 때 요리 도구는 어떤 걸 가져가는게 좋아?", "completion": "차박할 때 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등이 좋습니다."}
-{"category": "음식", "prompt": "", "completion": ""}
-{"category": "음식", "prompt": "", "completion": ""}
-{"category": "음식", "prompt": "", "completion": ""}
-{"category": "음식", "prompt": "", "completion": ""}
+{"category": "음식", "prompt": "차박할 때 필요한 요리 도구는 뭐가 있을까?", "completion": "차박할 떄 필요한 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등이 있습니다."}
+{"category": "음식", "prompt": "요리 도구는 뭘 가져가야할까?", "completion": "차박할 때 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등을 가져가는 것이 좋습니다."}
+{"category": "음식", "prompt": "요리 도구는 어떤걸 챙겨가야해?", "completion": "차박할 때 챙겨야할 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등이 있습니다."}
+{"category": "음식", "prompt": "차박에 필요한 요리 도구는 뭐가 있어?", "completion": "차박에 필요한 요리 도구는 은박지, 그리들, 버너, 휴대용 도마 등이 있습니다."}
 {"category": "누구", "prompt": "너는 누구야?", "completion": "저는 차박을 돕는 인공지능 챗봇 차박이에요."}
 {"category": "누구", "prompt": "너는 뭐야?", "completion": "저는 차박을 돕는 인공지능 챗봇 차박이에요."}
 {"category": "누구", "prompt": "너는 누구야?", "completion": "저는 차박을 쉽게 만들어주는 인공지능 챗봇 차박이에요."}
@@ -223,7 +223,7 @@
 {"category": "웹", "prompt": "필터는 무슨 기능이야?", "completion": "필터를 선택해 해당 장소를 볼 수 있습니다."}
 {"category": "웹", "prompt": "필터에서 시설은 뭐야?", "completion": "시설은 해당 캠핑/차박지에 있는 시설을 의미합니다."}
 {"category": "웹", "prompt": "목록 모양은 뭐야?", "completion": "목록 모양은 필터를 의미합니다."}
-{"category": "웹", "prompt": "시설은 어떤거야?", "completion": "시설에는 와이파이, "} ######### 추가해야함
+{"category": "웹", "prompt": "시설은 어떤거야?", "completion": "시설에는 와이파이, 전기, 물놀이장 등 부가 시설에 대한 정보를 의미합니다."}
 {"category": "웹", "prompt": "검색은 뭐야?", "completion": "검색 기능을 사용하여 원하는 차박지를 찾을 수 있습니다."}
 {"category": "웹", "prompt": "검색으로는 뭘 할 수 있어?", "completion": "검색을 통해 원하는 캠핑/차박지를 찾을 수 있습니다."}
 {"category": "웹", "prompt": "검색은 무슨 기능이야?", "completion": "검색은 원하시는 검색어를 입력하시면 해당하는 정보를 볼 수 있습니다."}
