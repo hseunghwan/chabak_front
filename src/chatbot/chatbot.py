@@ -50,17 +50,10 @@ class OpenAIGpt:
     #인공지능 실행 코드 -> 백엔드에 보내야하는 경우에는 보내고 프론트에 보내기 (결국 프론트로 보내는거는 함수 호출로 해야함)
     def run(self, question):
         #입력을 typescript로부터 받아온다.
-        #question = input("Qeustion : ")
-        #prompt = question 
         prompt = question
 
         openai.api_key = os.getenv("OPENAI_API_KEY")
 
-        #주소 없이 테마, 계절로만 물어보는 경우 해결해야함
-        # 전체를 굴리다가 if theme에 대한 경우일 때 추가 작업 / 인덱스로 순서 찾기 -> 테마를 self.loc
-        # 맨 뒤에 넣어서 loc 인덱스가 클 경우에 처리 / 문자열이 아님.
-        # theme + "품"
-        #차박지 관련 정보 물어보는 경우 / for문 안에 인공지능 넣어두면 안 됨 빼는거 생각해야함.
         for loc in self.loc:
             if loc in prompt:
                 
