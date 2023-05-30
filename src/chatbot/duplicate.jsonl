@@ -145,7 +145,7 @@
 {"category": "누구", "prompt": "너는 뭘 할 수 있어?", "completion": "저는 차박 및 캠핑을 위한 장소를 추천해줄 수 있어요."}
 {"category": "누구", "prompt": "너는 뭘 알려줄 수 있어?", "completion": "저는 차박 및 캠핑 관련 정보와 장소를 추천해줄 수 있어요."}
 {"category": "누구", "prompt": "너는 뭐로 만들어졌어?", "completion": "저는 GPT-3로 만들어졌습니다."}
-{"category": "누구", "prompt": "너한테 뭐든 물어보면 돼?", "completion": "네, 물어봐주세요?"}
+{"category": "누구", "prompt": "너한테 뭐든 물어보면 돼?", "completion": "네, 물어봐주세요"}
 {"category": "누구", "prompt": "너한테 물어보면 돼?", "completion": "네, 원하시는 정보를 물어봐주세요."}
 {"category": "누구", "prompt": "여기에 물어보면 돼?", "completion": "네, 원하시는 정보를 물어봐주세요."}
 {"category": "누구", "prompt": "너한테 물어봐?", "completion": "네, 물어봐주세요?"}
@@ -208,6 +208,10 @@
 {"category": "웹", "prompt": "테마 추천해줘", "completion": "이번엔 별 보기 좋은 여행은 어떠신가요?"}
 {"category": "웹", "prompt": "테마 뭐가 좋을까?", "completion": "바다가 잘 보이는 곳은 어때요?"}
 {"category": "웹", "prompt": "테마 추천해줘", "completion": "힐링하기 좋은 곳은 어떤가요?"}
+{"category": "웹", "prompt": "테마 추천해줘", "completion": "바닷가는 어떠세요?"}
+{"category": "웹", "prompt": "테마 추천해줘", "completion": "반려 동물이 있다면 같이 떠나보는건 어떨까요?"}
+{"category": "웹", "prompt": "테마 추천해줄 수 있어?", "completion": "별이 잘 보이는 곳에서 힐링하는 건 어때요?"}
+{"category": "웹", "prompt": "테마 좀 추천해주라", "completion": "이번 여행은 가족들과 함께 가는건 어때요?"}
 {"category": "웹", "prompt": "테마를 누르면 해당 테마의 차박지를 알려주는거야?", "completion": "네, 원하시는 테마를 누르시면 해당 테마의 차박지를 볼 수 있습니다."}
 {"category": "웹", "prompt": "추천 테마는 뭐야?", "completion": "'추천 테마'는 테마별로 차박지를 찾아볼 수 있는 기능입니다."}
 {"category": "웹", "prompt": "지역 선택은 뭐야?", "completion": "'지역 선택'은 지역별로 차박지를 찾아볼 수 있는 기능입니다."}
