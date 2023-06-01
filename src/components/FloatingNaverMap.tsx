@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { Container as MapDiv, NaverMap, useNavermaps, Overlay, useMap } from "react-naver-maps";
 import placeState from "src/states/placeState";
-import { useRecoilValue } from "recoil";
+import searchState from "src/states/searchState";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { makeMarkerClustering } from "src/marker-cluster";
 import FloatingAIChatting from "./FloatingAIChatting";
+import { useNavigate } from "react-router-dom";
+import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
+import { placeListByLocation } from "src/const/api/place";
 
 function MarkerCluster() {
     // https://github.com/navermaps/marker-tools.js/blob/master/marker-clustering/src/MarkerClustering.js
@@ -13,6 +17,7 @@ function MarkerCluster() {
     const navermaps = useNavermaps();
     const map = useMap();
     const placeList = useRecoilValue(placeState);
+    const navigate = useNavigate();
 
     // https://github.com/zeakd/react-naver-maps/blob/main/website/src/samples/marker-cluster.js
     const MarkerClustering = makeMarkerClustering(window.naver);
@@ -65,6 +70,11 @@ function MarkerCluster() {
                 if (lat !== false && lng !== false) {
                     let marker = new naver.maps.Marker({
                         position: new naver.maps.LatLng(lng, lat),
+                        title: place.place_id,
+                    });
+                    marker.setClickable(true);
+                    marker.addListener("click", () => {
+                        navigate(`/placedetail/${place.place_id}`);
                     });
                     markers.push(marker);
                 }
@@ -109,7 +119,38 @@ const mapStyles: React.CSSProperties = {
 
 const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ isOpen, mapOrChat }) => {
     const navermaps = useNavermaps();
+    const [mapTypeId, setMapTypeId] = useState(navermaps.MapTypeId.NORMAL);
+    const setPlaceList = useSetRecoilState(placeState);
+    const setUserSearchState = useSetRecoilState(searchState);
 
+    const setPlaceListReset = () => {
+        setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: null });
+        placeListByLocation("전국")
+            .then((response) => {
+                setPlaceList(response.data);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+    const buttons = [
+        {
+            typeId: navermaps.MapTypeId.NORMAL,
+            text: "일반지도",
+        },
+        {
+            typeId: navermaps.MapTypeId.TERRAIN,
+            text: "지형도",
+        },
+        {
+            typeId: navermaps.MapTypeId.SATELLITE,
+            text: "위성지도",
+        },
+        {
+            typeId: navermaps.MapTypeId.HYBRID,
+            text: "겹쳐보기",
+        },
+    ];
     return (
         <Box
             sx={{
@@ -125,7 +166,50 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
             }}
         >
             <MapDiv style={{ ...mapStyles, display: mapOrChat ? "block" : "none" }}>
-                <NaverMap defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)} defaultZoom={8}>
+                <div
+                    style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        zIndex: 1000,
+                        padding: 5,
+                    }}
+                >
+                    {buttons.map((btn) => {
+                        return (
+                            <button
+                                key={btn.typeId}
+                                style={{
+                                    border: "solid 1px #333",
+                                    outline: "0 none",
+                                    borderRadius: "5px",
+                                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                                    margin: "0 5px 5px 0",
+                                    backgroundColor: btn.typeId === mapTypeId ? "#2780E3" : "white",
+                                    color: btn.typeId === mapTypeId ? "white" : "black",
+                                }}
+                                onClick={() => {
+                                    setMapTypeId(btn.typeId);
+                                }}
+                            >
+                                {btn.text}
+                            </button>
+                        );
+                    })}
+                    <IconButton
+                        onClick={setPlaceListReset}
+                        sx={{
+                            backgroundColor: "white",
+                            padding: "3px",
+                            "&:hover": {
+                                backgroundColor: "gray",
+                            },
+                        }}
+                    >
+                        <RefreshRoundedIcon />
+                    </IconButton>
+                </div>
+                <NaverMap defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)} defaultZoom={8} mapTypeId={mapTypeId}>
                     <MarkerCluster />
                 </NaverMap>
             </MapDiv>
