@@ -5,5 +5,5 @@ export default function Error() {
     useEffect(() => {
         //window.location.reload();
     }, []); // useEffect will run once when component is mounted
-    return <FormContainer title=" "> </FormContainer>;
+    return <FormContainer title="Error"> </FormContainer>;
 }
