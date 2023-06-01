@@ -117,7 +117,7 @@ const mapStyles: React.CSSProperties = {
 
 const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ isOpen, mapOrChat }) => {
     const navermaps = useNavermaps();
-    const [mapTypeId, setMapTypeId] = useState(navermaps.MapTypeId.SATELLITE);
+    const [mapTypeId, setMapTypeId] = useState(navermaps.MapTypeId.NORMAL);
     const setPlaceList = useSetRecoilState(placeState);
     const setPlaceListReset = () => {
         placeListByLocation("전국")
