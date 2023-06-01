@@ -11,9 +11,6 @@ import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import { placeListByLocation } from "src/const/api/place";
 
 function MarkerCluster() {
-    // https://github.com/navermaps/marker-tools.js/blob/master/marker-clustering/src/MarkerClustering.js
-    // 예제에서 제공된 코드를 그대로 사용하되 naver 객체를 주입 받도록 간단히 makeMarkerClustering로 Wrapping 합니다.
-
     const navermaps = useNavermaps();
     const map = useMap();
     const placeList = useRecoilValue(placeState);

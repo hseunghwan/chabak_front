@@ -39,6 +39,7 @@ export default function ChattingInput({ style, onSendMessage }: ChattingInputPro
                 onKeyPress={handleKeyPress}
                 value={inputValue}
                 inputProps={{ ref: inputRef }} // 생성한 ref를 해당 엘리먼트에 연결
+                spellCheck={false}
             />
             <IconButton onClick={handleButtonClick}>
                 <SendRoundedIcon />
