@@ -60,6 +60,7 @@ export default function LocationCard({ gpe, setShowLocationListBox }: LocationCa
                 margin: "10px 20px",
                 borderRadius: "50px",
                 cursor: "pointer",
+                textAlign: "center",
             }}
         >
             {gpe.key}

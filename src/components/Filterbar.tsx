@@ -8,6 +8,7 @@ import searchState from "src/states/searchState";
 import { placeListByLocation, placeListByLocationTheme } from "src/const/api/place";
 import ThemeListBox from "src/components/ThemeListBox";
 import { CustomImg } from "src/components/CustomImg";
+import { Box } from "@mui/material";
 
 const spanStyle: React.CSSProperties = {
     margin: "5px",
@@ -21,7 +22,7 @@ const spanStyle: React.CSSProperties = {
 export default function Filterbar() {
     const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
-    const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
+    //const [showLocationListBox, setShowLocationListBox] = useState<boolean>(false);
     const [showThemeListBox, setShowThemeListBox] = useState<boolean>(false);
 
     const onClickLocationSpan = async () => {
@@ -67,7 +68,7 @@ export default function Filterbar() {
 
     return (
         <div style={{ display: "flex", backgroundColor: colors.GARY }}>
-            <div onClick={() => setShowLocationListBox(!showLocationListBox)} style={{ display: "flex", padding: "10px", cursor: "pointer" }}>
+            {/* <div onClick={() => setShowLocationListBox(!showLocationListBox)} style={{ display: "flex", padding: "10px", cursor: "pointer" }}>
                 <span style={{ paddingRight: "7px" }}>{userSearchState.location}</span>
                 <img
                     src={icon.arrowDown}
@@ -79,7 +80,7 @@ export default function Filterbar() {
                         transform: showLocationListBox ? "rotate(180deg)" : undefined,
                     }}
                 />
-            </div>
+            </div> */}
             <div style={{ display: "flex", alignContent: "center", flexGrow: 1 }}>
                 {userSearchState.location && (
                     <span onClick={onClickLocationSpan} style={spanStyle}>
@@ -112,27 +113,22 @@ export default function Filterbar() {
                 <CustomImg src={icon.filter} alt="filter" style={{ width: "13px" }} />
                 <span style={{ paddingLeft: "5px" }}>필터</span>
             </div>
-            <LocationListBox
+            <Box
                 sx={{
-                    position: "absolute",
-                    top: "110px",
-                    transition: "max-height 0.3s ease-in-out",
-                    maxHeight: showLocationListBox ? "240px" : "0",
-                    margin: "1%",
+                    position: "fixed",
+                    zIndex: 1,
+                    top: "100px",
+                    maxWidth: "45%",
+                    transition: " 0.3s ease-in-out",
+                    transform: showThemeListBox ? "scale(1)" : "scale(0)",
+                    transformOrigin: "95% 3%",
+                    width: "98%",
                 }}
-                setShowLocationListBox={setShowLocationListBox}
-            />
-            <ThemeListBox
-                sx={{
-                    position: "absolute",
-                    top: "110px",
-                    right: 0,
-                    transition: "max-height 0.3s ease-in-out",
-                    maxHeight: showThemeListBox ? "240px" : "0",
-                    margin: "1%",
-                }}
-                setShowThemeListBox={setShowThemeListBox}
-            />
+            >
+                <LocationListBox setShowLocationListBox={setShowThemeListBox} sx={{ borderRadius: "10px 10px 0 0" }} />
+                <hr style={{ margin: "0" }} />
+                <ThemeListBox setShowThemeListBox={setShowThemeListBox} sx={{ borderRadius: "0 0 10px 10px" }} />
+            </Box>
         </div>
     );
 }

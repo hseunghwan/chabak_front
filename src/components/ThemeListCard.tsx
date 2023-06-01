@@ -32,7 +32,7 @@ export default function ThemeListCard({ theme, setShowThemeListBox }: ThemeListC
                 borderColor: "rgba(143, 143, 143, 0.76)",
                 border: "1px solid",
                 padding: "2px 10px",
-                margin: "10px 20px",
+                margin: "10px",
                 borderRadius: "50px",
                 cursor: "pointer",
                 textAlign: "center",

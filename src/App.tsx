@@ -47,7 +47,6 @@ const router = createBrowserRouter([
 
 export default function App() {
     const setPlaceList = useSetRecoilState(placeState);
-    console.log("App.tsx");
     placeListByLocation("전국")
         .then((response) => {
             setPlaceList(response.data);

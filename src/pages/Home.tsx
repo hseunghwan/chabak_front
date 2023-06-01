@@ -35,7 +35,6 @@ export default function Home() {
             setMapOrChat(false);
         }
     };
-    console.log("Home.tsx");
 
     useEffect(() => {
         const handleResize = () => {
