@@ -24,13 +24,13 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 // loadNaverMapsApi(NAVER_MAPS_CLIENT_ID)
 //     .then(() => {
 root.render(
-    <React.StrictMode>
-        <RecoilRoot>
-            <NavermapsProvider ncpClientId={NAVER_MAPS_CLIENT_ID}>
-                <App />
-            </NavermapsProvider>
-        </RecoilRoot>
-    </React.StrictMode>
+    //<React.StrictMode>
+    <RecoilRoot>
+        <NavermapsProvider ncpClientId={NAVER_MAPS_CLIENT_ID}>
+            <App />
+        </NavermapsProvider>
+    </RecoilRoot>
+    //</React.StrictMode>
 );
 // })
 // .catch((error) => {
