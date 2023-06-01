@@ -125,7 +125,7 @@ export default function Filterbar() {
                     width: "98%",
                 }}
             >
-                <LocationListBox setShowLocationListBox={setShowThemeListBox} sx={{ borderRadius: "10px 10px 0 0" }} />
+                <LocationListBox sx={{ borderRadius: "10px 10px 0 0" }} />
                 <hr style={{ margin: "0" }} />
                 <ThemeListBox setShowThemeListBox={setShowThemeListBox} sx={{ borderRadius: "0 0 10px 10px" }} />
             </Box>

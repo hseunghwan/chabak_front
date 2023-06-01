@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import { Container as MapDiv, NaverMap, useNavermaps, Overlay, useMap } from "react-naver-maps";
 import placeState from "src/states/placeState";
+import searchState from "src/states/searchState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { makeMarkerClustering } from "src/marker-cluster";
 import FloatingAIChatting from "./FloatingAIChatting";
 import { useNavigate } from "react-router-dom";
 import RefreshRoundedIcon from "@mui/icons-material/RefreshRounded";
 import { placeListByLocation } from "src/const/api/place";
+
 function MarkerCluster() {
     // https://github.com/navermaps/marker-tools.js/blob/master/marker-clustering/src/MarkerClustering.js
     // 예제에서 제공된 코드를 그대로 사용하되 naver 객체를 주입 받도록 간단히 makeMarkerClustering로 Wrapping 합니다.
@@ -119,7 +121,10 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
     const navermaps = useNavermaps();
     const [mapTypeId, setMapTypeId] = useState(navermaps.MapTypeId.NORMAL);
     const setPlaceList = useSetRecoilState(placeState);
+    const setUserSearchState = useSetRecoilState(searchState);
+
     const setPlaceListReset = () => {
+        setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: null });
         placeListByLocation("전국")
             .then((response) => {
                 setPlaceList(response.data);
@@ -191,7 +196,16 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
                             </button>
                         );
                     })}
-                    <IconButton onClick={setPlaceListReset}>
+                    <IconButton
+                        onClick={setPlaceListReset}
+                        sx={{
+                            backgroundColor: "white",
+                            padding: "3px",
+                            "&:hover": {
+                                backgroundColor: "gray",
+                            },
+                        }}
+                    >
                         <RefreshRoundedIcon />
                     </IconButton>
                 </div>
