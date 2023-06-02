@@ -56,3 +56,13 @@ export const changeUserState = async (email: string, token: string | null, data:
         data: data,
     });
 };
+
+export const userQuit = async (user_id: number) => {
+    return await apiClient({
+        method: "delete",
+        url: `/api/user/${user_id}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+    });
+};
