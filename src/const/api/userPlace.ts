@@ -38,9 +38,9 @@ export const userPlaceRegister = async (data: UserPlaceRegisterModel, userId: nu
     return await apiClient({
         method: "post",
         url: `/api/register/address/${userId}`,
-        // headers: {
-        //     Authorization: `${localStorage.getItem("jwtToken")}`,
-        // },
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+        },
         data: data,
     });
 };
