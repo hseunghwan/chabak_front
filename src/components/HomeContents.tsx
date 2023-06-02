@@ -8,12 +8,10 @@ import LocationContentBox from "src/components/LocationContentBox";
 import { useNavigate } from "react-router-dom";
 import userState from "src/states/userState";
 import { useRecoilValue } from "recoil";
-import MypageManageRegisteredPlace from "src/pages/MypageManageRegisteredPlace";
 
 export default function HomeContents() {
     const navigate = useNavigate();
     const user = useRecoilValue(userState);
-    const [showUserPlaceList, setShowUserPlaceList] = React.useState<boolean>(false);
     return (
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
             <div style={{ display: "flex" }}>
@@ -21,9 +19,7 @@ export default function HomeContents() {
                     AI로 쉽게 찾는 캠핑/차박지
                 </span>
                 <span
-                    onClick={() => {
-                        setShowUserPlaceList(!showUserPlaceList);
-                    }}
+                    onClick={() => navigate("/registeredplacelist")}
                     style={{
                         fontSize: "16px",
                         color: colors.MAIN,
@@ -56,15 +52,11 @@ export default function HomeContents() {
                     차박지 등록
                 </span>
             </div>
-            {!showUserPlaceList ? (
-                <>
-                    <LocationContentBox title="지역 선택" icon={icons.location} />
-                    <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
-                    <ThemeContentBox title="추천 테마" icon={icons.campping} />
-                </>
-            ) : (
-                <MypageManageRegisteredPlace setShowUserPlaceList={setShowUserPlaceList} />
-            )}
+            <>
+                <LocationContentBox title="지역 선택" icon={icons.location} />
+                <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
+                <ThemeContentBox title="추천 테마" icon={icons.campping} />
+            </>
         </Box>
     );
 }

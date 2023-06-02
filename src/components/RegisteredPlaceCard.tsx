@@ -1,13 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { CustomImg } from "src/components/CustomImg";
-import { UserPlaceModel } from "src/const/api/userPlace";
+import { UserPlaceModelWithEmail } from "src/const/api/userPlace";
 import car from "src/resource/img/car.svg";
 
 type RegisteredPlaceCardProps = {
-    userPlace: UserPlaceModel;
-    setSelectedPlace: React.Dispatch<React.SetStateAction<UserPlaceModel>>;
-    setIsPlaceListMode: React.Dispatch<React.SetStateAction<boolean>>;
+    userPlace: UserPlaceModelWithEmail;
 };
 
 const pStyle: React.CSSProperties = {
@@ -16,13 +15,11 @@ const pStyle: React.CSSProperties = {
     fontWeight: "400",
 };
 
-export default function RegisteredPlaceCard({ userPlace, setSelectedPlace, setIsPlaceListMode }: RegisteredPlaceCardProps): JSX.Element {
+export default function RegisteredPlaceCard({ userPlace }: RegisteredPlaceCardProps): JSX.Element {
+    const navigate = useNavigate();
     return (
         <Box
-            onClick={() => {
-                setSelectedPlace(userPlace);
-                setIsPlaceListMode(false);
-            }}
+            onClick={() => navigate(`/registeredplace/${userPlace.userPlaceId}`)}
             sx={{
                 display: "flex",
                 width: "96%",
@@ -38,7 +35,8 @@ export default function RegisteredPlaceCard({ userPlace, setSelectedPlace, setIs
             <Box>
                 <p style={{ ...pStyle, fontSize: "18px" }}>{userPlace.userPlaceName}</p>
                 <p style={{ ...pStyle, fontSize: "12px" }}>{userPlace.descript}</p>
-                <p style={{ ...pStyle, fontSize: "10px", marginBottom: "10px" }}>{userPlace.address}</p>
+                <p style={{ ...pStyle, fontSize: "10px" }}>{userPlace.address}</p>
+                <p style={{ ...pStyle, fontSize: "8px", marginBottom: "10px 0px", color: "gray" }}>{userPlace.userEmail}</p>
             </Box>
         </Box>
     );

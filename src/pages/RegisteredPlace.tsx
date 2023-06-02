@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { UserPlaceModel } from "src/const/api/userPlace";
+import React, { useEffect, useState } from "react";
+import { UserPlaceModelWithEmail, getUserPlaceByPlaceId } from "src/const/api/userPlace";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
 import { IconButton, Toolbar } from "@mui/material";
 import { CustomImg } from "src/components/CustomImg";
 import colors from "src/const/colors";
 import icon from "src/const/icons";
+import { useNavigate, useParams } from "react-router-dom";
 
 type MapProps = {
     lat: number;
@@ -12,7 +13,7 @@ type MapProps = {
 };
 
 const pStyle: React.CSSProperties = {
-    margin: "7px",
+    margin: "10px 0px 0px 20px",
     fontStyle: "normal",
     fontWeight: "400",
 };
@@ -85,24 +86,34 @@ const Map = ({ lat, lng }: MapProps) => {
     );
 };
 
-type RegisteredPlaceProps = {
-    place: UserPlaceModel;
-    setIsPlaceListMode: React.Dispatch<React.SetStateAction<boolean>>;
-};
-export default function RegisteredPlace({ place, setIsPlaceListMode }: RegisteredPlaceProps) {
+export default function RegisteredPlace() {
+    const navigate = useNavigate();
+    const { id } = useParams<{ id: string }>();
+    const [place, setPlace] = useState<UserPlaceModelWithEmail>({} as UserPlaceModelWithEmail);
+
+    useEffect(() => {
+        getUserPlaceByPlaceId(Number(id))
+            .then((response) => {
+                setPlace(response.data);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }, [id]);
+
     return (
-        <div>
+        <div style={{ backgroundColor: "white" }}>
             <Toolbar sx={{ color: colors.MAIN, borderBottom: `solid ${colors.MAIN}`, padding: 0 }}>
-                <IconButton onClick={() => setIsPlaceListMode(true)} color="inherit">
+                <IconButton onClick={() => navigate(-1)} color="inherit">
                     <CustomImg src={icon.backicon} alt="backicon" style={{ marginRight: "20px" }} />
                 </IconButton>
                 <span style={{ fontSize: "24px" }}>{place.userPlaceName}</span>
             </Toolbar>
             <Map lat={Number(place.latitude)} lng={Number(place.longitude)} />
             <div>
-                <p style={{ ...pStyle, fontSize: "18px" }}>{place.userPlaceName}</p>
-                <p style={{ ...pStyle, fontSize: "12px" }}>{place.descript}</p>
-                <p style={{ ...pStyle, fontSize: "10px", marginBottom: "10px" }}>{place.address}</p>
+                <p style={{ ...pStyle, fontSize: "18px" }}>{`장소 이름: ${place.userPlaceName}`}</p>
+                <p style={{ ...pStyle, fontSize: "12px" }}>{`설명: ${place.descript}`}</p>
+                <p style={{ ...pStyle, fontSize: "10px", marginBottom: "0px" }}>{`주소: ${place.address}`}</p>
             </div>
         </div>
     );

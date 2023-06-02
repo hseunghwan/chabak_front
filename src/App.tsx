@@ -14,6 +14,8 @@ import Settings from "src/pages/Settings";
 import RegisterPlace from "src/pages/RegisterPlace";
 import SearchFilter from "src/pages/SearchFilter";
 import PlaceSearchResult from "src/pages/PlaceSearchResult";
+import MypageManageRegisteredPlace from "src/pages/MypageManageRegisteredPlace";
+import RegisteredPlace from "src/pages/RegisteredPlace";
 import { useSetRecoilState } from "recoil";
 import placeState from "src/states/placeState";
 import { placeListByLocation } from "src/const/api/place";
@@ -29,10 +31,11 @@ const router = createBrowserRouter([
                 element: <HomeContainer />,
                 children: [
                     { index: true, element: <HomeContents /> },
-                    { path: "/placedetail/:id", element: <PlaceDetail /> },
-                    //{ path: "/registeredplace/:id", element: <RegisteredPlace /> },
-                    { path: "/SearchFilter", element: <SearchFilter /> },
                     { path: "/placesearchresult", element: <PlaceSearchResult /> },
+                    { path: "/placedetail/:id", element: <PlaceDetail /> },
+                    { path: "/registeredplacelist", element: <MypageManageRegisteredPlace /> },
+                    { path: "/registeredplace/:id", element: <RegisteredPlace /> },
+                    { path: "/SearchFilter", element: <SearchFilter /> },
                 ],
             },
         ],
