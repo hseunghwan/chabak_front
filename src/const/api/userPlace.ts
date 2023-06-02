@@ -7,7 +7,20 @@ export type UserPlaceRegisterModel = {
     latitude: string;
     longitude: string;
 };
-export type UserPlaceModel = {
+// export type UserPlaceModel = {
+//     userPlaceId: number;
+//     user_id: number;
+//     address: string;
+//     userPlaceName: string;
+//     descript: string;
+//     tags: string;
+//     latitude: string;
+//     longitude: string;
+//     userplace_like: number;
+//     report: number;
+// };
+
+export type UserPlaceModelWithEmail = {
     userPlaceId: number;
     user_id: number;
     address: string;
@@ -18,6 +31,7 @@ export type UserPlaceModel = {
     longitude: string;
     userplace_like: number;
     report: number;
+    userEmail: string | null;
 };
 //사용자 장소 등록
 export const userPlaceRegister = async (data: UserPlaceRegisterModel, userId: number) => {
@@ -31,10 +45,27 @@ export const userPlaceRegister = async (data: UserPlaceRegisterModel, userId: nu
     });
 };
 
+export const getAllUserPlace = async () => {
+    return await apiClient({
+        method: "get",
+        url: `/api/userplace`,
+    });
+};
+
 export const getUserPlaceById = async (userId: number) => {
     return await apiClient({
         method: "get",
         url: `/api/user/place/${userId}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+    });
+};
+
+export const getUserPlaceByPlaceId = async (placeId: number) => {
+    return await apiClient({
+        method: "get",
+        url: `/api/userplace/${placeId}`,
         // headers: {
         //     Authorization: `${localStorage.getItem("jwtToken")}`,
         // },
