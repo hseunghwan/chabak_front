@@ -55,7 +55,17 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
                     boxShadow: " 0px 4px 4px rgba(0, 0, 0, 0.25)",
                     scrollBehavior: "smooth",
                     "&::-webkit-scrollbar": {
-                        display: "none",
+                        height: "8px",
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#C1C1C1",
+                        borderRadius: "10px",
+                        backgroundClip: "padding-box",
+                        border: "2px solid transparent",
+                    },
+                    "&::-webkit-scrollbar-track": {
+                        backgroundColor: "#F1F1F1",
+                        borderRadius: "10px",
                     },
                 }}
             >

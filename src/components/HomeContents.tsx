@@ -8,14 +8,35 @@ import LocationContentBox from "src/components/LocationContentBox";
 import { useNavigate } from "react-router-dom";
 import userState from "src/states/userState";
 import { useRecoilValue } from "recoil";
+import MypageManageRegisteredPlace from "src/pages/MypageManageRegisteredPlace";
 
 export default function HomeContents() {
     const navigate = useNavigate();
     const user = useRecoilValue(userState);
+    const [showUserPlaceList, setShowUserPlaceList] = React.useState<boolean>(false);
     return (
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
             <div style={{ display: "flex" }}>
-                <span style={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</span>
+                <span style={{ display: "flex", alignItems: "center", fontSize: "20px", color: colors.MAIN, flexGrow: 1 }}>
+                    AI로 쉽게 찾는 캠핑/차박지
+                </span>
+                <span
+                    onClick={() => {
+                        setShowUserPlaceList(!showUserPlaceList);
+                    }}
+                    style={{
+                        fontSize: "16px",
+                        color: colors.MAIN,
+                        cursor: "pointer",
+                        backgroundColor: "#75a961",
+                        borderRadius: "10px",
+                        padding: "5px",
+                        margin: "5px",
+                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                >
+                    차박지 보기
+                </span>
                 <span
                     onClick={() => {
                         if (user) navigate("/registerplace");
@@ -35,9 +56,15 @@ export default function HomeContents() {
                     차박지 등록
                 </span>
             </div>
-            <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
-            <ThemeContentBox title="추천 테마" icon={icons.campping} />
-            <LocationContentBox title="지역 선택" icon={icons.location} />
+            {!showUserPlaceList ? (
+                <>
+                    <LocationContentBox title="지역 선택" icon={icons.location} />
+                    <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
+                    <ThemeContentBox title="추천 테마" icon={icons.campping} />
+                </>
+            ) : (
+                <MypageManageRegisteredPlace setShowUserPlaceList={setShowUserPlaceList} />
+            )}
         </Box>
     );
 }

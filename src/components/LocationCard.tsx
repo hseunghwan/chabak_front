@@ -7,9 +7,10 @@ import searchState from "src/states/searchState";
 type LocationCardProps = {
     gpe: { key: string; value: string };
     setShowLocationListBox?: React.Dispatch<React.SetStateAction<boolean>>;
+    style?: React.CSSProperties;
 };
 
-export default function LocationCard({ gpe, setShowLocationListBox }: LocationCardProps) {
+export default function LocationCard({ gpe, setShowLocationListBox, style }: LocationCardProps) {
     const setPlaceList = useSetRecoilState(placeState);
     const [userSearchState, setUserSearchState] = useRecoilState(searchState);
     const navigate = useNavigate();
@@ -61,6 +62,7 @@ export default function LocationCard({ gpe, setShowLocationListBox }: LocationCa
                 borderRadius: "50px",
                 cursor: "pointer",
                 textAlign: "center",
+                ...style,
             }}
         >
             {gpe.key}

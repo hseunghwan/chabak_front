@@ -8,10 +8,10 @@ export type UserPlaceRegisterModel = {
     longitude: string;
 };
 export type UserPlaceModel = {
-    userplace_id: number;
+    userPlaceId: number;
     user_id: number;
     address: string;
-    userplace_name: string;
+    userPlaceName: string;
     descript: string;
     tags: string;
     latitude: string;
