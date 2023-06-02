@@ -47,7 +47,7 @@ const Map = ({ lat, lng }: MapProps) => {
                     position: "absolute",
                     top: 0,
                     left: 0,
-                    zIndex: 1000,
+                    zIndex: 1,
                     padding: 5,
                 }}
             >

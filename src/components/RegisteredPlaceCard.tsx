@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CustomImg } from "src/components/CustomImg";
 import { UserPlaceModelWithEmail } from "src/const/api/userPlace";
 import car from "src/resource/img/car.svg";
@@ -17,9 +17,14 @@ const pStyle: React.CSSProperties = {
 
 export default function RegisteredPlaceCard({ userPlace }: RegisteredPlaceCardProps): JSX.Element {
     const navigate = useNavigate();
+    const location = useLocation();
     return (
         <Box
-            onClick={() => navigate(`/registeredplace/${userPlace.userPlaceId}`)}
+            onClick={() => {
+                location.pathname === "/registeredplacelist"
+                    ? navigate(`/registeredplace/${userPlace.userPlaceId}`)
+                    : navigate(`/ManageRegisteredPlace/${userPlace.userPlaceId}`);
+            }}
             sx={{
                 display: "flex",
                 width: "96%",

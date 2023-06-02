@@ -71,3 +71,24 @@ export const getUserPlaceByPlaceId = async (placeId: number) => {
         // },
     });
 };
+
+export const changeUserPlaceByPlaceId = async (placeId: number, data: { userPlaceName: string; descript: string; tags: string }) => {
+    return await apiClient({
+        method: "patch",
+        url: `/api/user/edit/${placeId}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+        data: data,
+    });
+};
+
+export const deleteUserPlaceByPlaceId = async (placeId: number) => {
+    return await apiClient({
+        method: "delete",
+        url: `/api/user/place/${placeId}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+        },
+    });
+};
