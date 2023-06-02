@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { UserPlaceModelWithEmail, changeUserPlaceByPlaceId, deleteUserPlaceByPlaceId, getUserPlaceByPlaceId } from "src/const/api/userPlace";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
 import { Box, Button } from "@mui/material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CustomInput } from "src/components/SimpleInput";
 import FormContainer from "src/components/FormContainer";
 
@@ -82,14 +82,18 @@ const Map = ({ lat, lng }: MapProps) => {
 export default function ManageRegisteredPlace() {
     const { id } = useParams<{ id: string }>();
     const [place, setPlace] = useState<UserPlaceModelWithEmail>({} as UserPlaceModelWithEmail);
-    const [userPlaceName, setUserPlaceName] = useState(place.userPlaceName);
-    const [descript, setDescript] = useState(place.descript);
-    const [tags, setTags] = useState(place.tags);
+    const [userPlaceName, setUserPlaceName] = useState("");
+    const [descript, setDescript] = useState("");
+    const [tags, setTags] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         getUserPlaceByPlaceId(Number(id))
             .then((response) => {
                 setPlace(response.data);
+                setUserPlaceName(response.data.userPlaceName);
+                setDescript(response.data.descript);
+                setTags(response.data.tags);
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -119,6 +123,7 @@ export default function ManageRegisteredPlace() {
                     alert("차박지 삭제가 완료되었습니다.");
                 } else {
                     alert("차박지 삭제에 실패하였습니다.");
+                    navigate(-1);
                 }
             })
             .catch((error) => {
