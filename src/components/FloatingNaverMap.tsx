@@ -168,7 +168,7 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
                         position: "absolute",
                         top: 0,
                         left: 0,
-                        zIndex: 1000,
+                        zIndex: 1,
                         padding: 5,
                     }}
                 >

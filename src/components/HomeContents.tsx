@@ -15,7 +15,24 @@ export default function HomeContents() {
     return (
         <Box sx={{ backgroundColor: colors.FORMBACKGROUND, paddingBottom: "1px" }}>
             <div style={{ display: "flex" }}>
-                <span style={{ fontSize: "20px", color: colors.MAIN, padding: "3px", flexGrow: 1 }}>AI로 쉽게 찾는 캠핑/차박지</span>
+                <span style={{ display: "flex", alignItems: "center", fontSize: "20px", color: colors.MAIN, flexGrow: 1 }}>
+                    AI로 쉽게 찾는 캠핑/차박지
+                </span>
+                <span
+                    onClick={() => navigate("/registeredplacelist")}
+                    style={{
+                        fontSize: "16px",
+                        color: colors.MAIN,
+                        cursor: "pointer",
+                        backgroundColor: "#75a961",
+                        borderRadius: "10px",
+                        padding: "5px",
+                        margin: "5px",
+                        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                    }}
+                >
+                    차박지 보기
+                </span>
                 <span
                     onClick={() => {
                         if (user) navigate("/registerplace");
@@ -35,9 +52,11 @@ export default function HomeContents() {
                     차박지 등록
                 </span>
             </div>
-            <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
-            <ThemeContentBox title="추천 테마" icon={icons.campping} />
-            <LocationContentBox title="지역 선택" icon={icons.location} />
+            <>
+                <LocationContentBox title="지역 선택" icon={icons.location} />
+                <HomeContentBox title="이런 곳은 어때요?" icon={icons.mountain} />
+                <ThemeContentBox title="추천 테마" icon={icons.campping} />
+            </>
         </Box>
     );
 }

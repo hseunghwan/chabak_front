@@ -46,6 +46,7 @@ export default function RegisterPlaceByAddress() {
                         userPlaceRegister(setData, user.user_id)
                             .then((response) => {
                                 console.log("Register success");
+                                alert("차박지 등록이 완료되었습니다.");
                                 navigate("/");
                             })
                             .catch((error) => {

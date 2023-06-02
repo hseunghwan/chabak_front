@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; //useLocation,
+import { useNavigate, useLocation } from "react-router-dom"; //useLocation,
 import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"; //, Popover, TextField
 import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
@@ -26,6 +26,7 @@ export default function AppToolbar(): JSX.Element {
     // const setUserSearchState = useSetRecoilState(searchState);
     // const location = useLocation();
     const navigate = useNavigate();
+    const location = useLocation();
     const setUserState = useSetRecoilState(userState);
 
     const handleMobileMenuClose = () => {
@@ -169,7 +170,12 @@ export default function AppToolbar(): JSX.Element {
             <Box sx={{ position: "fixed", top: 0, width: "inherit", zIndex: 1 }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
-                        <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
+                        <Box
+                            onClick={() => {
+                                location.pathname === "/" ? window.location.reload() : navigate("/");
+                            }}
+                            sx={{ cursor: "pointer" }}
+                        >
                             <CustomImg src={icons.carIcon} alt="" width="45px" />
                             <CustomImg src={icons.chabakchabak} alt="" width="118px" />
                         </Box>

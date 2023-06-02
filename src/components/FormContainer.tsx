@@ -27,7 +27,7 @@ export default function FormContainer({ title, children, sx }: FormContainerProp
 
     return (
         <Box sx={homeContainerStyles}>
-            <Box sx={{ position: "fixed", top: 0, width: "inherit", zIndex: 1 }}>
+            <Box sx={{ position: "fixed", top: 0, width: "inherit", zIndex: 2 }}>
                 <AppBar position="static">
                     <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
                         <IconButton onClick={() => navigate(-1)} color="inherit">
