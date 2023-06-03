@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { placeDetailById, placeBookmarkPost, placeLike, placeBookmarkDelete } from "src/const/api/place";
-import placeState from "src/states/placeState";
-import { PlaceModel } from "src/states/placeState";
+import { placeDetailState, PlaceModel } from "src/states/placeState";
 import { IconButton, Toolbar } from "@mui/material";
 import colors from "src/const/colors";
 import icon from "src/const/icons";
@@ -122,24 +121,13 @@ const Map = ({ lat, lng }: MapProps) => {
 
 export default function PlaceDetail() {
     const [placeData, setPlaceData] = useState<PlaceModel>({} as PlaceModel);
+    const setPlaceDetail = useSetRecoilState(placeDetailState);
+
+    const [placeLikes, setPlaceLikes] = useState<number>(0);
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const location = useLocation();
     const fromMyPage = location.state?.fromMyPage;
-    const setPlaceList = useSetRecoilState(placeState);
-
-    useEffect(() => {
-        //placeDetailById를 확실히 불러오기 전에 setPlaceList를 실행하면 placeList가 초기화되는 문제가 있음
-        const fetchData = async () => {
-            if (id) {
-                const response = await placeDetailById(id);
-                setPlaceList([response.data]);
-                setPlaceData(response.data);
-            }
-        };
-
-        fetchData();
-    }, [id, setPlaceList]);
 
     const handleBookmark = async () => {
         if (id) {
@@ -173,7 +161,8 @@ export default function PlaceDetail() {
             placeLike(id)
                 .then((res) => {
                     if (res.status === 200) {
-                        alert("좋아요를 눌렀습니다.");
+                        setPlaceLikes(res.data.place_like);
+                        //alert("좋아요를 눌렀습니다.");
                         console.log("좋아요를 눌렀습니다.");
                     }
                 })
@@ -182,6 +171,23 @@ export default function PlaceDetail() {
                 });
         }
     };
+
+    useEffect(() => {
+        //placeDetailById를 확실히 불러오기 전에 setPlaceList를 실행하면 placeList가 초기화되는 문제가 있음
+        const fetchData = async () => {
+            if (id) {
+                const response = await placeDetailById(id);
+                setPlaceDetail(response.data);
+                setPlaceData(response.data);
+                setPlaceLikes(response.data.place_like);
+            }
+        };
+
+        fetchData();
+        return () => {
+            setPlaceDetail(undefined);
+        };
+    }, [id, setPlaceDetail, setPlaceLikes]);
 
     return (
         <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
@@ -195,27 +201,18 @@ export default function PlaceDetail() {
                 <CustomImg src={placeData.images?.[0] || ""} alt=" " style={{ width: "100%" }} />
             </div>
             <div style={{ padding: "10px" }}>
-                <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", display: "flex" }}>
-                    {placeData.facils}
-                    <IconButton
-                        onClick={handleBookmark}
-                        sx={{
-                            position: "absolute",
-                            right: 40,
-                            padding: 0,
-                            color: "#dcdc00",
-                            ":hover": { backgroundColor: "#d6d6d6" },
-                        }}
-                    >
-                        <StarBorderRoundedIcon />
-                    </IconButton>
-                    <IconButton
-                        onClick={handleLike}
-                        sx={{ position: "absolute", right: 15, padding: 0, color: "#da5e74", ":hover": { backgroundColor: "#d6d6d6" } }}
-                    >
-                        <FavoriteBorderRoundedIcon />
-                    </IconButton>
-                </p>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", display: "flex" }}>{placeData.facils}</p>
+                    <div>
+                        <IconButton onClick={handleBookmark} sx={{ padding: 0, color: "#dcdc00", ":hover": { ackgroundColor: "#d6d6d6" } }}>
+                            <StarBorderRoundedIcon sx={{ fontSize: "1.6rem" }} />
+                        </IconButton>
+                        <IconButton onClick={handleLike} sx={{ padding: 0, color: "#da5e74", ":hover": { backgroundColor: "#d6d6d6" } }}>
+                            <FavoriteBorderRoundedIcon />
+                            <span style={{ color: "da5e74" }}>{`${placeLikes}`}</span>
+                        </IconButton>
+                    </div>
+                </div>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", fontSize: "16px" }}>{getKeyValue(placeData.amenities ?? " ")}</p>
                 <p style={{ ...pStyle, fontWeight: "bold" }}>{placeData.place_name}</p>
                 <p style={{ ...pStyle, color: "#64748B" }}>
