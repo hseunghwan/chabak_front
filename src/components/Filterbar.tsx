@@ -115,14 +115,18 @@ export default function Filterbar() {
             </div>
             <Box
                 sx={{
-                    position: "fixed",
-                    zIndex: 1,
+                    position: "absolute",
+                    //position: "fixed",
+                    //zIndex: 1,
                     top: "100px",
-                    maxWidth: "45%",
                     transition: " 0.3s ease-in-out",
                     transform: showThemeListBox ? "scale(1)" : "scale(0)",
                     transformOrigin: "95% 3%",
                     width: "98%",
+                    margin: "0 1%",
+                    // [theme.breakpoints.up("md")]: {
+                    //     maxWidth: "45%",
+                    // },
                 }}
             >
                 <LocationListBox sx={{ borderRadius: "10px 10px 0 0" }} />
