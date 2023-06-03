@@ -12,6 +12,7 @@ import PhoneTwoToneIcon from "@mui/icons-material/PhoneTwoTone";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
 import { CustomImg } from "src/components/CustomImg";
 import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
 const pStyle: React.CSSProperties = {
@@ -205,7 +206,7 @@ export default function PlaceDetail() {
                     <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", display: "flex" }}>{placeData.facils}</p>
                     <div>
                         <IconButton onClick={handleBookmark} sx={{ padding: 0, color: "#dcdc00", ":hover": { ackgroundColor: "#d6d6d6" } }}>
-                            <StarBorderRoundedIcon sx={{ fontSize: "1.6rem" }} />
+                            {fromMyPage ? <StarRoundedIcon sx={{ fontSize: "1.7rem" }} /> : <StarBorderRoundedIcon sx={{ fontSize: "1.7rem" }} />}
                         </IconButton>
                         <IconButton onClick={handleLike} sx={{ padding: 0, color: "#da5e74", ":hover": { backgroundColor: "#d6d6d6" } }}>
                             <FavoriteBorderRoundedIcon />
