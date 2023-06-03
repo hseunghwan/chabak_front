@@ -127,7 +127,9 @@ export default function PlaceDetail() {
     const location = useLocation();
     const fromMyPage = location.state?.fromMyPage;
     const setPlaceList = useSetRecoilState(placeState);
+
     useEffect(() => {
+        //placeDetailById를 확실히 불러오기 전에 setPlaceList를 실행하면 placeList가 초기화되는 문제가 있음
         const fetchData = async () => {
             if (id) {
                 const response = await placeDetailById(id);

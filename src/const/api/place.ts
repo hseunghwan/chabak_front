@@ -88,7 +88,7 @@ export const placeBookmarkList = async () => {
 export const placeLike = async (place_id: string) => {
     return await apiClient({
         method: "patch",
-        url: `/api/place/like/${place_id}}`,
+        url: `/api/place/like/${place_id}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
             "Content-Type": "application/json",

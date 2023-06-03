@@ -60,6 +60,7 @@ export const getUserPlaceById = async (userId: number) => {
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
             "Content-Type": "application/json",
+            //"Access-Control-Request-Headers": "Authorization",
         },
     });
 };

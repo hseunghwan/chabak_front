@@ -8,12 +8,17 @@ type LocationContentBoxProps = {
     title: string;
     icon?: string;
 };
+
+//LocationCard에 적용되는 스타일
 const cardStyle: React.CSSProperties = {
     padding: "20px 12.319px",
     margin: "10px",
+    border: `2px solid`,
+    color: colors.MAIN,
     borderRadius: "50%",
     whiteSpace: "nowrap",
 };
+
 export default function LocationContentBox({ title, icon }: LocationContentBoxProps) {
     return (
         <Box sx={{ width: "100%", marginBottom: "5px" }}>
