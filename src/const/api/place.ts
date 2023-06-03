@@ -78,7 +78,7 @@ export const placeBookmarkDelete = async (place_id: string) => {
 export const placeBookmarkList = async () => {
     return await apiClient({
         method: "get",
-        url: `/api/bookmark`,
+        url: `/api/user/place/bookmark`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
             "Content-Type": "application/json",
