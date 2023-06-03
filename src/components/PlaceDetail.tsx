@@ -216,10 +216,10 @@ export default function PlaceDetail() {
                 </div>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", fontSize: "16px" }}>{getKeyValue(placeData.amenities ?? " ")}</p>
                 <p style={{ ...pStyle, fontWeight: "bold" }}>{placeData.place_name}</p>
-                <p style={{ ...pStyle, color: "#64748B" }}>
+                <a style={{ ...pStyle, color: "#64748B" }} href={`${placeData.page_url}`} target="_blank" rel="noreferrer">
                     <HomeTwoToneIcon sx={{ marginRight: "5px" }} />
                     {placeData.page_url}
-                </p>
+                </a>
                 <p style={{ ...pStyle, color: "#64748B" }}>
                     <PlaceTwoToneIcon sx={{ marginRight: "5px" }} />
                     {placeData.address}
