@@ -145,6 +145,7 @@ export default function PlaceDetail() {
                 placeBookmarkDelete(id)
                     .then((res) => {
                         if (res.status === 200) {
+                            alert("즐겨찾기에서 삭제되었습니다.");
                             console.log("즐겨찾기에서 삭제되었습니다.");
                         }
                     })
@@ -155,6 +156,7 @@ export default function PlaceDetail() {
                 placeBookmarkPost(id)
                     .then((res) => {
                         if (res.status === 200) {
+                            alert("즐겨찾기에 추가되었습니다.");
                             console.log("즐겨찾기에 추가되었습니다.");
                         }
                     })
@@ -169,6 +171,7 @@ export default function PlaceDetail() {
             placeLike(id)
                 .then((res) => {
                     if (res.status === 200) {
+                        alert("좋아요를 눌렀습니다.");
                         console.log("좋아요를 눌렀습니다.");
                     }
                 })
