@@ -12,6 +12,7 @@ export default function ThemeListBox({ sx, setShowThemeListBox }: ThemeListBoxPr
         <Box
             sx={{
                 display: "flex",
+                flexWrap: "wrap",
                 justifyContent: "space-evenly",
                 margin: "0 auto",
                 background: "white",
