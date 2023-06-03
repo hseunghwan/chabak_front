@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, IconButton } from "@mui/material";
 import { Container as MapDiv, NaverMap, useNavermaps, Overlay, useMap } from "react-naver-maps";
-import placeState from "src/states/placeState";
+import placeState, { placeDetailState } from "src/states/placeState";
 import searchState from "src/states/searchState";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { makeMarkerClustering } from "src/marker-cluster";
@@ -14,6 +14,7 @@ function MarkerCluster() {
     const navermaps = useNavermaps();
     const map = useMap();
     const placeList = useRecoilValue(placeState);
+    const placeDetail = useRecoilValue(placeDetailState);
     const navigate = useNavigate();
 
     // https://github.com/zeakd/react-naver-maps/blob/main/website/src/samples/marker-cluster.js
@@ -59,9 +60,12 @@ function MarkerCluster() {
         }
         if (placeList === null || placeList === undefined) return;
         const markers: naver.maps.Marker[] = [];
-        if (Array.isArray(placeList)) {
+        //placeDetailState가 null이 아니라면 placeDetailState를 사용하고, 그렇지 않으면 placeState를 사용합니다.
+        let places = placeDetail !== undefined ? [placeDetail] : placeList;
+
+        if (Array.isArray(places)) {
             // eslint-disable-next-line array-callback-return
-            placeList.map((place) => {
+            places.map((place) => {
                 let lat = place.latitude === null ? false : Number(place.latitude);
                 let lng = place.longitude === null ? false : Number(place.longitude);
                 if (lat !== false && lng !== false) {
@@ -102,7 +106,7 @@ function MarkerCluster() {
         // @ts-ignore
         setCluster(newCluster);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [placeList]);
+    }, [placeList, placeDetail]);
     return cluster ? <Overlay element={cluster} /> : <></>;
 }
 

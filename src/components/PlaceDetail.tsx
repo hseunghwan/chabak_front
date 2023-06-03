@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { placeDetailById } from "src/const/api/place";
-import placeState from "src/states/placeState";
-import { PlaceModel } from "src/states/placeState";
+import { placeDetailById, placeBookmarkPost, placeLike, placeBookmarkDelete } from "src/const/api/place";
+import { placeDetailState, PlaceModel } from "src/states/placeState";
 import { IconButton, Toolbar } from "@mui/material";
 import colors from "src/const/colors";
 import icon from "src/const/icons";
@@ -12,6 +11,9 @@ import PlaceTwoToneIcon from "@mui/icons-material/PlaceTwoTone";
 import PhoneTwoToneIcon from "@mui/icons-material/PhoneTwoTone";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
 import { CustomImg } from "src/components/CustomImg";
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import StarRoundedIcon from "@mui/icons-material/StarRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
 const pStyle: React.CSSProperties = {
     margin: "0 0 5px 5px",
@@ -120,20 +122,74 @@ const Map = ({ lat, lng }: MapProps) => {
 
 export default function PlaceDetail() {
     const [placeData, setPlaceData] = useState<PlaceModel>({} as PlaceModel);
+    const setPlaceDetail = useSetRecoilState(placeDetailState);
+
+    const [placeLikes, setPlaceLikes] = useState<number>(0);
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
-    const setPlaceList = useSetRecoilState(placeState);
+    const location = useLocation();
+    const fromMyPage = location.state?.fromMyPage;
+
+    const handleBookmark = async () => {
+        if (id) {
+            if (fromMyPage) {
+                placeBookmarkDelete(id)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            alert("즐겨찾기에서 삭제되었습니다.");
+                            console.log("즐겨찾기에서 삭제되었습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            } else {
+                placeBookmarkPost(id)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            alert("즐겨찾기에 추가되었습니다.");
+                            console.log("즐겨찾기에 추가되었습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }
+    };
+    const handleLike = async () => {
+        if (id) {
+            placeLike(id)
+                .then((res) => {
+                    if (res.status === 200) {
+                        setPlaceLikes(res.data.place_like);
+                        //alert("좋아요를 눌렀습니다.");
+                        console.log("좋아요를 눌렀습니다.");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
     useEffect(() => {
+        //placeDetailById를 확실히 불러오기 전에 setPlaceList를 실행하면 placeList가 초기화되는 문제가 있음
         const fetchData = async () => {
             if (id) {
                 const response = await placeDetailById(id);
-                setPlaceList([response.data]);
+                setPlaceDetail(response.data);
                 setPlaceData(response.data);
+                setPlaceLikes(response.data.place_like);
             }
         };
 
         fetchData();
-    }, [id, setPlaceList]);
+        return () => {
+            setPlaceDetail(undefined);
+        };
+    }, [id, setPlaceDetail, setPlaceLikes]);
+
     return (
         <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
             <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
@@ -146,7 +202,18 @@ export default function PlaceDetail() {
                 <CustomImg src={placeData.images?.[0] || ""} alt=" " style={{ width: "100%" }} />
             </div>
             <div style={{ padding: "10px" }}>
-                <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold" }}>{placeData.facils}</p>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", display: "flex" }}>{placeData.facils}</p>
+                    <div>
+                        <IconButton onClick={handleBookmark} sx={{ padding: 0, color: "#dcdc00", ":hover": { ackgroundColor: "#d6d6d6" } }}>
+                            {fromMyPage ? <StarRoundedIcon sx={{ fontSize: "1.7rem" }} /> : <StarBorderRoundedIcon sx={{ fontSize: "1.7rem" }} />}
+                        </IconButton>
+                        <IconButton onClick={handleLike} sx={{ padding: 0, color: "#da5e74", ":hover": { backgroundColor: "#d6d6d6" } }}>
+                            <FavoriteBorderRoundedIcon />
+                            <span style={{ color: "da5e74" }}>{`${placeLikes}`}</span>
+                        </IconButton>
+                    </div>
+                </div>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", fontSize: "16px" }}>{getKeyValue(placeData.amenities ?? " ")}</p>
                 <p style={{ ...pStyle, fontWeight: "bold" }}>{placeData.place_name}</p>
                 <p style={{ ...pStyle, color: "#64748B" }}>

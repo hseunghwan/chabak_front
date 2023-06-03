@@ -33,8 +33,10 @@ const FloatingAIChatting: React.FC<{ sx?: SxProps<Theme> }> = ({ sx }) => {
         postChatMessage(newUserMessage.content)
             .then((response) => {
                 setMessages((prevMessages) => [...prevMessages, { sender: "AI", content: response.data.response }]); // 챗봇 응답 추가
-                if (response.data.place_list) setPlaceList(response.data.place_list);
-                navigate("/placesearchresult");
+                if (response.data.place_list) {
+                    setPlaceList(response.data.place_list);
+                    navigate("/placesearchresult");
+                }
             })
             .catch((error) => {
                 console.log("postChatMessage err");

@@ -27,4 +27,10 @@ const placeState = atom<PlaceModel[]>({
     effects_UNSTABLE: [persistAtom],
 });
 
+export const placeDetailState = atom<PlaceModel | undefined>({
+    key: "placeDetailState",
+    default: undefined,
+    effects_UNSTABLE: [persistAtom],
+});
+
 export default placeState;

@@ -4,6 +4,6 @@
 
 /map-geocode/v2/geocode https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode 200
 
-/api/chatbot/* http://15.165.95.222:5000/api/chatbot  200
+/api/chatbot http://15.165.95.222:5000/api/chatbot  200
 #index.html로 리디렉션되도록 설정합니다. 이는 SPA(Single Page Application)에 일반적으로 사용되는 설정으로, 모든 요청이 index.html로 보내지고, 그 후에 자바스크립트가 경로를 파싱하고 적절한 뷰를 표시하는 방식입니다.
 /*    /index.html   200

@@ -29,11 +29,9 @@ export default function MypageManageRegisteredPlace() {
                   })
             : getUserPlaceById(user!.user_id)
                   .then((response) => {
-                      console.log(localStorage.getItem("jwtToken"));
                       setUserPlaceList(response.data);
                   })
                   .catch((error) => {
-                      console.log(localStorage.getItem("jwtToken"));
                       console.error("Error:", error);
                   });
     }, [location.pathname, user]);
@@ -75,9 +73,11 @@ export default function MypageManageRegisteredPlace() {
             )}
             <div>
                 {/* 무한스크롤 구현 */}
-                {displayedItems !== undefined &&
-                    typeof displayedItems === "object" &&
-                    displayedItems.map((userPlace) => <RegisteredPlaceCard key={userPlace.userPlaceId} userPlace={userPlace} />)}
+                {displayedItems !== undefined && typeof displayedItems === "object" ? (
+                    displayedItems.map((userPlace) => <RegisteredPlaceCard key={userPlace.userPlaceId} userPlace={userPlace} />)
+                ) : (
+                    <div>등록된 차박지가 없습니다.</div>
+                )}
                 <div ref={loader}></div>
             </div>
         </div>

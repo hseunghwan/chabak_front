@@ -5,6 +5,7 @@ import colors from "src/const/colors";
 import SwipeableViews from "react-swipeable-views";
 import MypageProfile from "src/pages/MypageProfile";
 import MypageManageRegisteredPlace from "src/pages/MypageManageRegisteredPlace";
+import BookmarkList from "src/pages/BookmarkList";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -57,6 +58,7 @@ export default function Mypage() {
                 >
                     <Tab label="회원정보 수정" {...a11yProps(0)} />
                     <Tab label="차박지 관리" {...a11yProps(1)} />
+                    <Tab label="즐겨찾기 관리" {...a11yProps(2)} />
                 </Tabs>
             </Box>
 
@@ -66,6 +68,9 @@ export default function Mypage() {
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <MypageManageRegisteredPlace />
+                </TabPanel>
+                <TabPanel value={value} index={2} dir={theme.direction}>
+                    <BookmarkList />
                 </TabPanel>
             </SwipeableViews>
         </FormContainer>
