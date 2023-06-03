@@ -4,11 +4,13 @@ import SimpleInput, { CustomInput } from "src/components/SimpleInput";
 import { styled } from "@mui/system";
 import { useRecoilState } from "recoil";
 import userState from "src/states/userState";
-import { changeUserState } from "src/const/api/user";
+import { changeUserState, userQuit } from "src/const/api/user";
 import { checkPasswordFormat } from "src/const/consts";
 import { ChangeUserStateModel } from "src/const/api/user";
+import { useNavigate } from "react-router-dom";
 
 export default function MypageProfile() {
+    const navigate = useNavigate();
     const [userData, setData] = useRecoilState(userState);
     const defaultPasswordError = "영어, 숫자, 특수문자를 포함한 8자리 이상";
 
@@ -45,6 +47,25 @@ export default function MypageProfile() {
                     console.error("change failed: " + error.message + "\nError Status: " + error.response.status);
                 });
     };
+
+    const handleQuit = async () => {
+        userData &&
+            window.confirm("정말로 탈퇴하시겠습니까?") &&
+            userQuit(userData.user_id)
+                .then((response) => {
+                    if (response.status === 200) {
+                        alert("회원 탈퇴가 완료되었습니다.");
+                        localStorage.removeItem("jwtToken");
+                        setData(undefined);
+                        navigate("/");
+                    } else {
+                        alert("회원 탈퇴에 실패하였습니다.");
+                    }
+                })
+                .catch((error) => {
+                    console.error("quit failed: " + error.message + "\nError Status: " + error.response.status);
+                });
+    };
     return (
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
             <span style={{ fontSize: "1.5rem" }}>프로필</span>
@@ -79,7 +100,12 @@ export default function MypageProfile() {
             <CustomInput value={mycar} onChange={(e) => setMycar(e.target.value)} />
             <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>닉네임</span>
             <CustomInput value={nickname} onChange={(e) => setNickname(e.target.value)} />
-            <Button type="submit">저장</Button>
+            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+                <Button type="submit">저장</Button>
+                <Button onClick={handleQuit} sx={{ color: "red" }}>
+                    회원 탈퇴
+                </Button>
+            </div>
         </Box>
     );
 }

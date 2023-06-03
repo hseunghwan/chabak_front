@@ -117,18 +117,19 @@ export default function ManageRegisteredPlace() {
     };
 
     const handleDelete = async () => {
-        deleteUserPlaceByPlaceId(place.userPlaceId)
-            .then((response) => {
-                if (response.status === 200) {
-                    alert("차박지 삭제가 완료되었습니다.");
-                } else {
-                    alert("차박지 삭제에 실패하였습니다.");
-                    navigate(-1);
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        window.confirm("정말로 삭제하시겠습니까?") &&
+            deleteUserPlaceByPlaceId(place.userPlaceId)
+                .then((response) => {
+                    if (response.status === 200) {
+                        alert("차박지 삭제가 완료되었습니다.");
+                        navigate(-1);
+                    } else {
+                        alert("차박지 삭제에 실패하였습니다.");
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
     };
     return (
         <FormContainer title={place.userPlaceName} sx={{ display: "block" }}>
@@ -154,7 +155,7 @@ export default function ManageRegisteredPlace() {
                 <CustomInput value={descript} onChange={(e) => setDescript(e.target.value)} sx={{ height: "200px", overflow: "auto" }} />
                 <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>해시태그</span>
                 <CustomInput value={tags} onChange={(e) => setTags(e.target.value)} />
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
                     <Button type="submit">수정</Button>
                     <Button onClick={handleDelete}>삭제</Button>
                 </div>
