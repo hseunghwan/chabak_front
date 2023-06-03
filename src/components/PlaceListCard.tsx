@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { CustomImg } from "src/components/CustomImg";
 
 type PlaceListCardProps = {
@@ -18,10 +18,12 @@ const pStyle: React.CSSProperties = {
 
 export default function PlaceListCard({ placeId, theme, name, address, imgUrl }: PlaceListCardProps): JSX.Element {
     const navigate = useNavigate();
+    const location = useLocation();
     return (
         <Box
             onClick={() => {
-                if (placeId) navigate(`/placedetail/${placeId}`);
+                if (location.pathname === "/mypage") navigate(`/placedetail/${placeId}`, { state: { fromMyPage: true } });
+                else if (placeId) navigate(`/placedetail/${placeId}`);
             }}
             sx={{
                 display: "flex",

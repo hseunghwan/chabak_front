@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
-import { placeDetailById } from "src/const/api/place";
+import { placeDetailById, placeBookmarkPost, placeLike, placeBookmarkDelete } from "src/const/api/place";
 import placeState from "src/states/placeState";
 import { PlaceModel } from "src/states/placeState";
 import { IconButton, Toolbar } from "@mui/material";
@@ -12,6 +12,8 @@ import PlaceTwoToneIcon from "@mui/icons-material/PlaceTwoTone";
 import PhoneTwoToneIcon from "@mui/icons-material/PhoneTwoTone";
 import { Container as MapDiv, Marker, NaverMap, useNavermaps } from "react-naver-maps";
 import { CustomImg } from "src/components/CustomImg";
+import StarBorderRoundedIcon from "@mui/icons-material/StarBorderRounded";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
 const pStyle: React.CSSProperties = {
     margin: "0 0 5px 5px",
@@ -122,6 +124,8 @@ export default function PlaceDetail() {
     const [placeData, setPlaceData] = useState<PlaceModel>({} as PlaceModel);
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
+    const location = useLocation();
+    const fromMyPage = location.state?.fromMyPage;
     const setPlaceList = useSetRecoilState(placeState);
     useEffect(() => {
         const fetchData = async () => {
@@ -134,6 +138,46 @@ export default function PlaceDetail() {
 
         fetchData();
     }, [id, setPlaceList]);
+
+    const handleBookmark = async () => {
+        if (id) {
+            if (fromMyPage) {
+                placeBookmarkDelete(id)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log("즐겨찾기에서 삭제되었습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            } else {
+                placeBookmarkPost(id)
+                    .then((res) => {
+                        if (res.status === 200) {
+                            console.log("즐겨찾기에 추가되었습니다.");
+                        }
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }
+    };
+    const handleLike = async () => {
+        if (id) {
+            placeLike(id)
+                .then((res) => {
+                    if (res.status === 200) {
+                        console.log("좋아요를 눌렀습니다.");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    };
+
     return (
         <div style={{ backgroundColor: "white", paddingBottom: "10px" }}>
             <Toolbar sx={{ color: colors.MAIN, backgroundColor: "white", borderBottom: `solid ${colors.MAIN}` }}>
@@ -146,7 +190,27 @@ export default function PlaceDetail() {
                 <CustomImg src={placeData.images?.[0] || ""} alt=" " style={{ width: "100%" }} />
             </div>
             <div style={{ padding: "10px" }}>
-                <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold" }}>{placeData.facils}</p>
+                <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", display: "flex" }}>
+                    {placeData.facils}
+                    <IconButton
+                        onClick={handleBookmark}
+                        sx={{
+                            position: "absolute",
+                            right: 40,
+                            padding: 0,
+                            color: "#dcdc00",
+                            ":hover": { backgroundColor: "#d6d6d6" },
+                        }}
+                    >
+                        <StarBorderRoundedIcon />
+                    </IconButton>
+                    <IconButton
+                        onClick={handleLike}
+                        sx={{ position: "absolute", right: 15, padding: 0, color: "#da5e74", ":hover": { backgroundColor: "#d6d6d6" } }}
+                    >
+                        <FavoriteBorderRoundedIcon />
+                    </IconButton>
+                </p>
                 <p style={{ ...pStyle, color: "#0072BC", fontWeight: "bold", fontSize: "16px" }}>{getKeyValue(placeData.amenities ?? " ")}</p>
                 <p style={{ ...pStyle, fontWeight: "bold" }}>{placeData.place_name}</p>
                 <p style={{ ...pStyle, color: "#64748B" }}>

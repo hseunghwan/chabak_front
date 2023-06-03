@@ -34,6 +34,7 @@ export const userLogout = async (token: string | null) => {
         url: `/api/user/logout`,
         headers: {
             Authorization: `${token}`,
+            'Content-Type': 'application/json',
         },
     });
 };
@@ -52,6 +53,7 @@ export const changeUserState = async (email: string, token: string | null, data:
         url: `/api/user/profile/${email}`,
         headers: {
             Authorization: `${token}`,
+            'Content-Type': 'application/json',
         },
         data: data,
     });
@@ -63,6 +65,7 @@ export const userQuit = async (user_id: number) => {
         url: `/api/user/${user_id}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
         },
     });
 };

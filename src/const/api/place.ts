@@ -35,7 +35,6 @@ export const placeListBySearchKeyword = async (searchKeyword: string) => {
     });
 };
 
-//사용 불가능
 export const placeListBySearchKeywordFilter = async (searchKeyword: string, theme: string, facils: string) => {
     return await apiClient({
         method: "get",
@@ -51,5 +50,48 @@ export const placeDetailById = async (place_id: string) => {
     return await apiClient({
         method: "get",
         url: `/api/place/detail/${place_id}`,
+    });
+};
+
+export const placeBookmarkPost = async (place_id: string) => {
+    return await apiClient({
+        method: "post",
+        url: `/api/bookmark/${place_id}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+        },
+    });
+};
+
+export const placeBookmarkDelete = async (place_id: string) => {
+    return await apiClient({
+        method: "delete",
+        url: `/api/bookmark/${place_id}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+        },
+    });
+};
+
+export const placeBookmarkList = async () => {
+    return await apiClient({
+        method: "get",
+        url: `/api/bookmark`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+        },
+    });
+};
+export const placeLike = async (place_id: string) => {
+    return await apiClient({
+        method: "patch",
+        url: `/api/place/like/${place_id}}`,
+        headers: {
+            Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
+        },
     });
 };

@@ -40,6 +40,7 @@ export const userPlaceRegister = async (data: UserPlaceRegisterModel, userId: nu
         url: `/api/register/address/${userId}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
         },
         data: data,
     });
@@ -58,6 +59,7 @@ export const getUserPlaceById = async (userId: number) => {
         url: `/api/user/place/${userId}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
         },
     });
 };
@@ -78,6 +80,7 @@ export const changeUserPlaceByPlaceId = async (placeId: number, data: { userPlac
         url: `/api/user/edit/${placeId}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
         },
         data: data,
     });
@@ -89,6 +92,7 @@ export const deleteUserPlaceByPlaceId = async (placeId: number) => {
         url: `/api/user/place/${placeId}`,
         headers: {
             Authorization: `${localStorage.getItem("jwtToken")}`,
+            "Content-Type": "application/json",
         },
     });
 };
