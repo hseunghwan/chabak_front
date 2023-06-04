@@ -157,7 +157,7 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
             sx={{
                 position: "fixed",
                 width: { xs: "94%", sm: "94%", md: "calc(52.5% - 110px)" },
-                height: { xs: "77vh", sm: "77vh", md: "93vh" },
+                height: { xs: "calc(88vh - 90px)", sm: "calc(88vh - 90px)", md: "93vh" },
                 top: { xs: "70px", sm: "70px", md: "20px" },
                 left: "0px",
                 padding: { xs: "0 2%", sm: "0 2%", md: "0 0 0 10px" },
