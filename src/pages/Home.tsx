@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, SxProps, Theme, useTheme } from "@mui/material";
 import FloatingButton from "src/components/FloatingButton";
 import FloatingChatButton from "src/components/FloatingChatButton";
@@ -35,20 +35,6 @@ export default function Home() {
             setMapOrChat(false);
         }
     };
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth < 900) {
-                setShowSpeechBubble(false);
-            }
-        };
-        handleResize(); // 컴포넌트가 마운트되면 한 번 호출합니다.
-        window.addEventListener("resize", handleResize); // 이벤트 리스너를 추가합니다.
-        // 컴포넌트가 언마운트되면 이벤트 리스너를 제거합니다.
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
 
     const floatingButtonContainerStyles: SxProps<Theme> = {
         display: "flex",
