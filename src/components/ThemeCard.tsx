@@ -32,7 +32,7 @@ export default function ThemeCard({ title, imgUrl }: ThemeCardProps) {
                 width: "30%",
                 minWidth: "110px",
                 maxWidth: "200px",
-                margin: "10px",
+                margin: "10px 5px",
                 cursor: "pointer",
                 borderRadius: "16px",
                 overflow: "auto",

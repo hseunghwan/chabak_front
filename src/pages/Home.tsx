@@ -53,9 +53,9 @@ export default function Home() {
     const floatingButtonContainerStyles: SxProps<Theme> = {
         display: "flex",
         transition: "0.5s",
-        flexDirection: "column",
+        flexDirection: { xs: "row", sm: "row", md: "column" },
         position: "fixed",
-        left: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)",
+        left: { xs: "30px", sm: "30px", md: showSpeechBubble ? "calc(52.5% - 70px)" : "calc(27.5% - 70px)" },
         bottom: "30px",
         gap: "10px",
         zIndex: 100,
@@ -63,7 +63,7 @@ export default function Home() {
 
     const homeContainerStyles: SxProps<Theme> = {
         position: "relative",
-        left: showSpeechBubble ? "25%" : 0,
+        left: { xs: undefined, sm: undefined, md: showSpeechBubble ? "25%" : 0 },
         transition: "left 0.5s",
         flexDirection: "column",
         width: "100%",
@@ -77,8 +77,8 @@ export default function Home() {
         <>
             <FloatingNaverMap isOpen={showSpeechBubble} mapOrChat={mapOrChat} />
             <Box sx={floatingButtonContainerStyles}>
-                <FloatingButton onClick={handleClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
-                <FloatingChatButton onClick={handleFloatingAIChattingClick} sx={{ display: { xs: "none", sm: "none", md: "flex" } }} />
+                <FloatingButton onClick={handleClick} />
+                <FloatingChatButton onClick={handleFloatingAIChattingClick} />
             </Box>
             <Box sx={homeContainerStyles}>
                 <Outlet />

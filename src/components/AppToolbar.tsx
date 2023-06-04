@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom"; //useLocation,
 import { AppBar, Box, Toolbar, IconButton, MenuItem, Menu } from "@mui/material"; //, Popover, TextField
-import MoreIcon from "@mui/icons-material/MoreVert";
+//import MoreIcon from "@mui/icons-material/MoreVert";
 import icons from "src/const/icons";
 import colors from "src/const/colors";
 import { userLogout } from "src/const/api/user";
@@ -32,9 +32,10 @@ export default function AppToolbar(): JSX.Element {
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
-    const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
+    //모바일...메뉴
+    // const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    //     setMobileMoreAnchorEl(event.currentTarget);
+    // };
     const handleProfileMenuClose = () => {
         setProfileAnchorEl(null);
     };
@@ -86,15 +87,15 @@ export default function AppToolbar(): JSX.Element {
         >
             <MenuItem aria-controls={searchId} onClick={() => navigate("/SearchFilter")}>
                 <CustomImg src={icons.search} alt="" width="20px" style={{ padding: "12px" }} />
-                <p>Search</p>
+                <p>검색</p>
             </MenuItem>
             <MenuItem onClick={() => navigate("/PlaceSearchResult")}>
                 <CustomImg src={icons.list} alt="" width="20px" style={{ padding: "12px" }} />
-                <p>List</p>
+                <p>캠핑장</p>
             </MenuItem>
             <MenuItem aria-controls={profileId} onClick={handleProfileMenuOpen}>
                 <CustomImg src={icons.circleuser} alt="" width="20px" style={{ padding: "12px" }} />
-                <p>Profile</p>
+                <p>프로필</p>
             </MenuItem>
         </Menu>
     );
@@ -180,7 +181,8 @@ export default function AppToolbar(): JSX.Element {
                             <CustomImg src={icons.chabakchabak} alt="" width="118px" />
                         </Box>
                         <Box sx={{ flexGrow: 1 }}></Box>
-                        <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}>
+                        {/* <Box color="inherit" sx={{ display: { xs: "none", sm: "flex" } }}> */}
+                        <Box color="inherit">
                             <IconButton onClick={() => navigate("/SearchFilter")} size="large" color="inherit" aria-controls={searchId}>
                                 <CustomImg src={icons.search} alt="" width="30px" />
                             </IconButton>
@@ -198,7 +200,7 @@ export default function AppToolbar(): JSX.Element {
                                 <CustomImg src={icons.circleuser} alt="" width="30px" />
                             </IconButton>
                         </Box>
-                        <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
+                        {/* <Box sx={{ color: "inherit", display: { xs: "flex", sm: "none" } }}>
                             <IconButton
                                 size="large"
                                 aria-label="show more"
@@ -209,7 +211,7 @@ export default function AppToolbar(): JSX.Element {
                             >
                                 <MoreIcon />
                             </IconButton>
-                        </Box>
+                        </Box> */}
                     </Toolbar>
                 </AppBar>
                 {renderMobileMenu}
