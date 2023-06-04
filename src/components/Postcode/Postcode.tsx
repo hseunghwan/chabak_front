@@ -57,7 +57,7 @@ const Postcode: React.FC<PostcodeProps> = ({ address, setAddress }) => {
                 <script type="text/javascript" src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
             </Helmet>
             <div style={{ display: "flex" }}>
-                <CustomInput type="text" value={address.postcode} placeholder="우편번호" readOnly />
+                <CustomInput type="text" value={address.postcode} placeholder="우편번호" readOnly sx={{ flexGrow: 1 }} />
                 <Button onClick={handleClick} sx={{ whiteSpace: "nowrap" }}>
                     주소검색
                 </Button>
