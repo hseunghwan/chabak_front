@@ -53,10 +53,6 @@ const SearchFilter = () => {
     };
 
     const handleSearch = () => {
-        if (!searchKeyword) {
-            alert("검색어를 입력해주세요.");
-            return;
-        }
         const selectedFacilitiesKeys = facilities
             .filter(({ facility }) => selectedFacilities[facility])
             .map(({ facility }) => facility)
@@ -66,7 +62,7 @@ const SearchFilter = () => {
             .map(({ title }) => title)
             .join(",");
 
-        placeListBySearchKeywordFilter(searchKeyword, selectedThemesTitles, selectedFacilitiesKeys)
+        placeListBySearchKeywordFilter(searchKeyword || " ", selectedThemesTitles, selectedFacilitiesKeys)
             .then((response) => {
                 setPlaceList(response.data);
                 setUserSearchState({ location: "전국", theme: null, facils: null, searchKeyword: null });
