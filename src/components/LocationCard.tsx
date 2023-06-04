@@ -62,6 +62,7 @@ export default function LocationCard({ gpe, setShowLocationListBox, style }: Loc
                 borderRadius: "50px",
                 cursor: "pointer",
                 textAlign: "center",
+                scrollSnapAlign: "start", // Here
                 ...style,
             }}
         >

@@ -29,6 +29,7 @@ export default function RecommendCard({ placeId, theme, name, address, imgUrl }:
                 borderRadius: "16px",
                 overflow: "auto",
                 boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                scrollSnapAlign: "start", // Here
             }}
         >
             <CustomImg src={imgUrl} alt=" " style={{ width: "100%", maxHeight: "132px" }} />
