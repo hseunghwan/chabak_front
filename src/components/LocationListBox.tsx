@@ -48,6 +48,7 @@ export default function LocationListBox({ sx, setShowLocationListBox, style }: L
                     backgroundColor: "#F1F1F1",
                     borderRadius: "10px",
                 },
+                scrollSnapType: "x mandatory", // Here
                 ...sx,
             }}
         >

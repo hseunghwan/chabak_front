@@ -67,6 +67,7 @@ const HomeContentBox = ({ title, icon, sx }: HomeContentBoxProps): JSX.Element =
                         backgroundColor: "#F1F1F1",
                         borderRadius: "10px",
                     },
+                    scrollSnapType: "x mandatory", // Here
                 }}
             >
                 {placeList.map((place, index) => (
