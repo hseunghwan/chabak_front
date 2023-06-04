@@ -156,14 +156,15 @@ const FloatingNaverMap: React.FC<{ isOpen: boolean; mapOrChat: boolean }> = ({ i
         <Box
             sx={{
                 position: "fixed",
-                width: "calc(52.5% - 110px)",
-                height: "93vh",
-                top: "20px",
+                width: { xs: "94%", sm: "94%", md: "calc(52.5% - 110px)" },
+                height: { xs: "77vh", sm: "77vh", md: "93vh" },
+                top: { xs: "70px", sm: "70px", md: "20px" },
                 left: "0px",
-                paddingLeft: "10px",
+                padding: { xs: "0 2%", sm: "0 2%", md: "0 0 0 10px" },
                 transition: "0.5s",
                 transform: isOpen ? "scale(1)" : "scale(0)",
-                transformOrigin: "47% 95%",
+                transformOrigin: { xs: "25% 100%", sm: "20% 100%", md: "47% 95%" },
+                zIndex: 100,
             }}
         >
             <MapDiv style={{ ...mapStyles, display: mapOrChat ? "block" : "none" }}>
