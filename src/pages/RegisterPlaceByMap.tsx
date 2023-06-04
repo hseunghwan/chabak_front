@@ -29,16 +29,17 @@ export default function RegisterPlaceByMap() {
     };
     return (
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
-            <span style={{ fontSize: "1.5rem" }}>지도로 위치 선택</span>
+            <span style={{ fontSize: "1.5rem", marginBottom: "10px" }}>지도로 위치 선택</span>
             <span style={{ fontSize: "1.5rem", color: "red" }}>추후에 제공하도록 하겠습니다</span>
             {/* 지도, 주소 api */}
-            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차박지 이름</span>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem", marginBottom: "5px" }}>차박지 이름</span>
             <CustomInput value={userPlaceName} onChange={(e) => setUserPlaceName(e.target.value)} />
-            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>차박지 설명</span>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem", marginBottom: "5px" }}>차박지 설명</span>
             <CustomInput value={descript} onChange={(e) => setDescript(e.target.value)} sx={{ height: "200px", overflow: "auto" }} />
-            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>해시태그</span>
+            <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem", marginBottom: "5px" }}>해시태그</span>
             <CustomInput value={tags} onChange={(e) => setTags(e.target.value)} />
-            <Button type="submit">등록</Button>
+            {/* //<Button type="submit">등록</Button> */}
+            <Button>등록</Button>
         </Box>
     );
 }
