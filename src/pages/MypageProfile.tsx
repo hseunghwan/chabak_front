@@ -69,19 +69,11 @@ export default function MypageProfile() {
     return (
         <Box component={"form"} onSubmit={handleSubmit} sx={{ display: "flex", flexWrap: "wrap", flexDirection: "column", alignContent: "center" }}>
             <span style={{ fontSize: "1.5rem" }}>프로필</span>
-            <Box sx={{ display: "flex", justifyContent: "space-evenly" }}>
-                <Box sx={{ width: "75%", marginTop: "1rem" }}>
-                    <span style={{ fontSize: "0.8rem", marginLeft: "1rem" }}>이메일</span>
-                    <StyledInputRoot sx={{ width: "100%" }}>
-                        <StyledInputElement>{userData?.email}</StyledInputElement>
-                    </StyledInputRoot>
-                </Box>
-                <Box sx={{ width: "15%", marginTop: "1rem" }}>
-                    <span style={{ fontSize: "0.8rem", marginLeft: "1rem", whiteSpace: "nowrap" }}>에코 LV</span>
-                    <StyledInputRoot sx={{ width: "100%" }}>
-                        <StyledInputElement>{userData?.eco_lv}</StyledInputElement>
-                    </StyledInputRoot>
-                </Box>
+            <Box sx={{ width: "75%", marginTop: "1rem" }}>
+                <span style={{ fontSize: "0.8rem", marginLeft: "1rem" }}>이메일</span>
+                <StyledInputRoot sx={{ width: "100%" }}>
+                    <StyledInputElement>{userData?.email}</StyledInputElement>
+                </StyledInputRoot>
             </Box>
             <span style={{ fontSize: "1.5rem", marginTop: "1rem" }}>회원정보 수정</span>
             <span style={{ fontSize: "0.8rem", marginLeft: "1rem", marginTop: "1rem" }}>이름</span>
