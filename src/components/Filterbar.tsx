@@ -117,7 +117,7 @@ export default function Filterbar() {
                 sx={{
                     position: "absolute",
                     //position: "fixed",
-                    //zIndex: 1,
+                    zIndex: 1,
                     top: "100px",
                     transition: " 0.3s ease-in-out",
                     transform: showThemeListBox ? "scale(1)" : "scale(0)",
